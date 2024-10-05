@@ -18,7 +18,6 @@ public class EnemyStateDeath : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-        enemy.animator.SetBool("isDeath", true);
     }
 
     public override void ExitState()
@@ -30,7 +29,6 @@ public class EnemyStateDeath : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        CheckEndAnimation();
 
 
 
@@ -39,10 +37,7 @@ public class EnemyStateDeath : EnemyState
     {
         base.PhysicalUpdate();
     }
-    public void CheckEndAnimation()
-    {
 
-    }
 
 
 

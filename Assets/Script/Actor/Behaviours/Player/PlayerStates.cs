@@ -56,6 +56,7 @@ public class PlayerStates : MonoBehaviour
     public void ChangeToDeathState()
     {
         StateMachine.ChangeState(DeathState);
+
     }
 
 

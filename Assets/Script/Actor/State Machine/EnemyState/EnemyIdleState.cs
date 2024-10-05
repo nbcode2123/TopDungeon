@@ -17,8 +17,6 @@ public class EnemyIdleState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
-
-        enemy.animator.Play("Idle");
     }
 
     public override void ExitState()
@@ -31,6 +29,7 @@ public class EnemyIdleState : EnemyState
     {
         base.FrameUpdate();
         enemy.GetComponent<PlayerChaser>().FollowPlayer();
+
 
 
 

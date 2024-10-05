@@ -17,11 +17,13 @@ public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
         for (int i = 0; i < hits.Length; i++)
         {
             string enemyName = hits[i].collider.gameObject.name;
+            Debug.Log(enemyName);
             if (enemyName != null)
             {
                 float targetHeal = hits[i].collider.gameObject.GetComponent<IActorStats>().currentHeath;
                 if (targetHeal != 0)
                 {
+                    hits[i].collider.gameObject.GetComponent<Animator>().SetBool("isAttack", true);
                     hits[i].collider.gameObject.GetComponent<TakeDamage>().DealDmgToActor(AttackDmg);
 
 
@@ -35,6 +37,5 @@ public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
 
 
     // }
-    // Start is called before the first frame update
 
 }

@@ -52,6 +52,7 @@ public abstract class Enemy : MonoBehaviour
 
 
 
+
     #region Enemy Base Methods 
     public void Awake()
     {
@@ -105,7 +106,7 @@ public abstract class Enemy : MonoBehaviour
             enemyStateMachine.ChangeState(enemyIdleState);
 
         }
-        else if (PlayerChaser.DistanceToPlayer <= PlayerChaser.AttackDistance && animator.GetBool("isTakeDmg") == false && attackCounter >= ActorStats.AttackSpeed)
+        if (PlayerChaser.DistanceToPlayer <= PlayerChaser.AttackDistance && animator.GetBool("isTakeDmg") == false && attackCounter >= ActorStats.AttackSpeed)
         {
 
             attackCounter = 0f;

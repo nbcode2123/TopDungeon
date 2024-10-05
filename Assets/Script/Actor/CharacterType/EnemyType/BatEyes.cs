@@ -42,4 +42,9 @@ public class BatEyes : Enemy
         Gizmos.DrawWireSphere(AttackTranform.transform.position, AttackRange);
 
     }
+    public void EndAnimationTakeDmg()
+    {
+
+
+    }
 }
