@@ -59,6 +59,7 @@ public abstract class Player : MonoBehaviour
         ActorStats = gameObject.GetComponent<IActorStats>();
         TakeDamage = gameObject.GetComponent<TakeDamage>();
         PlayerStates = gameObject.GetComponent<PlayerStates>();
+        Debug.Log("Hello world");
 
 
     }

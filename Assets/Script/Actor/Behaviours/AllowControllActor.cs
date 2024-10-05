@@ -45,6 +45,7 @@ public class AllowControllActor : MonoBehaviour
             if (MoveDirection != Vector2.zero)
             {
                 ObserverManager.Notify("Player Move");
+
             }
             CheckForLeftOrRightFacing(rigidbodyCharactor.velocity);
         }

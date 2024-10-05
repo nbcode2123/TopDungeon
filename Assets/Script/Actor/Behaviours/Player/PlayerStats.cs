@@ -16,4 +16,6 @@ public class PlayerStats : MonoBehaviour, IActorStats
     public string ActorName { get; set; }
 
 
+
+
 }

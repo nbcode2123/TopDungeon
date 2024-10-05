@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [field: SerializeField] public GameObject Player { get; set; }
+
     public int CorridorWidth = 5;
     private void Awake()
     {
