@@ -17,6 +17,7 @@ public class TakeDamage : MonoBehaviour
     }
     public void DealDmgToActor(float DamageTaken) // gaay dmg len nhan vat 
     {
+        Debug.Log(gameObject.GetComponent<IActorStats>().currentHeath);
         if (gameObject.GetComponent<IActorStats>().currentHeath >= DamageTaken)
         {
             gameObject.GetComponent<IActorStats>().currentHeath -= DamageTaken;

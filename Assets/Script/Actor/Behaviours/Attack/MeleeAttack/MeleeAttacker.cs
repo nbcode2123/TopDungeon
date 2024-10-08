@@ -23,7 +23,7 @@ public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
                 float targetHeal = hits[i].collider.gameObject.GetComponent<IActorStats>().currentHeath;
                 if (targetHeal != 0)
                 {
-                    hits[i].collider.gameObject.GetComponent<Animator>().SetBool("isAttack", true);
+                    hits[i].collider.gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
                     hits[i].collider.gameObject.GetComponent<TakeDamage>().DealDmgToActor(AttackDmg);
 
 

@@ -28,7 +28,6 @@ public class EnemyIdleState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        enemy.GetComponent<PlayerChaser>().FollowPlayer();
 
 
 

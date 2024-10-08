@@ -6,5 +6,7 @@ public interface IMeleeAttacker : IAttack
 {
     public Transform AttackTranform { set; get; }
     public float AttackRange { set; get; }
+    public RaycastHit2D[] hits { set; get; }
+
 
 }

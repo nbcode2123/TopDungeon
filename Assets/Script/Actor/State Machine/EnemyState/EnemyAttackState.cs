@@ -7,6 +7,9 @@ public class EnemyAttackState : EnemyState
     // Start is called before the first frame update
     public EnemyAttackState(Enemy enemy, EnemyStateMachine EnemyStateMachine) : base(enemy, EnemyStateMachine)
     {
+        this.enemy = enemy;
+        enemyStateMachine = EnemyStateMachine;
+
 
     }
     public override void EnterState()
@@ -15,11 +18,14 @@ public class EnemyAttackState : EnemyState
         base.EnterState();
         enemy.animator.SetBool("isAttack", true);
 
+
+
     }
     public override void ExitState()
     {
         base.ExitState();
-        enemy.animator.SetBool("isAttack", true);
+
+        // enemy.animator.SetBool("isAttack", false);
 
     }
     public override void FrameUpdate()

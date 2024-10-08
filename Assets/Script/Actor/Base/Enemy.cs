@@ -1,19 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerChaser))]
-[RequireComponent(typeof(MeleeAttacker))]
+using UnityEngine;
+
+
 [RequireComponent(typeof(TakeDamage))]
 [RequireComponent(typeof(EnemyStats))]
+[RequireComponent(typeof(EnemyStates))]
 public abstract class Enemy : MonoBehaviour
 {
 
-    [Header("Actor State ")]
+    [Header("Enemy State ")]
     public float MaxHeath;
     public float currentHeath;
     public float MoveSpeed;
@@ -23,10 +18,7 @@ public abstract class Enemy : MonoBehaviour
     [Header("Take Damge")]
     public GameObject textDmg;
     public Vector3 GameObjectTransformPosition;
-    [Header("Chase Player Properties ")]
-    public float AttackDistance;
-    public float OutRangeDistance;
-    public GameObject PlayerTrans;
+
 
 
 
@@ -40,9 +32,9 @@ public abstract class Enemy : MonoBehaviour
     public float attackCounter;
     public Rigidbody2D RB { get; set; }
     public Animator animator { get; set; }
-    private PlayerChaser PlayerChaser;
     private TakeDamage TakeDamage;
     private IActorStats ActorStats;
+
 
 
     #endregion
@@ -60,18 +52,15 @@ public abstract class Enemy : MonoBehaviour
         enemyIdleState = new EnemyIdleState(this, enemyStateMachine);
         enemyAttackState = new EnemyAttackState(this, enemyStateMachine);
         enemyStateDeath = new EnemyStateDeath(this, enemyStateMachine);
-        PlayerChaser = gameObject.GetComponent<PlayerChaser>();
         ActorStats = gameObject.GetComponent<IActorStats>();
         TakeDamage = gameObject.GetComponent<TakeDamage>();
+
 
         ActorStats.MaxHeath = MaxHeath;
         ActorStats.currentHeath = MaxHeath;
         ActorStats.MoveSpeed = MoveSpeed;
         ActorStats.AttackSpeed = AttackSpeed;
         ActorStats.DefaultAttackDamage = DefaultAttackDamage;
-        PlayerChaser.AttackDistance = AttackDistance;
-        PlayerChaser.OutRangeDistance = OutRangeDistance;
-        PlayerChaser.PlayerTrans = PlayerTrans;
 
 
     }
@@ -87,7 +76,6 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         currentHeath = gameObject.GetComponent<IActorStats>().currentHeath;
-        CheckConditionToChangeState();
         attackCounter += Time.deltaTime;
 
         enemyStateMachine.CurrentEnemyState.FrameUpdate();
@@ -99,36 +87,14 @@ public abstract class Enemy : MonoBehaviour
 
     }
 
-    public void CheckConditionToChangeState()
-    {
-        if (PlayerChaser.DistanceToPlayer > PlayerChaser.AttackDistance && animator.GetBool("isTakeDmg") == false && animator.GetBool("isDeath") == false)
-        {
-            enemyStateMachine.ChangeState(enemyIdleState);
 
-        }
-        if (PlayerChaser.DistanceToPlayer <= PlayerChaser.AttackDistance && animator.GetBool("isTakeDmg") == false && attackCounter >= ActorStats.AttackSpeed)
-        {
-
-            attackCounter = 0f;
-            enemyStateMachine.ChangeState(enemyAttackState);
-
-        }
-        if (ActorStats.currentHeath <= 0)
-        {
-            enemyStateMachine.ChangeState(enemyStateDeath);
-        }
-        if (ActorStats.currentHeath > 0)
-        {
-            enemyStateMachine.ChangeState(enemyIdleState);
-        }
-
-    }
     public void SetAnimationEndTakeDmg()
     {
         animator.SetBool("isTakeDmg", false);
     }
     public void SetAnimationEndAttack()
     {
+        animator.SetBool("isAttack", false);
         enemyStateMachine.ChangeState(enemyIdleState);
 
     }

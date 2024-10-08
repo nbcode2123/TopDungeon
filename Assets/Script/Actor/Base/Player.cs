@@ -38,7 +38,7 @@ public abstract class Player : MonoBehaviour
     protected float attackTimeCounter;
     public Animator animator { get; set; }
 
-    private IActorStats ActorStats;
+    private PlayerStats PlayerStats;
     private TakeDamage TakeDamage;
     private PlayerStates PlayerStates;
     public bool isDeath = false;
@@ -56,7 +56,7 @@ public abstract class Player : MonoBehaviour
         RunState = new PlayerStateRun(this, StateMachine);
         AttackState = new PlayerAttackState(this, StateMachine);
         DeathState = new PlayerDeathState(this, StateMachine);
-        ActorStats = gameObject.GetComponent<IActorStats>();
+        PlayerStats = gameObject.GetComponent<PlayerStats>();
         TakeDamage = gameObject.GetComponent<TakeDamage>();
         PlayerStates = gameObject.GetComponent<PlayerStates>();
 
@@ -68,16 +68,16 @@ public abstract class Player : MonoBehaviour
 
 
         currentHeath = MaxHeath;
-        ActorStats.MaxHeath = MaxHeath;
-        ActorStats.currentHeath = MaxHeath;
-        ActorStats.MoveSpeed = MoveSpeed;
-        ActorStats.AttackSpeed = AttackSpeed;
-        ActorStats.DefaultAttackDamage = DefaultAttackDamage;
-        ActorStats.CharacterRangeAttack = CharacterRangeAttack;
-        ActorStats.RangeAttackIcon = RangeAttackIcon;
-        ActorStats.BasicAttackName = BasicAttackName;
-        ActorStats.BasicAttackIcon = BasicAttackIcon;
-        ActorStats.ActorName = ActorName;
+        PlayerStats.MaxHeath = MaxHeath;
+        PlayerStats.currentHeath = MaxHeath;
+        PlayerStats.MoveSpeed = MoveSpeed;
+        PlayerStats.AttackSpeed = AttackSpeed;
+        PlayerStats.DefaultAttackDamage = DefaultAttackDamage;
+        PlayerStats.CharacterRangeAttack = CharacterRangeAttack;
+        PlayerStats.RangeAttackIcon = RangeAttackIcon;
+        PlayerStats.BasicAttackName = BasicAttackName;
+        PlayerStats.BasicAttackIcon = BasicAttackIcon;
+        PlayerStats.ActorName = ActorName;
 
         PlayerStates.StateMachine = StateMachine;
         PlayerStates.IdleState = IdleState;
@@ -85,9 +85,7 @@ public abstract class Player : MonoBehaviour
         PlayerStates.AttackState = AttackState;
         PlayerStates.DeathState = DeathState;
 
-        // Attack.attackRange = attackRange;
-        // Attack.AttackableLayer = attackableLayer;
-        // Attack.AttackDmg = DefaultAttackDamage;
+
 
         TakeDamage.textDmg = textDmg;
 
@@ -99,15 +97,10 @@ public abstract class Player : MonoBehaviour
     }
     protected virtual void Update()
     {
-        // Attack.attackTranform = attackTransform.transform;
-
         velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
-
+        currentHeath = gameObject.GetComponent<IActorStats>().currentHeath;
 
         StateMachine.CurrentPlayerBaseState.FrameUpdate();
-
-
-
     }
     public void SetAnimationEndTakeDmg()
     {

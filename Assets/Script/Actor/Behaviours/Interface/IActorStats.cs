@@ -9,9 +9,6 @@ public interface IActorStats
     float MoveSpeed { get; set; }
     float AttackSpeed { get; set; }
     float DefaultAttackDamage { get; set; }
-    string CharacterRangeAttack { set; get; }
-    Sprite RangeAttackIcon { set; get; }
-    string BasicAttackName { set; get; }
-    Sprite BasicAttackIcon { set; get; }
+
     string ActorName { set; get; }
 }
