@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : EnemyState
+public class EyeBallIdleState : BaseState
 {
-    // Start is called before the first frame update
-    public EnemyAttackState(Enemy enemy, EnemyStateMachine EnemyStateMachine) : base(enemy, EnemyStateMachine)
+    public EyeBallIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
     {
-        this.enemy = enemy;
-        enemyStateMachine = EnemyStateMachine;
+        this.actor = actor;
+        this.stateMachine = stateMachine;
 
 
     }
@@ -16,7 +15,6 @@ public class EnemyAttackState : EnemyState
     {
 
         base.EnterState();
-        enemy.animator.SetBool("isAttack", true);
 
 
 
@@ -25,7 +23,6 @@ public class EnemyAttackState : EnemyState
     {
         base.ExitState();
 
-        enemy.animator.SetBool("isAttack", false);
 
     }
     public override void FrameUpdate()
@@ -37,7 +34,4 @@ public class EnemyAttackState : EnemyState
     {
         base.PhysicalUpdate();
     }
-
-
-
 }

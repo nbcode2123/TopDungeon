@@ -29,15 +29,17 @@ public class ObjectPoolManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        ListPool = new List<Pool>();
+
     }
 
     void Start()
     {
-        ListPool = new List<Pool>();
 
 
 
     }
+
 
     public void SpawnThePool(string NamePool, int PoolSize)
     {
@@ -59,7 +61,7 @@ public class ObjectPoolManager : MonoBehaviour
         {
             var _tempObject = Instantiate(_pool.Prefab);
             _tempObject.SetActive(false);
-            _tempObject.transform.parent = gameobjectParent.transform;
+            _tempObject.transform.SetParent(gameobjectParent.transform);
             _pool.ListGameObject.Add(_tempObject);
 
         }
@@ -89,6 +91,26 @@ public class ObjectPoolManager : MonoBehaviour
         }
         else Debug.Log("Missing Pooling object " + NamePool);
     }
+    public GameObject SingleObject(string NamePool)
+
+    {
+        GameObject _tempOject = null;
+        var _tempPool = ListPool.Find(p => p.Name == NamePool);
+        {
+            for (int i = 0; i < _tempPool.ListGameObject.Count; i++)
+            {
+                if (_tempPool.ListGameObject[i].activeSelf == false)
+                {
+                    _tempOject = _tempPool.ListGameObject[i];
+                    break;
+                }
+
+
+            }
+        }
+        return _tempOject;
+    }
+
 
 
 }

@@ -5,16 +5,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(EyeBallLooking))]
 [RequireComponent(typeof(EyeBallShooter))]
+[RequireComponent(typeof(EyeBallStates))]
+
 
 public class EyeBall : Enemy
 {
     public float RangeAttack;
 
 
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
 
     }
 
