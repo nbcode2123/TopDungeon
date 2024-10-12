@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EyeBallLooking : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     public Vector3 PlayerTrans;
-    public float speedRotate;
+    public float speedRotate = 10;
     // Start is called before the first frame update
     void Start()
     {

@@ -3,8 +3,6 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(TakeDamage))]
-[RequireComponent(typeof(EnemyStats))]
-[RequireComponent(typeof(EnemyStates))]
 public abstract class Enemy : MonoBehaviour
 {
 
@@ -17,19 +15,18 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Take Damge")]
     public GameObject textDmg;
-    public Vector3 GameObjectTransformPosition;
 
 
 
 
 
     #region Enemy base properties 
-    public EnemyState enemyState { get; set; }
-    public EnemyStateMachine enemyStateMachine { get; set; }
-    public EnemyAttackState enemyAttackState { get; set; }
-    public EnemyIdleState enemyIdleState { get; set; }
-    public EnemyStateDeath enemyStateDeath { get; set; }
-    public float attackCounter;
+    // public EnemyState enemyState { get; set; }
+    // public EnemyStateMachine enemyStateMachine { get; set; }
+    // public EnemyAttackState enemyAttackState { get; set; }
+    // public EnemyIdleState enemyIdleState { get; set; }
+    // public EnemyStateDeath enemyStateDeath { get; set; }
+    // public float attackCounter;
     public Rigidbody2D RB { get; set; }
     public Animator animator { get; set; }
     private TakeDamage TakeDamage;
@@ -46,12 +43,12 @@ public abstract class Enemy : MonoBehaviour
 
 
     #region Enemy Base Methods 
-    public void Awake()
+    protected virtual void Awake()
     {
-        enemyStateMachine = new EnemyStateMachine();
-        enemyIdleState = new EnemyIdleState(this, enemyStateMachine);
-        enemyAttackState = new EnemyAttackState(this, enemyStateMachine);
-        enemyStateDeath = new EnemyStateDeath(this, enemyStateMachine);
+        // enemyStateMachine = new EnemyStateMachine();
+        // enemyIdleState = new EnemyIdleState(this, enemyStateMachine);
+        // enemyAttackState = new EnemyAttackState(this, enemyStateMachine);
+        // enemyStateDeath = new EnemyStateDeath(this, enemyStateMachine);
         ActorStats = gameObject.GetComponent<IActorStats>();
         TakeDamage = gameObject.GetComponent<TakeDamage>();
 
@@ -71,14 +68,14 @@ public abstract class Enemy : MonoBehaviour
 
         TakeDamage.textDmg = textDmg;
         animator = gameObject.GetComponent<Animator>();
-        enemyStateMachine.Initialize(enemyIdleState);
+        // enemyStateMachine.Initialize(enemyIdleState);
     }
     protected virtual void Update()
     {
         currentHeath = gameObject.GetComponent<IActorStats>().currentHeath;
-        attackCounter += Time.deltaTime;
+        // attackCounter += Time.deltaTime;
 
-        enemyStateMachine.CurrentEnemyState.FrameUpdate();
+        // enemyStateMachine.CurrentEnemyState.FrameUpdate();
 
     }
     public void WhenDeath()
@@ -95,9 +92,10 @@ public abstract class Enemy : MonoBehaviour
     public void SetAnimationEndAttack()
     {
         animator.SetBool("isAttack", false);
-        enemyStateMachine.ChangeState(enemyIdleState);
+        // enemyStateMachine.ChangeState(enemyIdleState);
 
     }
+
 
 
 
