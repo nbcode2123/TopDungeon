@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Take Damge")]
     public GameObject textDmg;
+    public Vector3 GameObjectTransformPosition;
 
 
 

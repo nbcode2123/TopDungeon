@@ -42,16 +42,11 @@ public class EyeBallShooter : MonoBehaviour
         _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = Damage;
 
         var _tempDireciton = (GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
-        Debug.Log(_tempDireciton);
 
         Rigidbody2D rb = _tempBullet.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * Speed; // Bắn đạn theo hướng firePoint
 
 
     }
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
 
-    }
 }

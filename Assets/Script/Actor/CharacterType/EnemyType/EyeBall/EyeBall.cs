@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(EyeBallLooking))]
 [RequireComponent(typeof(EyeBallShooter))]
 [RequireComponent(typeof(EyeBallStates))]
+[RequireComponent(typeof(EyeBallStats))]
 
 
 
@@ -20,6 +21,13 @@ public class EyeBall : Enemy
     public EyeBallStates eyeBallStates { get; set; }
     protected override void Awake()
     {
+        eyeBallShooter = gameObject.GetComponent<EyeBallShooter>();
+        eyeBallLooking = gameObject.GetComponent<EyeBallLooking>();
+        eyeBallStates = gameObject.GetComponent<EyeBallStates>();
+        eyeBallShooter.Damage = DefaultAttackDamage;
+        eyeBallShooter.Speed = BulletSpeed;
+        eyeBallShooter.Bullet = Bullet;
+        eyeBallShooter.RangeAttack = RangeAttack;
 
 
     }
@@ -30,10 +38,7 @@ public class EyeBall : Enemy
     protected override void Start()
     {
         base.Start();
-        eyeBallShooter.Damage = DefaultAttackDamage;
-        eyeBallShooter.Speed = BulletSpeed;
-        eyeBallShooter.Bullet = Bullet;
-        eyeBallShooter.RangeAttack = RangeAttack;
+
 
 
 
