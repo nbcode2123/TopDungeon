@@ -20,15 +20,16 @@ public class EyeBallSkillDmg : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GameObject _otherGameobject = other.gameObject;
         _otherGameobject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
-        gameObject.GetComponent<Animator>().Play("Disable");
+        gameObject.GetComponent<Animator>().SetBool("isDisable", true);
 
 
     }
     public void SetActiveFalse()
     {
+        gameObject.GetComponent<Animator>().SetBool("isDisable", false);
         gameObject.SetActive(false);
 
 

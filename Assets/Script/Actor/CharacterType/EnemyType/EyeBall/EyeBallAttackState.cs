@@ -11,29 +11,20 @@ public class EyeBallAttackState : BaseState
     {
         this.actor = actor;
         this.stateMachine = stateMachine;
-
-
     }
     public override void EnterState()
     {
-
         base.EnterState();
-
-
-
+        actor.GetComponent<Animator>().SetBool("isAttack", true);
     }
     public override void ExitState()
     {
         base.ExitState();
-
-
-
+        actor.GetComponent<Animator>().SetBool("isAttack", false);
     }
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        attackCounter += Time.deltaTime;
-        Attack();
         // Debug.Log(attackCounter);
 
     }
@@ -42,15 +33,7 @@ public class EyeBallAttackState : BaseState
         base.PhysicalUpdate();
 
     }
-    public void Attack()
-    {
-        if (actor.GetComponent<EyeBallStats>().AttackSpeed < attackCounter)
-        {
-            attackCounter = 0;
-            actor.GetComponent<EyeBallShooter>().ShootTheBall();
 
-        }
-    }
 
 
 }

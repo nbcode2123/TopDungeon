@@ -29,8 +29,10 @@ public class EyeBallStates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckConditionToChangeState();
+
         stateMachine.CurrentState.FrameUpdate();
+        attackCounter += Time.deltaTime;
+        CheckConditionToChangeState();
 
     }
     public void CheckConditionToChangeState()
@@ -40,21 +42,16 @@ public class EyeBallStates : MonoBehaviour
         Vector2 _currentPosition = gameObject.transform.position;
 
         float _distance = Vector2.Distance(_currentPosition, playerTrans);
-        attackCounter += Time.deltaTime;
 
         // Debug.Log(_distance);
         // Debug.Log(gameObject.GetComponent<EyeBallStats>().AttackRange);
         if (_distance <= gameObject.GetComponent<EyeBallStats>().AttackRange && attackCounter >= gameObject.GetComponent<EyeBallStats>().AttackSpeed)
         {
+            attackCounter = 0;
             if (stateMachine.CurrentState != AttackState)
             {
                 stateMachine.ChangeState(AttackState);
-
             }
-            else return;
-            // attackCounter = 0;
-            // gameObject.GetComponent<EyeBallShooter>().ShootTheBall();
-
         }
         else if (_distance > gameObject.GetComponent<EyeBallStats>().AttackRange)
         {

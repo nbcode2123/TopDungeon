@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBallStats : MonoBehaviour
+public class MoveAround : MonoBehaviour
 {
-    public float AttackDmg;
-    public float AttackRange;
-    public float AttackSpeed;
-    public float MaxHeath;
-    public float currentHeath;
+    public Vector3 markPosition;
+    public float Range;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        MaxHeath = currentHeath;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
 
     }
 }

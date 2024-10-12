@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1314999201169108823}
   - component: {fileID: 8219230814369269168}
-  - component: {fileID: 3871345201325467588}
   - component: {fileID: 7905372593064849305}
   - component: {fileID: 4083913500667729642}
   - component: {fileID: 4431297316808102079}
   - component: {fileID: 2432796717477173997}
   - component: {fileID: 6901393334962005763}
   - component: {fileID: 1155583159214270825}
+  - component: {fileID: 6952176564316344351}
   m_Layer: 10
   m_Name: EyeBall
   m_TagString: Untagged
@@ -92,27 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3871345201325467588
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365847530755816972}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c7f92708e3c37ea449b58f428937aba7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7905372593064849305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,9 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb6ae25f9a79e840bee696af73543fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RangeAttack: 0
-  BulletSpeed: 0
-  Bullet: {fileID: 0}
+  RangeAttack: 15
+  BulletSpeed: 10
+  Bullet: {fileID: 2436070574558882891, guid: f30d4d4b998abcb4bbaf0f777e6be9ac, type: 3}
+  animator: {fileID: 0}
 --- !u!114 &1155583159214270825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,10 +172,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a699ff065f6a6904da21a795fd5ab557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 0
-  AttackSpeed: 0
-  MaxHeath: 0
+  AttackRange: 15
+  AttackSpeed: 2
+  MaxHeath: 50
   currentHeath: 0
+--- !u!95 &6952176564316344351
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365847530755816972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8954278963299792292
 GameObject:
   m_ObjectHideFlags: 0

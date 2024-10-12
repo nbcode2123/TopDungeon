@@ -39,7 +39,7 @@ public class EyeBallShooter : MonoBehaviour
         _tempBullet.SetActive(true);
         _tempBullet.transform.position = gameObject.transform.position;
         _tempBullet.transform.rotation = gameObject.transform.rotation;
-        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = Damage;
+        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = gameObject.GetComponent<EyeBallStats>().AttackDmg;
 
         var _tempDireciton = (GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
 

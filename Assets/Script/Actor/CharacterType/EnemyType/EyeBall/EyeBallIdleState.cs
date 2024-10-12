@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EyeBallIdleState : BaseState
 {
+    public Vector3 markPosition;
+
     public EyeBallIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
     {
         this.actor = actor;
@@ -15,6 +17,7 @@ public class EyeBallIdleState : BaseState
     {
 
         base.EnterState();
+        markPosition = actor.gameObject.GetComponent<EyeBall>().posStart;
 
 
 
@@ -33,5 +36,12 @@ public class EyeBallIdleState : BaseState
     public override void PhysicalUpdate()
     {
         base.PhysicalUpdate();
+    }
+    public void MoveAroundPosition()
+    {
+
+
+
+
     }
 }

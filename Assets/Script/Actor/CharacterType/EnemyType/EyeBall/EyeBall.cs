@@ -15,10 +15,12 @@ public class EyeBall : MonoBehaviour
     public float RangeAttack;
     public float BulletSpeed;
     public GameObject Bullet;
-    public Animator animator;
     public EyeBallLooking eyeBallLooking { get; set; }
     public EyeBallShooter eyeBallShooter { get; set; }
     public EyeBallStates eyeBallStates { get; set; }
+    public Vector3 posStart { get; set; }
+
+
     protected void Awake()
     {
         eyeBallShooter = gameObject.GetComponent<EyeBallShooter>();
@@ -36,6 +38,8 @@ public class EyeBall : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        posStart = gameObject.transform.position;
+        Debug.Log(posStart);
 
 
 
