@@ -6,6 +6,7 @@ using UnityEngine;
 public class EyeBallSkillDmg : MonoBehaviour
 {
     public LayerMask layerMask;
+    public float Damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,8 +20,10 @@ public class EyeBallSkillDmg : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        gameObject.SetActive(false);
 
+        GameObject _otherGameobject = other.gameObject;
+        _otherGameobject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
+        gameObject.SetActive(false);
 
 
     }

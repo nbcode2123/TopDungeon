@@ -8,9 +8,21 @@ using UnityEngine;
 [RequireComponent(typeof(EyeBallStates))]
 
 
+
 public class EyeBall : Enemy
 {
     public float RangeAttack;
+    public float BulletSpeed;
+    public GameObject Bullet;
+
+    public EyeBallLooking eyeBallLooking { get; set; }
+    public EyeBallShooter eyeBallShooter { get; set; }
+    public EyeBallStates eyeBallStates { get; set; }
+    protected override void Awake()
+    {
+
+
+    }
 
 
 
@@ -18,6 +30,11 @@ public class EyeBall : Enemy
     protected override void Start()
     {
         base.Start();
+        eyeBallShooter.Damage = DefaultAttackDamage;
+        eyeBallShooter.Speed = BulletSpeed;
+        eyeBallShooter.Bullet = Bullet;
+        eyeBallShooter.RangeAttack = RangeAttack;
+
 
 
     }
@@ -31,12 +48,13 @@ public class EyeBall : Enemy
 
 
     }
-
     public void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
 
     }
+
+
 
 
 }

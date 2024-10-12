@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EyeBallShooter : MonoBehaviour
 {
-    public GameObject Bullet;
-    public float Speed = 1;
-    private GameObject EyeBall;
+    public GameObject Bullet { get; set; }
+    public float Speed { get; set; }
+    public float Damage { get; set; }
+    public float RangeAttack { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +35,11 @@ public class EyeBallShooter : MonoBehaviour
     {
         var _tempBullet = ObjectPoolManager.Instance.SingleObject(Bullet.name);
 
+
         _tempBullet.SetActive(true);
         _tempBullet.transform.position = gameObject.transform.position;
         _tempBullet.transform.rotation = gameObject.transform.rotation;
+        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = Damage;
 
         var _tempDireciton = (GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
         Debug.Log(_tempDireciton);
@@ -44,6 +47,11 @@ public class EyeBallShooter : MonoBehaviour
         Rigidbody2D rb = _tempBullet.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * Speed; // Bắn đạn theo hướng firePoint
 
+
+    }
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
 
     }
 }
