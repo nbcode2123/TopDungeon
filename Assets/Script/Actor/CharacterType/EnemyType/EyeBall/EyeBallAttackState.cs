@@ -35,6 +35,7 @@ public class EyeBallAttackState : BaseState
     {
         base.FrameUpdate();
         attackCounter += Time.deltaTime;
+        Attack();
         // Debug.Log(attackCounter);
 
     }

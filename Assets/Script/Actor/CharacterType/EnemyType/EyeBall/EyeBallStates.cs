@@ -16,29 +16,21 @@ public class EyeBallStates : MonoBehaviour
         AttackState = new EyeBallAttackState(gameObject, stateMachine);
         IdleState = new EyeBallIdleState(gameObject, stateMachine);
         DeathState = new EyeBallDeathState(gameObject, stateMachine);
+        stateMachine.Initialize(IdleState);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-
-        stateMachine.Initialize(IdleState);
         player = GameManager.Instance.Player;
-
-
-
-
-
 
 
     }
     // Update is called once per frame
     void Update()
     {
-        stateMachine.CurrentState.FrameUpdate();
         CheckConditionToChangeState();
-        attackCounter += Time.deltaTime;
+        stateMachine.CurrentState.FrameUpdate();
 
     }
     public void CheckConditionToChangeState()
@@ -48,19 +40,26 @@ public class EyeBallStates : MonoBehaviour
         Vector2 _currentPosition = gameObject.transform.position;
 
         float _distance = Vector2.Distance(_currentPosition, playerTrans);
+        attackCounter += Time.deltaTime;
+
         // Debug.Log(_distance);
         // Debug.Log(gameObject.GetComponent<EyeBallStats>().AttackRange);
         if (_distance <= gameObject.GetComponent<EyeBallStats>().AttackRange && attackCounter >= gameObject.GetComponent<EyeBallStats>().AttackSpeed)
         {
-            stateMachine.ChangeState(AttackState);
+            if (stateMachine.CurrentState != AttackState)
+            {
+                stateMachine.ChangeState(AttackState);
+
+            }
+            else return;
             // attackCounter = 0;
             // gameObject.GetComponent<EyeBallShooter>().ShootTheBall();
 
         }
-        // else if (_distance > gameObject.GetComponent<EyeBallStats>().AttackRange)
-        // {
-        //     stateMachine.ChangeState(IdleState);
-        // }
+        else if (_distance > gameObject.GetComponent<EyeBallStats>().AttackRange)
+        {
+            stateMachine.ChangeState(IdleState);
+        }
 
 
     }
