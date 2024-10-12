@@ -10,21 +10,20 @@ using UnityEngine;
 
 
 
-public class EyeBall : Enemy
+public class EyeBall : MonoBehaviour
 {
     public float RangeAttack;
     public float BulletSpeed;
     public GameObject Bullet;
-
+    public Animator animator;
     public EyeBallLooking eyeBallLooking { get; set; }
     public EyeBallShooter eyeBallShooter { get; set; }
     public EyeBallStates eyeBallStates { get; set; }
-    protected override void Awake()
+    protected void Awake()
     {
         eyeBallShooter = gameObject.GetComponent<EyeBallShooter>();
         eyeBallLooking = gameObject.GetComponent<EyeBallLooking>();
         eyeBallStates = gameObject.GetComponent<EyeBallStates>();
-        eyeBallShooter.Damage = DefaultAttackDamage;
         eyeBallShooter.Speed = BulletSpeed;
         eyeBallShooter.Bullet = Bullet;
         eyeBallShooter.RangeAttack = RangeAttack;
@@ -35,9 +34,9 @@ public class EyeBall : Enemy
 
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
+
 
 
 
@@ -45,9 +44,9 @@ public class EyeBall : Enemy
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
+
 
 
 

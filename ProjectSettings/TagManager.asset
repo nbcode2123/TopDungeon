@@ -18,8 +18,8 @@ TagManager:
   - PlayerSpell
   - Attackable
   - Wall
-  - 
-  - 
+  - Bullet
+  - Enemy
   - 
   - 
   - 

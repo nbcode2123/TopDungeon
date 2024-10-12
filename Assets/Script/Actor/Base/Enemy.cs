@@ -67,13 +67,13 @@ public abstract class Enemy : MonoBehaviour
 
 
 
-        TakeDamage.textDmg = textDmg;
+        // TakeDamage.textDmg = textDmg;
         animator = gameObject.GetComponent<Animator>();
         // enemyStateMachine.Initialize(enemyIdleState);
     }
     protected virtual void Update()
     {
-        currentHeath = gameObject.GetComponent<IActorStats>().currentHeath;
+        // currentHeath = gameObject.GetComponent<IActorStats>().currentHeath;
         // attackCounter += Time.deltaTime;
 
         // enemyStateMachine.CurrentEnemyState.FrameUpdate();

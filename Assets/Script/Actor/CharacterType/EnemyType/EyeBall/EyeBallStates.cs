@@ -9,7 +9,7 @@ public class EyeBallStates : MonoBehaviour
     public EyeBallIdleState IdleState;
     public EyeBallDeathState DeathState;
     public GameObject player;
-    public Vector3 palyerTrans;
+    public float attackCounter;
     void Awake()
     {
         stateMachine = new StateMachine();
@@ -38,10 +38,29 @@ public class EyeBallStates : MonoBehaviour
     {
         stateMachine.CurrentState.FrameUpdate();
         CheckConditionToChangeState();
+        attackCounter += Time.deltaTime;
 
     }
     public void CheckConditionToChangeState()
     {
+        Vector2 playerTrans = player.transform.position;
+
+        Vector2 _currentPosition = gameObject.transform.position;
+
+        float _distance = Vector2.Distance(_currentPosition, playerTrans);
+        // Debug.Log(_distance);
+        // Debug.Log(gameObject.GetComponent<EyeBallStats>().AttackRange);
+        if (_distance <= gameObject.GetComponent<EyeBallStats>().AttackRange && attackCounter >= gameObject.GetComponent<EyeBallStats>().AttackSpeed)
+        {
+            stateMachine.ChangeState(AttackState);
+            // attackCounter = 0;
+            // gameObject.GetComponent<EyeBallShooter>().ShootTheBall();
+
+        }
+        // else if (_distance > gameObject.GetComponent<EyeBallStats>().AttackRange)
+        // {
+        //     stateMachine.ChangeState(IdleState);
+        // }
 
 
     }

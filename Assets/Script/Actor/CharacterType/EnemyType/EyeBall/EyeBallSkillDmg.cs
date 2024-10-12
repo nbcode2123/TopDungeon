@@ -23,6 +23,7 @@ public class EyeBallSkillDmg : MonoBehaviour
 
         GameObject _otherGameobject = other.gameObject;
         _otherGameobject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
+        Debug.Log(other.name);
         gameObject.SetActive(false);
 
 

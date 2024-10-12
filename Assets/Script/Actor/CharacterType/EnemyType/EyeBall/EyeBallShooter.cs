@@ -8,6 +8,7 @@ public class EyeBallShooter : MonoBehaviour
     public float Speed { get; set; }
     public float Damage { get; set; }
     public float RangeAttack { get; set; }
+    public float attackcounter { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +26,16 @@ public class EyeBallShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ShootTheBall();
-        }
+        // if (Input.GetKeyDown(KeyCode.K))
+        // {
+        //     ShootTheBall();
+        // }
+
 
     }
     public void ShootTheBall()
     {
         var _tempBullet = ObjectPoolManager.Instance.SingleObject(Bullet.name);
-
-
         _tempBullet.SetActive(true);
         _tempBullet.transform.position = gameObject.transform.position;
         _tempBullet.transform.rotation = gameObject.transform.rotation;
