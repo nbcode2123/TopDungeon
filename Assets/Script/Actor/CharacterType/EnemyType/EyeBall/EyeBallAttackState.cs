@@ -18,7 +18,6 @@ public class EyeBallAttackState : BaseState
     {
 
         base.EnterState();
-        Debug.Log("Enter attack state ");
 
 
 
@@ -26,7 +25,6 @@ public class EyeBallAttackState : BaseState
     public override void ExitState()
     {
         base.ExitState();
-        Debug.Log("Exit attack state ");
 
 
 
