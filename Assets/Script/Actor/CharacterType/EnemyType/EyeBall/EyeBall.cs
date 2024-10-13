@@ -12,23 +12,20 @@ using UnityEngine;
 
 public class EyeBall : MonoBehaviour
 {
-    public float RangeAttack;
-    public float BulletSpeed;
-    public GameObject Bullet;
+
     public EyeBallLooking eyeBallLooking { get; set; }
     public EyeBallShooter eyeBallShooter { get; set; }
     public EyeBallStates eyeBallStates { get; set; }
-    public Vector3 posStart { get; set; }
+
+
 
 
     protected void Awake()
     {
-        eyeBallShooter = gameObject.GetComponent<EyeBallShooter>();
-        eyeBallLooking = gameObject.GetComponent<EyeBallLooking>();
-        eyeBallStates = gameObject.GetComponent<EyeBallStates>();
-        eyeBallShooter.Speed = BulletSpeed;
-        eyeBallShooter.Bullet = Bullet;
-        eyeBallShooter.RangeAttack = RangeAttack;
+
+
+
+
 
 
     }
@@ -38,8 +35,10 @@ public class EyeBall : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        posStart = gameObject.transform.position;
-        Debug.Log(posStart);
+
+
+
+
 
 
 
@@ -56,11 +55,15 @@ public class EyeBall : MonoBehaviour
 
 
     }
-    public void OnDrawGizmosSelected()
+    public void EndTakeHit()
     {
-        Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
-
+        gameObject.GetComponent<Animator>().SetBool("isTakeDmg", false);
     }
+    public void EndDeath()
+    {
+        gameObject.SetActive(false);
+    }
+
 
 
 

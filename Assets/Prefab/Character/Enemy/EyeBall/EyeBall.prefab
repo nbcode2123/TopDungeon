@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6901393334962005763}
   - component: {fileID: 1155583159214270825}
   - component: {fileID: 6952176564316344351}
+  - component: {fileID: 8273042681384669985}
   m_Layer: 10
   m_Name: EyeBall
   m_TagString: Untagged
@@ -104,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3adc2a032f350e4a8afcfa581f3f04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTrans: {x: 0, y: 0, z: 0}
   speedRotate: 10
 --- !u!114 &4083913500667729642
 MonoBehaviour:
@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  attackCounter: 0
 --- !u!114 &2432796717477173997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +158,7 @@ MonoBehaviour:
   RangeAttack: 15
   BulletSpeed: 10
   Bullet: {fileID: 2436070574558882891, guid: f30d4d4b998abcb4bbaf0f777e6be9ac, type: 3}
-  animator: {fileID: 0}
+  SpeedRotate: 10
 --- !u!114 &1155583159214270825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,9 +172,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackRange: 15
-  AttackSpeed: 2
-  MaxHeath: 50
-  currentHeath: 0
+  <MoveSpeed>k__BackingField: 10
+  <DefaultAttackDamage>k__BackingField: 10
+  <ActorName>k__BackingField: EyeBall
+  <MaxHeath>k__BackingField: 50
+  <currentHeath>k__BackingField: 0
+  <AttackSpeed>k__BackingField: 3
 --- !u!95 &6952176564316344351
 Animator:
   serializedVersion: 5
@@ -186,7 +188,7 @@ Animator:
   m_GameObject: {fileID: 365847530755816972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7f92708e3c37ea449b58f428937aba7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -197,6 +199,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &8273042681384669985
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365847530755816972}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.42363024, y: -0.23535013}
+  m_Size: {x: 2.0084105, y: 2.0084105}
+  m_Direction: 0
 --- !u!1 &8954278963299792292
 GameObject:
   m_ObjectHideFlags: 0

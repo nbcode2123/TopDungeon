@@ -14,4 +14,5 @@ public class PlayerStats : MonoBehaviour, IActorStats
     public string BasicAttackName { get; set; }
     public Sprite BasicAttackIcon { get; set; }
     public string ActorName { get; set; }
+    public void Death() { }
 }

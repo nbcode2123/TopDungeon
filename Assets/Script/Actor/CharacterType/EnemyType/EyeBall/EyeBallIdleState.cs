@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EyeBallIdleState : BaseState
 {
-    public Vector3 markPosition;
-
+    public float counter;
     public EyeBallIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
     {
         this.actor = actor;
@@ -17,7 +16,6 @@ public class EyeBallIdleState : BaseState
     {
 
         base.EnterState();
-        markPosition = actor.gameObject.GetComponent<EyeBall>().posStart;
 
 
 
@@ -31,17 +29,16 @@ public class EyeBallIdleState : BaseState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            actor.GetComponent<MoveAround>().MoveRandom();
+        }
+
 
     }
     public override void PhysicalUpdate()
     {
         base.PhysicalUpdate();
     }
-    public void MoveAroundPosition()
-    {
 
-
-
-
-    }
 }

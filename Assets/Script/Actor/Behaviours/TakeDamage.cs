@@ -5,11 +5,8 @@ using TMPro;
 using UnityEngine;
 public class TakeDamage : MonoBehaviour
 {
-    public GameObject textDmg { get; set; }
-    private Animator animator;
     private void Start()
     {
-        animator = gameObject.GetComponent<Animator>();
 
     }
     void Update()
@@ -17,13 +14,11 @@ public class TakeDamage : MonoBehaviour
     }
     public void DealDmgToActor(float DamageTaken) // gaay dmg len nhan vat 
     {
-        Debug.Log(gameObject.GetComponent<IActorStats>().currentHeath);
+        Debug.Log(gameObject.name + "bi dmg ");
         if (gameObject.GetComponent<IActorStats>().currentHeath >= DamageTaken)
         {
             gameObject.GetComponent<IActorStats>().currentHeath -= DamageTaken;
-            animator.SetBool("isTakeDmg", true);
-
-            ShowDmgTaken(DamageTaken);
+            gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
 
 
         }
@@ -34,15 +29,6 @@ public class TakeDamage : MonoBehaviour
 
         }
     }
-    public void ShowDmgTaken(float DamageTaken)
-    {
 
-        textDmg.GetComponent<TextMeshPro>().text = DamageTaken.ToString();
-        Instantiate(textDmg, gameObject.transform.position, Quaternion.identity);
-
-
-
-
-    }
 
 }

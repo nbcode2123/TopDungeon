@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class EyeBallLooking : MonoBehaviour
 {
-    private GameObject player;
-    public Vector3 PlayerTrans;
+    public GameObject player { get; set; }
+    public Vector3 PlayerTrans { set; get; }
     public float speedRotate = 10;
     // Start is called before the first frame update
     void Start()
     {
         player = GameManager.Instance.Player;
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerTrans = player.transform.position;
-        LookToPlayer();
+        // LookToPlayer();
 
     }
     public void LookToPlayer()
     {
+        PlayerTrans = player.transform.position;
         if (player != null)
         {
 

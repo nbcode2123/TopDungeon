@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EyeBallShooter : MonoBehaviour
 {
-    public GameObject Bullet { get; set; }
-    public float Speed { get; set; }
-    public float Damage { get; set; }
-    public float RangeAttack { get; set; }
+    public GameObject Bullet;
+    public float SpeedBullet;
+    public float Damage;
+    public float RangeAttack;
     public float attackcounter { get; set; }
 
     // Start is called before the first frame update
@@ -26,10 +26,7 @@ public class EyeBallShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.K))
-        // {
-        //     ShootTheBall();
-        // }
+
 
 
     }
@@ -39,13 +36,18 @@ public class EyeBallShooter : MonoBehaviour
         _tempBullet.SetActive(true);
         _tempBullet.transform.position = gameObject.transform.position;
         _tempBullet.transform.rotation = gameObject.transform.rotation;
-        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = gameObject.GetComponent<EyeBallStats>().AttackDmg;
+        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = gameObject.GetComponent<EyeBallStats>().DefaultAttackDamage;
 
         var _tempDireciton = (GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
 
         Rigidbody2D rb = _tempBullet.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * Speed; // Bắn đạn theo hướng firePoint
+        rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * SpeedBullet; // Bắn đạn theo hướng firePoint
 
+
+    }
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
 
     }
 

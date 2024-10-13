@@ -39,7 +39,6 @@ public abstract class Player : MonoBehaviour
     public Animator animator { get; set; }
 
     private PlayerStats PlayerStats;
-    private TakeDamage TakeDamage;
     private PlayerStates PlayerStates;
     public bool isDeath = false;
 
@@ -57,7 +56,6 @@ public abstract class Player : MonoBehaviour
         AttackState = new PlayerAttackState(this, StateMachine);
         DeathState = new PlayerDeathState(this, StateMachine);
         PlayerStats = gameObject.GetComponent<PlayerStats>();
-        TakeDamage = gameObject.GetComponent<TakeDamage>();
         PlayerStates = gameObject.GetComponent<PlayerStates>();
 
 
@@ -87,7 +85,6 @@ public abstract class Player : MonoBehaviour
 
 
 
-        TakeDamage.textDmg = textDmg;
 
         animator = gameObject.GetComponent<Animator>();
 

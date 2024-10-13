@@ -9,7 +9,6 @@ public class EyeBallStates : MonoBehaviour
     public EyeBallIdleState IdleState;
     public EyeBallDeathState DeathState;
     public GameObject player;
-    public float attackCounter;
     void Awake()
     {
         stateMachine = new StateMachine();
@@ -17,6 +16,7 @@ public class EyeBallStates : MonoBehaviour
         IdleState = new EyeBallIdleState(gameObject, stateMachine);
         DeathState = new EyeBallDeathState(gameObject, stateMachine);
         stateMachine.Initialize(IdleState);
+
     }
 
     // Start is called before the first frame update
@@ -31,7 +31,6 @@ public class EyeBallStates : MonoBehaviour
     {
 
         stateMachine.CurrentState.FrameUpdate();
-        attackCounter += Time.deltaTime;
         CheckConditionToChangeState();
 
     }
@@ -45,9 +44,8 @@ public class EyeBallStates : MonoBehaviour
 
         // Debug.Log(_distance);
         // Debug.Log(gameObject.GetComponent<EyeBallStats>().AttackRange);
-        if (_distance <= gameObject.GetComponent<EyeBallStats>().AttackRange && attackCounter >= gameObject.GetComponent<EyeBallStats>().AttackSpeed)
+        if (_distance <= gameObject.GetComponent<EyeBallStats>().AttackRange)
         {
-            attackCounter = 0;
             if (stateMachine.CurrentState != AttackState)
             {
                 stateMachine.ChangeState(AttackState);

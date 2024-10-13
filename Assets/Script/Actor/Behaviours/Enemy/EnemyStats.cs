@@ -11,6 +11,10 @@ public class EnemyStats : MonoBehaviour, IActorStats
     public float DefaultAttackDamage { get; set; }
     public string CharacterRangeAttack { get; set; }
     public string ActorName { get; set; }
+    public void Death()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()

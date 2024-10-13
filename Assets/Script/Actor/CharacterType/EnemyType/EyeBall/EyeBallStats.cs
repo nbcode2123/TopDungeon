@@ -2,17 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBallStats : MonoBehaviour
+public class EyeBallStats : MonoBehaviour, IActorStats
 {
-    public float AttackDmg;
     public float AttackRange;
-    public float AttackSpeed;
-    public float MaxHeath;
-    public float currentHeath;
+    [field: SerializeField]
+    public float MoveSpeed { get; set; }
+    [field: SerializeField]
+
+    public float DefaultAttackDamage { get; set; }
+    [field: SerializeField]
+
+    public string ActorName { get; set; }
+    [field: SerializeField]
+
+    public float MaxHeath { get; set; }
+    [field: SerializeField]
+
+    public float currentHeath { get; set; }
+    [field: SerializeField]
+
+    public float AttackSpeed { get; set; }
+    public void Death()
+    {
+        gameObject.GetComponent<Animator>().SetBool("isDeath", true);
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        MaxHeath = currentHeath;
+        currentHeath = MaxHeath;
 
     }
 
@@ -20,6 +39,16 @@ public class EyeBallStats : MonoBehaviour
     void Update()
     {
 
+        CheckDeath();
 
     }
+    public void CheckDeath()
+    {
+        if (currentHeath <= 0)
+        {
+            gameObject.GetComponent<Animator>().SetBool("isDeath", true);
+        }
+
+    }
+
 }

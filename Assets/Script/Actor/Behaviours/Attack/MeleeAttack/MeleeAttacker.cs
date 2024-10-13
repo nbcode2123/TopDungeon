@@ -6,6 +6,7 @@ public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
 {
     public Transform AttackTranform { set; get; }
     public float AttackRange { set; get; }
+    [field: SerializeField]
     public LayerMask AttackableLayer { set; get; }
     public RaycastHit2D[] hits { set; get; }
     public float AttackDmg { set; get; }
@@ -21,9 +22,10 @@ public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
             if (enemyName != null)
             {
                 float targetHeal = hits[i].collider.gameObject.GetComponent<IActorStats>().currentHeath;
+                Debug.Log(targetHeal);
                 if (targetHeal != 0)
                 {
-                    hits[i].collider.gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
+                    hits[i].collider.GetComponent<Animator>().SetBool("isTakeDmg", true);
                     hits[i].collider.gameObject.GetComponent<TakeDamage>().DealDmgToActor(AttackDmg);
 
 

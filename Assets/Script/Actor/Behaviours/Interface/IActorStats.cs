@@ -11,4 +11,5 @@ public interface IActorStats
     float DefaultAttackDamage { get; set; }
 
     string ActorName { set; get; }
+    void Death();
 }
