@@ -10,7 +10,7 @@ public class EyeBallStats : MonoBehaviour, IActorStats
     public float MoveSpeed { get; set; }
     [field: SerializeField]
 
-    public float DefaultAttackDamage { get; set; }
+    public float AttackDamage { get; set; }
     [field: SerializeField]
 
     public string ActorName { get; set; }

@@ -59,7 +59,7 @@ public class ChoseCharacter : MonoBehaviour
                     MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 5;
                     UI_ChosingCharacterBorder.SetActive(true);
                     HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
-                    StrText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().DefaultAttackDamage.ToString();
+                    StrText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().AttackDamage.ToString();
                     AgiText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MoveSpeed.ToString();
                     HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
                     // rangeAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats >().CharacterRangeAttack.ToString();

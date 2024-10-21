@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SamuraiStats : MonoBehaviour, IActorStats
+public class DracularStats : MonoBehaviour, IActorStats
 {
     [field: SerializeField]
     public float MaxHeath { get; set; }
+    [field: SerializeField]
     public float currentHeath { get; set; }
     [field: SerializeField]
     public float MoveSpeed { get; set; }

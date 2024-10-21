@@ -8,7 +8,7 @@ public interface IActorStats
     float currentHeath { get; set; }
     float MoveSpeed { get; set; }
     float AttackSpeed { get; set; }
-    float DefaultAttackDamage { get; set; }
-    bool isDeath {set;get;}
+    float AttackDamage { get; set; }
+    bool isDeath { set; get; }
 
 }

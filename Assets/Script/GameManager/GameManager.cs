@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [field: SerializeField] public GameObject Player { get; set; }
+    [field: SerializeField] public KeyCode AttackButton = KeyCode.Mouse0;
 
     public int CorridorWidth = 5;
     private void Awake()
