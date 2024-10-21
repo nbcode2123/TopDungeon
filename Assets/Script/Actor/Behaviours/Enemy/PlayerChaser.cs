@@ -25,42 +25,41 @@ public class PlayerChaser : MonoBehaviour
     void Update()
     {
 
-        DistanceToPlayer = Vector2.Distance(gameObject.transform.position, PlayerTrans.transform.position);
-        FollowPlayer();
+        // FollowPlayer();
 
     }
     public Vector2 FollowPlayer()
     {
-
+        // DistanceToPlayer = Vector2.Distance(gameObject.transform.position, PlayerTrans.transform.position);
         moveDirection = new Vector2(PlayerTrans.transform.position.x - gameObject.transform.position.x, PlayerTrans.transform.position.y - gameObject.transform.position.y);
         moveDirection.Normalize();
-        if (DistanceToPlayer > AttackDistance && DistanceToPlayer < OutRangeDistance)
+        // if (DistanceToPlayer > AttackDistance && DistanceToPlayer < OutRangeDistance)
+        // {
+        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerTrans.transform.position, gameObject.GetComponent<IActorStats>().MoveSpeed * Time.deltaTime);
+        if (moveDirection.x > 0 && !IsFaceingRight)
         {
-            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerTrans.transform.position, gameObject.GetComponent<IActorStats>().MoveSpeed * Time.deltaTime);
-            if (moveDirection.x > 0 && !IsFaceingRight)
-            {
-                Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
-                transform.rotation = Quaternion.Euler(rotator);
-                IsFaceingRight = !IsFaceingRight;
+            Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFaceingRight = !IsFaceingRight;
 
 
-            }
-            if (moveDirection.x < 0 && IsFaceingRight)
-            {
-                Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
-                transform.rotation = Quaternion.Euler(rotator);
-                IsFaceingRight = !IsFaceingRight;
-            }
+        }
+        if (moveDirection.x < 0 && IsFaceingRight)
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFaceingRight = !IsFaceingRight;
+        }
 
-        }
-        else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x > 0)
-        {
-            moveDirection = Vector2.zero;
-        }
-        else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x < 0)
-        {
-            moveDirection = Vector2.zero;
-        }
+        // }
+        // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x > 0)
+        // {
+        //     moveDirection = Vector2.zero;
+        // }
+        // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x < 0)
+        // {
+        //     moveDirection = Vector2.zero;
+        // }
         return moveDirection;
 
     }

@@ -9,7 +9,6 @@ public interface IActorStats
     float MoveSpeed { get; set; }
     float AttackSpeed { get; set; }
     float DefaultAttackDamage { get; set; }
+    bool isDeath {set;get;}
 
-    string ActorName { set; get; }
-    void Death();
 }

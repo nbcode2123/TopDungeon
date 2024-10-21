@@ -32,13 +32,12 @@ public class AllowControllActor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isActorDeath = gameObject.GetComponent<PlayerStates>().isDeath;
 
         ControllActor();
     }
     public void ControllActor()
     {
-        if (isActorDeath == false)
+        if (gameObject.GetComponent<IActorStats>().isDeath == false)
         {
             MoveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             MoveDirection.Normalize();

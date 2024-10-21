@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttacker : MonoBehaviour, IMeleeAttacker
+public class MeleeAttacker : MonoBehaviour
 {
+    [field: SerializeField]
     public Transform AttackTranform { set; get; }
     public float AttackRange { set; get; }
     [field: SerializeField]

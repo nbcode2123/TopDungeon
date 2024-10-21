@@ -1,11 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBallIdleState : BaseState
+public class WizardIdleState : BaseState
 {
-    public float counter;
-    public EyeBallIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
+    public WizardIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
     {
         this.actor = actor;
         this.stateMachine = stateMachine;
@@ -16,26 +16,20 @@ public class EyeBallIdleState : BaseState
     {
 
         base.EnterState();
-
+        Debug.Log("enter idlestate");
 
 
     }
     public override void ExitState()
     {
         base.ExitState();
-
+        Debug.Log("exit idlestate");
 
     }
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-
-
-
-
-
+        Debug.Log(" idlestate");
     }
-
-
 
 }

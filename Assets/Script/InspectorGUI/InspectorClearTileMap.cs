@@ -10,7 +10,7 @@ public class InspectorClearTileMap : Editor
     {
         base.OnInspectorGUI();
         PaintTilemap paintTilemap = (PaintTilemap)target;
-        if (GUILayout.Button("Cear Tile Map"))
+        if (GUILayout.Button("Clear Tile Map"))
         {
             paintTilemap.Clear();
         }

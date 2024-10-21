@@ -58,18 +58,18 @@ public class ChoseCharacter : MonoBehaviour
                     MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = clickedObject.transform;
                     MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 5;
                     UI_ChosingCharacterBorder.SetActive(true);
-                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().MaxHeath.ToString();
-                    StrText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().DefaultAttackDamage.ToString();
-                    AgiText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().MoveSpeed.ToString();
-                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().MaxHeath.ToString();
-                    rangeAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().CharacterRangeAttack.ToString();
-                    RangeAttackIcon.GetComponent<SpriteRenderer>().sprite = clickedObject.GetComponent<PlayerStats>().RangeAttackIcon;
+                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
+                    StrText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().DefaultAttackDamage.ToString();
+                    AgiText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MoveSpeed.ToString();
+                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
+                    // rangeAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats >().CharacterRangeAttack.ToString();
+                    // RangeAttackIcon.GetComponent<SpriteRenderer>().sprite = clickedObject.GetComponent<IActorStats >().RangeAttackIcon;
 
-                    BasicAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().BasicAttackName.ToString();
-                    BasicAttackIcon.GetComponent<SpriteRenderer>().sprite = clickedObject.GetComponent<PlayerStats>().BasicAttackIcon;
+                    // BasicAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats >().BasicAttackName.ToString();
+                    // BasicAttackIcon.GetComponent<SpriteRenderer>().sprite = clickedObject.GetComponent<IActorStats >().BasicAttackIcon;
 
 
-                    ActorNameText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<PlayerStats>().ActorName.ToString();
+                    // ActorNameText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats >().ActorName.ToString();
 
                 }
             }

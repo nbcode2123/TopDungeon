@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 1155583159214270825}
   - component: {fileID: 6952176564316344351}
   - component: {fileID: 8273042681384669985}
+  - component: {fileID: 7955088297792981381}
+  - component: {fileID: 5980742693751729571}
   m_Layer: 10
   m_Name: EyeBall
   m_TagString: Untagged
@@ -118,6 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ed03631e3b05d43b9b40ef0572ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
+  SpeedBullet: 5
+  Damage: 10
+  RangeAttack: 15
 --- !u!114 &4431297316808102079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb6ae25f9a79e840bee696af73543fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RangeAttack: 15
-  BulletSpeed: 10
-  Bullet: {fileID: 2436070574558882891, guid: f30d4d4b998abcb4bbaf0f777e6be9ac, type: 3}
-  SpeedRotate: 10
 --- !u!114 &1155583159214270825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +236,50 @@ CapsuleCollider2D:
   m_Offset: {x: 0.42363024, y: -0.23535013}
   m_Size: {x: 2.0084105, y: 2.0084105}
   m_Direction: 0
+--- !u!114 &7955088297792981381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365847530755816972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf7b8808497cc34a82981826fd0c08a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  markPosition: {x: 12, y: 10, z: 0}
+  Range: 5
+  TimeDelay: 10
+  RandomMovePosition: {x: 0, y: 0, z: 0}
+  distanceToPos: 0
+--- !u!50 &5980742693751729571
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365847530755816972}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8954278963299792292
 GameObject:
   m_ObjectHideFlags: 0

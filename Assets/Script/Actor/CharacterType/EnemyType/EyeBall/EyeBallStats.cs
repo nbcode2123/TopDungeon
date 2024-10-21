@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EyeBallStats : MonoBehaviour, IActorStats
@@ -22,6 +23,7 @@ public class EyeBallStats : MonoBehaviour, IActorStats
     [field: SerializeField]
 
     public float AttackSpeed { get; set; }
+    public bool isDeath { get; set; }
     public void Death()
     {
         gameObject.GetComponent<Animator>().SetBool("isDeath", true);
@@ -50,5 +52,6 @@ public class EyeBallStats : MonoBehaviour, IActorStats
         }
 
     }
+
 
 }

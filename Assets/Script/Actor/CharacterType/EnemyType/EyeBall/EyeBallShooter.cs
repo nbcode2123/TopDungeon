@@ -7,7 +7,6 @@ public class EyeBallShooter : MonoBehaviour
     public GameObject Bullet;
     public float SpeedBullet;
     public float Damage;
-    public float RangeAttack;
     public float attackcounter { get; set; }
 
     // Start is called before the first frame update
@@ -45,10 +44,6 @@ public class EyeBallShooter : MonoBehaviour
 
 
     }
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(gameObject.transform.position, RangeAttack);
 
-    }
 
 }

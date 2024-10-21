@@ -7,14 +7,12 @@ public class EyeBallStates : MonoBehaviour
     public StateMachine stateMachine;
     public EyeBallAttackState AttackState;
     public EyeBallIdleState IdleState;
-    public EyeBallDeathState DeathState;
     public GameObject player;
     void Awake()
     {
         stateMachine = new StateMachine();
         AttackState = new EyeBallAttackState(gameObject, stateMachine);
         IdleState = new EyeBallIdleState(gameObject, stateMachine);
-        DeathState = new EyeBallDeathState(gameObject, stateMachine);
         stateMachine.Initialize(IdleState);
 
     }
@@ -55,6 +53,7 @@ public class EyeBallStates : MonoBehaviour
         {
             stateMachine.ChangeState(IdleState);
         }
+
 
 
     }

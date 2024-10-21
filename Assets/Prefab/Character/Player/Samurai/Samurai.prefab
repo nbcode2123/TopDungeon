@@ -44,11 +44,8 @@ GameObject:
   - component: {fileID: 6327250860210738429}
   - component: {fileID: 2345037223437725429}
   - component: {fileID: 51109889594501755}
-  - component: {fileID: 310492609852023896}
-  - component: {fileID: 2244414341259508382}
-  - component: {fileID: 5735439169987874246}
-  - component: {fileID: 7387425154261583909}
-  - component: {fileID: 2611285267271404540}
+  - component: {fileID: 3486499563515402188}
+  - component: {fileID: 9044208541882697487}
   m_Layer: 3
   m_Name: Samurai
   m_TagString: Character
@@ -153,7 +150,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4956540686044074984}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -217,7 +214,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.207447, y: 2.340095}
   m_EdgeRadius: 0
---- !u!114 &310492609852023896
+--- !u!114 &3486499563515402188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,28 +223,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4956540686044074984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c7e91c6ee918148b0bc6cd2111bce3, type: 3}
+  m_Script: {fileID: 11500000, guid: a5f3f862a3e250a46aa4df0ad7b5e8c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHeath: 100
-  currentHeath: 100
-  MoveSpeed: 10
-  AttackSpeed: 0.5
-  DefaultAttackDamage: 10
-  CharacterRangeAttack: Melee
-  RangeAttackIcon: {fileID: 21300000, guid: c233b83604d04b8479e666e855b1de0c, type: 3}
-  BasicAttackName: Double Slash
-  BasicAttackIcon: {fileID: 21300000, guid: b1c21438beea80f4fa5952e017acb769, type: 3}
-  ActorName: Samurai
-  textDmg: {fileID: 6515770334889020405, guid: fcf3f902c243c194f991492ce307b073, type: 3}
-  isDeath: 0
-  AttackTranform: {fileID: 3827103336932137272}
-  AttackRange: 2
-  AttackableLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  AttackDmg: 10
---- !u!114 &2244414341259508382
+--- !u!114 &9044208541882697487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,43 +235,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4956540686044074984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2d897dcdf8a1a458250738c608fba0, type: 3}
+  m_Script: {fileID: 11500000, guid: a6d0acb32b0b13141b9022b633ce326b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5735439169987874246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956540686044074984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ccb508ba4098646a51fa2553c21348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7387425154261583909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956540686044074984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227aacd273afc694db1b84b14a87f9fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDeath: 0
---- !u!114 &2611285267271404540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4956540686044074984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988141be388f23847bd2498a09a24664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  <MaxHeath>k__BackingField: 100
+  <MoveSpeed>k__BackingField: 10
+  <AttackSpeed>k__BackingField: 4
+  <DefaultAttackDamage>k__BackingField: 10

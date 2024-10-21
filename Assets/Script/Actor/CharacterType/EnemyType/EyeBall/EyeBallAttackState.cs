@@ -49,11 +49,7 @@ public class EyeBallAttackState : BaseState
 
         }
     }
-    public override void PhysicalUpdate()
-    {
-        base.PhysicalUpdate();
 
-    }
 
 
 
