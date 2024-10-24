@@ -83,7 +83,6 @@ public class ObjectPoolManager : MonoBehaviour
         {
             for (int i = 0; i < _tempPool.ListGameObject.Count; i++)
             {
-                _tempPool.ListGameObject[i].GetComponent<EnemyReBornable>()?.ReBornActor();
                 _tempPool.ListGameObject[i].transform.position = GameObjectPosition[i];
                 _tempPool.ListGameObject[i].SetActive(true);
 
@@ -91,7 +90,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
         else Debug.Log("Missing Pooling object " + NamePool);
     }
-    public GameObject SingleObject(string NamePool)
+    public GameObject GetObjectFromPool(string NamePool)
 
     {
         GameObject _tempOject = null;
@@ -109,6 +108,18 @@ public class ObjectPoolManager : MonoBehaviour
             }
         }
         return _tempOject;
+    }
+    public void RemovePool(string NamePool)
+    {
+        var _tempPool = ListPool.Find(p => p.Name == NamePool);
+        ListPool.Remove(_tempPool);
+        GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
+        Destroy(_tempParentObject);
+
+
+
+
+
     }
 
 

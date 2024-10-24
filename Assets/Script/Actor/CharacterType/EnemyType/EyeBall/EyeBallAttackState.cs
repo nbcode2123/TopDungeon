@@ -17,7 +17,7 @@ public class EyeBallAttackState : BaseState
     {
         base.EnterState();
         Debug.Log("enter attack state ");
-        Debug.Log(actor.GetComponent<IActorStats>().AttackSpeed);
+
     }
     public override void ExitState()
     {

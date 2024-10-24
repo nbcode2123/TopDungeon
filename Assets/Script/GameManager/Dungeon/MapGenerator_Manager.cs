@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class MapGenerator_Manager : MonoBehaviour
 {
@@ -76,7 +77,7 @@ public class MapGenerator_Manager : MonoBehaviour
 
     }
 
-    public void CreateMap()
+    public void CreateMap(params object[] data)
     {
         List<Vector2Int> roomPositionStart = new List<Vector2Int>();// danh sach vi tri bat dau cua 1 phong 
         corridors = new HashSet<Vector2Int>();

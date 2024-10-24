@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public KeyCode AttackButton = KeyCode.Mouse0;
 
     public int CorridorWidth = 5;
+    public GameObject tempWeapon;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ObserverManager.AddListener("EnterWeapon", ChangeTempWeapon);
+        ObserverManager.AddListener("OutWeapon", RemoveTempWeapon);
 
 
 
@@ -47,6 +51,18 @@ public class GameManager : MonoBehaviour
 
 
 
+    }
+    public void ChangeTempWeapon(object[] data)
+    {
+        if (data.Length >= 2 && tempWeapon == null)
+        {
+            tempWeapon = (GameObject)data[1];
+
+        }
+    }
+    public void RemoveTempWeapon(object[] data)
+    {
+        tempWeapon = null;
     }
 
 

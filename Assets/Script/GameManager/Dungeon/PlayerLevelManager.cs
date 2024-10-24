@@ -37,7 +37,7 @@ public class PlayerLevelManager : MonoBehaviour
     {
 
     }
-    public void CheckPlayerRoom()
+    public void CheckPlayerRoom(params object[] data)
     {
         Vector2 _playerPosition = new Vector2(Player.transform.position.x, Player.transform.position.y);
         var _ListRoom = RoomManager.Instance.ListRoom;

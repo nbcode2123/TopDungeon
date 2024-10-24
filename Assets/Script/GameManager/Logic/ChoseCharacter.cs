@@ -109,7 +109,7 @@ public class ChoseCharacter : MonoBehaviour
     }
 
 
-    public void ConfirmPlayer()
+    public void ConfirmPlayer(object[] data)
     {
         GameManager.Instance.Player = TargetCharacter;
 

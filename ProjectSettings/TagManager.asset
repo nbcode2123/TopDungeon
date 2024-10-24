@@ -8,6 +8,7 @@ TagManager:
   - Spell
   - Monster
   - Character
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -18,11 +19,11 @@ TagManager:
   - PlayerSpell
   - Attackable
   - Wall
-  - Bullet
+  - 
   - Enemy
-  - 
-  - 
-  - 
+  - Weapon
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 

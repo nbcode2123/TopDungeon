@@ -18,6 +18,7 @@ public class BatEyeStats : MonoBehaviour, IActorStats
     [field: SerializeField]
 
     public float AttackDamage { get; set; }
+    public string ActorName { get; set; }
     public bool isDeath { get; set; }
 
 

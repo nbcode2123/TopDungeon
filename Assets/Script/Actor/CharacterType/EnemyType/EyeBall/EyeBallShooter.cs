@@ -31,7 +31,7 @@ public class EyeBallShooter : MonoBehaviour
     }
     public void ShootTheBall()
     {
-        var _tempBullet = ObjectPoolManager.Instance.SingleObject(Bullet.name);
+        var _tempBullet = ObjectPoolManager.Instance.GetObjectFromPool(Bullet.name);
         _tempBullet.SetActive(true);
         _tempBullet.transform.position = gameObject.transform.position;
         _tempBullet.transform.rotation = gameObject.transform.rotation;

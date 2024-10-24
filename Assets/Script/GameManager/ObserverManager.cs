@@ -23,12 +23,12 @@ public class ObserverManager : MonoBehaviour
 
     }
     #region Observer Subject  
-    public static Dictionary<string, List<Action>> Listeners = new Dictionary<string, List<Action>>();
-    public static void AddListener(string name, Action callback)
+    public static Dictionary<string, List<Action<object[]>>> Listeners = new Dictionary<string, List<Action<object[]>>>();
+    public static void AddListener(string name, Action<object[]> callback)
     {
         if (!Listeners.ContainsKey(name))
         {
-            Listeners.Add(name, new List<Action>());
+            Listeners.Add(name, new List<Action<object[]>>());
             Listeners[name].Add(callback);
         }
         else if (Listeners.ContainsKey(name))
@@ -37,7 +37,7 @@ public class ObserverManager : MonoBehaviour
 
         }
     }
-    public static void RemoveListener(string name, Action callback)
+    public static void RemoveListener(string name, Action<object[]> callback)
     {
         if (!Listeners.ContainsKey(name))
             return;
@@ -52,7 +52,7 @@ public class ObserverManager : MonoBehaviour
         }
 
     }
-    public static void Notify(string name)
+    public static void Notify(string name, params object[] data)
     {
         if (!Listeners.ContainsKey(name))
         {
@@ -63,7 +63,7 @@ public class ObserverManager : MonoBehaviour
         {
             try
             {
-                ListenerName?.Invoke();
+                ListenerName?.Invoke(data);
 
             }
             catch (Exception e)

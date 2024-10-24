@@ -33,5 +33,10 @@ public class BatEyes : MonoBehaviour
     public void setEndAttackAnimation()
     {
         gameObject.GetComponent<Animator>().SetBool("isAttack", false);
+
+    }
+    public void setEndTakeDamageAnimation()
+    {
+        gameObject.GetComponent<Animator>().SetBool("isTakeDmg", false);
     }
 }
