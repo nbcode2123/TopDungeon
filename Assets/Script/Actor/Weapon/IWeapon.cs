@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public interface IWeapon
 {
     public float WeaponDamage { get; set; }
     public float WeaponAttackSpeed { get; set; }
-    public virtual void Attack()
-    {
+    public void Attack();
 
-    }
 
 
 }

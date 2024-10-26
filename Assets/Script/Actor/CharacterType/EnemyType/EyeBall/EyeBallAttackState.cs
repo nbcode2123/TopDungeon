@@ -37,13 +37,13 @@ public class EyeBallAttackState : BaseState
     private void ControllAnimationAttack()
     {
         attackCounter += Time.deltaTime;
-        if (attackCounter > actor.GetComponent<IActorStats>().AttackSpeed)
+        if (attackCounter > actor.GetComponent<EyeBallStats>().AttackSpeed)
         {
             actor.GetComponent<Animator>().SetBool("isAttack", true);
             attackCounter = 0;
 
         }
-        else if (attackCounter < actor.GetComponent<IActorStats>().AttackSpeed)
+        else if (attackCounter < actor.GetComponent<EyeBallStats>().AttackSpeed)
         {
             actor.GetComponent<Animator>().SetBool("isAttack", false);
 

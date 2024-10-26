@@ -37,7 +37,7 @@ public class AllowControllActor : MonoBehaviour
     }
     public void ControllActor()
     {
-        if (gameObject.GetComponent<IActorStats>().isDeath == false)
+        if (gameObject.GetComponent<IPlayerStats>().isDeath == false)
         {
             MoveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             MoveDirection.Normalize();

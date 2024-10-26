@@ -8,8 +8,6 @@ public interface IActorStats
     float MaxHeath { get; set; }
     float currentHeath { get; set; }
     float MoveSpeed { get; set; }
-    float AttackSpeed { get; set; }
     float AttackDamage { get; set; }
-    bool isDeath { get; set; }
 
 }

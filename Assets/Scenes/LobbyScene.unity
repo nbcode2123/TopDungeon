@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 645699273}
   - component: {fileID: 645699272}
   - component: {fileID: 645699271}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Wizardskill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -833,6 +833,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1155583159214270825, guid: 123d4b171629a5a46b4cbadaffafed7d,
+        type: 3}
+      propertyPath: <AttackDamage>k__BackingField
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1314999201169108823, guid: 123d4b171629a5a46b4cbadaffafed7d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -935,6 +940,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &957393026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5129151
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.2908163
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308125843778596337, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115372008834228104, guid: f13126ccbfb79a9438746709c3a89a0a,
+        type: 3}
+      propertyPath: m_Name
+      value: IceWand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f13126ccbfb79a9438746709c3a89a0a, type: 3}
 --- !u!1 &964267179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 861459217821693204, guid: 007c303f001c0f04399a82f69a5de3e2,
@@ -959,12 +1032,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7153935452771769941}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1102098702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1058137532865754079, guid: 007c303f001c0f04399a82f69a5de3e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 7153935452771769941}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1138482443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -977,11 +1044,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EyeBallSkill
-      objectReference: {fileID: 0}
-    - target: {fileID: 2436070574558882891, guid: f30d4d4b998abcb4bbaf0f777e6be9ac,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5471899315748755152, guid: f30d4d4b998abcb4bbaf0f777e6be9ac,
         type: 3}
@@ -1104,7 +1166,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ce33b16d78c59e04782cf76201b47379, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1563,14 +1625,19 @@ MonoBehaviour:
   MiddleScreen: {fileID: 943954938}
   UI_ChosingCharacterBorder: {fileID: 1044822466}
   HeathText: {fileID: 1424481491}
-  StrText: {fileID: 964267179}
-  AgiText: {fileID: 148037059}
-  RangeAttackText: {fileID: 1036966518}
-  RangeAttackIcon: {fileID: 1187100462}
-  BasicAttackText: {fileID: 1210604684}
-  BasicAttackIcon: {fileID: 1102098702}
+  Speed: {fileID: 964267179}
+  AtackDmg: {fileID: 148037059}
+  Skill: {fileID: 1036966518}
+  SkillImg: {fileID: 1187100462}
+  DefaultWeapon: {fileID: 1210604684}
+  DefaultWeaponImg: {fileID: 1519793499}
   ActorNameText: {fileID: 1765668804}
-  TargetCharacter: {fileID: 0}
+--- !u!1 &1519793499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6122240629548511276, guid: 007c303f001c0f04399a82f69a5de3e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7153935452771769941}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572033376 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4762433899400988184, guid: 54179507cd052ce4a895d613a5634744,
@@ -24951,6 +25018,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 344607048923284147, guid: 305a3fed815a79043b1d42497d87afca,
+        type: 3}
+      propertyPath: <ActorName>k__BackingField
+      value: Dracula
+      objectReference: {fileID: 0}
+    - target: {fileID: 344607048923284147, guid: 305a3fed815a79043b1d42497d87afca,
+        type: 3}
+      propertyPath: <DefaultWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 5716311193730979100, guid: 138eadb3037e09a448bf70326f3ff22b,
+        type: 3}
     - target: {fileID: 637293300396128809, guid: 305a3fed815a79043b1d42497d87afca,
         type: 3}
       propertyPath: actorWeapon
@@ -25331,3 +25409,4 @@ SceneRoots:
   - {fileID: 645699273}
   - {fileID: 1138482443}
   - {fileID: 5642891498942667356}
+  - {fileID: 957393026}

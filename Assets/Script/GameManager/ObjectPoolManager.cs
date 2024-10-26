@@ -115,10 +115,12 @@ public class ObjectPoolManager : MonoBehaviour
         ListPool.Remove(_tempPool);
         GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
         Destroy(_tempParentObject);
+    }
+    public void DontDestroyPool(string NamePool)
 
-
-
-
+    {
+        GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
+        DontDestroyOnLoad(_tempParentObject);
 
     }
 

@@ -11,14 +11,14 @@ public class ChoseCharacter : MonoBehaviour
     public GameObject MiddleScreen;
     public GameObject UI_ChosingCharacterBorder;
     public GameObject HeathText;
-    public GameObject StrText;
-    public GameObject AgiText;
-    public GameObject RangeAttackText;
-    public GameObject RangeAttackIcon;
-    public GameObject BasicAttackText;
-    public GameObject BasicAttackIcon;
+    public GameObject Speed;
+    public GameObject AtackDmg;
+    public GameObject Skill;
+    public GameObject SkillImg;
+    public GameObject DefaultWeapon;
+    public GameObject DefaultWeaponImg;
     public GameObject ActorNameText;
-    public GameObject TargetCharacter;
+    private GameObject TargetCharacter;
 
 
 
@@ -27,7 +27,6 @@ public class ChoseCharacter : MonoBehaviour
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = MiddleScreen.transform;
         UI_ChosingCharacterBorder.SetActive(false);
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
-        ObserverManager.AddListener("ConfirmPlayer", ConfirmPlayer);
 
 
     }
@@ -37,12 +36,9 @@ public class ChoseCharacter : MonoBehaviour
 
     }
 
-    public void ZoomToCharacter()
-    {
-        ZoomToCharacter(RangeAttackText);
-    }
 
-    public void ZoomToCharacter(GameObject rangeAttackText)
+
+    public void ZoomToCharacter()
     {
         if (Input.GetMouseButtonDown(0)) // Kiểm tra khi nhấn chuột trái
         {
@@ -58,10 +54,11 @@ public class ChoseCharacter : MonoBehaviour
                     MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = clickedObject.transform;
                     MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 5;
                     UI_ChosingCharacterBorder.SetActive(true);
-                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
-                    StrText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().AttackDamage.ToString();
-                    AgiText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MoveSpeed.ToString();
-                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats>().MaxHeath.ToString();
+                    HeathText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IPlayerStats>().MaxHeath.ToString();
+                    Speed.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IPlayerStats>().MoveSpeed.ToString();
+                    AtackDmg.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IPlayerStats>().AttackDamage.ToString();
+                    DefaultWeapon.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IPlayerStats>().DefaultWeapon.name.ToString();
+
                     // rangeAttackText.GetComponent<TextMeshProUGUI>().text = clickedObject.GetComponent<IActorStats >().CharacterRangeAttack.ToString();
                     // RangeAttackIcon.GetComponent<SpriteRenderer>().sprite = clickedObject.GetComponent<IActorStats >().RangeAttackIcon;
 
@@ -94,22 +91,18 @@ public class ChoseCharacter : MonoBehaviour
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = TargetCharacter.transform;
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
         TargetCharacter.AddComponent<AllowControllActor>();
-        ObserverManager.Notify("ConfirmPlayer");
-
+        var _tempObecjt = Instantiate(TargetCharacter.GetComponent<IPlayerStats>().DefaultWeapon);
+        TargetCharacter.GetComponent<ActorWeapon>().ChangeActorWeapon(_tempObecjt);
+        ConfirmPlayer();
         gameObject.SetActive(false);
 
 
 
     }
-    private void OnDestroy()
-    {
-        ObserverManager.RemoveListener("ConfirmPlayer", ConfirmPlayer);
 
 
-    }
 
-
-    public void ConfirmPlayer(object[] data)
+    public void ConfirmPlayer()
     {
         GameManager.Instance.Player = TargetCharacter;
 

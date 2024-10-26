@@ -39,7 +39,6 @@ public class PlayerColliderController : MonoBehaviour
     }
     public void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log(other.name);
         if (other.tag == "Weapon" && Input.GetKey(InputManager.Instance.ActiveObject))
         {
             gameObject.GetComponent<ActorWeapon>().ChangeActorWeapon(other.gameObject);
