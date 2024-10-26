@@ -62,6 +62,7 @@ public class ActorWeapon : MonoBehaviour
         if (actorWeapon.GetComponent<RangeWeapon>() != null)
         {
             actorWeapon.GetComponent<RangeWeapon>().CreateAmmo();
+
         }
 
 

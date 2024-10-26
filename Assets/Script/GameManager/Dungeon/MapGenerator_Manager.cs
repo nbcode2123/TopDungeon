@@ -33,12 +33,11 @@ public class MapGenerator_Manager : MonoBehaviour
 
     // public RoomPrefab data;
     public List<RoomPrefab> ListRoomData;
-    public int corridorLength, corridorcount;
+    public int CorridorLength, Corridorcount;
     public PaintTilemap paintTilemap;
     public CorridorGenerator corridorGenerator;
     public RoomGeneration roomGeneration;
     public WallGenerator WallGenerator;
-    List<Vector2Int> roomPositionStart;
     HashSet<Vector2Int> corridors;
     public HashSet<Vector2Int> FloorPositions;
     public static HashSet<Vector2Int> FloorPositionsSave;
@@ -83,8 +82,8 @@ public class MapGenerator_Manager : MonoBehaviour
         corridors = new HashSet<Vector2Int>();
         FloorPositions = new HashSet<Vector2Int>();
         paintTilemap.Clear();
-        corridorGenerator.corridorcount = corridorcount;
-        corridorGenerator.corridorLength = corridorLength;
+        corridorGenerator.corridorcount = Corridorcount;
+        corridorGenerator.corridorLength = CorridorLength;
         corridors = corridorGenerator.CreateCorridor(roomPositionStart);// tao ra corridor va tu do lay vi tri dau tien cua cac room
         FloorPositions = roomGeneration.CreateRoom(roomPositionStart);// tao room tu vị trí các  ô phòng
         FloorPositions.UnionWith(corridors);
@@ -97,7 +96,6 @@ public class MapGenerator_Manager : MonoBehaviour
             RoomManager.Instance.RoomPosition.Add(item);
 
         }
-        RoomManager.Instance.ArrangeRoomPositon();
         RoomManager.Instance.CreateListRoom();
 
 

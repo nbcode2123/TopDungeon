@@ -28,7 +28,10 @@ public class RoomGeneration : MonoBehaviour
         HashSet<Vector2Int> _roomPositions = new HashSet<Vector2Int>();
         RoomManager.Instance.ListRoomSize.Clear();
 
+        for (int i = 0; i < roomPositionStart.Count; i++)
+        {
 
+        }
         foreach (var position in roomPositionStart)
         {
             var _data = ListRoomData[Random.Range(0, ListRoomData.Count)];

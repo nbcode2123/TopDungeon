@@ -22,13 +22,15 @@ public class RoomManager : MonoBehaviour
     public struct Room
     {
         public int Index; // Số thứ tự của phòng 
-        public Vector2Int RoomPosition; // vị trí trung tâm của phòng 
+        public Vector2Int RoomPosition;
+        // public HashSet<Vector2Int> FloorPosition;  // vị trí trung tâm của phòng 
         public int Width; // chiều rộng của phòng
-        public Room(int index, Vector2Int roomPosition, int width)
+        public Room(int index, Vector2Int roomPosition, int width, HashSet<Vector2Int> floorPosition)
         {
-            this.Index = index;
-            this.RoomPosition = roomPosition;
-            this.Width = width;
+            Index = index;
+            RoomPosition = roomPosition;
+            Width = width;
+            // FloorPosition = floorPosition;
 
         }
 
@@ -77,7 +79,7 @@ public class RoomManager : MonoBehaviour
     public void CreateListRoom()
     {
 
-        for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount; i++)
+        for (int i = 0; i < MapGenerator_Manager.Instance.Corridorcount; i++)
         {
             var _tempRoomPosition = RoomPosition.ToArray();
 
@@ -86,10 +88,7 @@ public class RoomManager : MonoBehaviour
             _tempRoom.RoomPosition = _tempRoomPosition[i];
             _tempRoom.Width = ListRoomSize[i];
             ListRoom.Add(_tempRoom);
-
         }
-
-
         ObserverManager.Notify("Create Room Complete");
 
     }
@@ -117,46 +116,6 @@ public class RoomManager : MonoBehaviour
 
 
     }
-    public void ArrangeRoomPositon()
-    {
 
-        // Vector2Int _tempRoomPosition;
-        // for (int i = 0; i < RoomPosition.Count - 1; i++)
-        // {
-        //     for (int j = i + 1; j < RoomPosition.Count; j++)
-        //     {
-        //         if (RoomPosition[i].x > RoomPosition[j].x)
-        //         {
-        //             _tempRoomPosition = RoomPosition[i];
-        //             RoomPosition[i] = RoomPosition[j];
-        //             RoomPosition[j] = _tempRoomPosition;
-        //         }
-        //     }
-        // }
-        // for (int i = 0; i < RoomPosition.Count - 1; i++)
-        // {
-        //     for (int j = i + 1; j < RoomPosition.Count; j++)
-        //     {
-        //         if (RoomPosition[i].y > RoomPosition[j].y && RoomPosition[i].x == RoomPosition[j].x)
-        //         {
-        //             _tempRoomPosition = RoomPosition[i];
-        //             RoomPosition[i] = RoomPosition[j];
-        //             RoomPosition[j] = _tempRoomPosition;
-        //         }
-        //     }
-        // }
-        // int x = 0;
-        // foreach (var item in RoomPosition)
-        // {
-        //     x++;
-        //     Vector3 transformTest = new Vector3(item.x, item.y, 0);
-        //     GameObject testPosition = Instantiate(testGameObject, transformTest, Quaternion.identity);
-        //     testPosition.name = "Room " + x;
-        // }
-
-
-
-
-    }
 
 }

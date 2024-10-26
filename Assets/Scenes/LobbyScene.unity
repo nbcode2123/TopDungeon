@@ -122,12 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &10049357 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7307046110191164761, guid: 305a3fed815a79043b1d42497d87afca,
-    type: 3}
-  m_PrefabInstance: {fileID: 5642891498942667356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &49469871
 GameObject:
   m_ObjectHideFlags: 3
@@ -831,7 +825,7 @@ PrefabInstance:
     - target: {fileID: 365847530755816972, guid: 123d4b171629a5a46b4cbadaffafed7d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155583159214270825, guid: 123d4b171629a5a46b4cbadaffafed7d,
         type: 3}
@@ -4206,7 +4200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0253a079b49414987e9728efa0e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 10049357}
+  <Player>k__BackingField: {fileID: 0}
   AttackButton: 323
   CorridorWidth: 5
   tempWeapon: {fileID: 0}
@@ -25037,12 +25031,12 @@ PrefabInstance:
     - target: {fileID: 4159644982292259843, guid: 305a3fed815a79043b1d42497d87afca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4159644982292259843, guid: 305a3fed815a79043b1d42497d87afca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.81
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4159644982292259843, guid: 305a3fed815a79043b1d42497d87afca,
         type: 3}
@@ -25108,6 +25102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: -0.11106169
+      objectReference: {fileID: 0}
+    - target: {fileID: 8489388978904298719, guid: 305a3fed815a79043b1d42497d87afca,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

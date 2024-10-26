@@ -39,24 +39,7 @@ public class PlayerLevelManager : MonoBehaviour
     }
     public void CheckPlayerRoom(params object[] data)
     {
-        Vector2 _playerPosition = new Vector2(Player.transform.position.x, Player.transform.position.y);
-        var _ListRoom = RoomManager.Instance.ListRoom;
-        for (int i = 0; i < _ListRoom.Count; i++)
-        {
-            if (_playerPosition.x < (_ListRoom[i].RoomPosition.x + _ListRoom[i].Width / 2) && _playerPosition.x > (_ListRoom[i].RoomPosition.x - _ListRoom[i].Width / 2) && _playerPosition.y < (_ListRoom[i].RoomPosition.y + _ListRoom[i].Width / 2) && _playerPosition.y > (_ListRoom[i].RoomPosition.y - _ListRoom[i].Width / 2))
-            {
-                if (i + 1 == PlayerRoom)
-                {
-                    return;
-                }
-                else
-                {
-                    PlayerRoom = i + 1;
-                    Debug.Log("Player go to the new room: " + PlayerRoom);
-                    break;
-                }
-            }
-        }
+
 
     }
 }
