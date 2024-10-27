@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Tilemaps;
 
 public class MapGenerator_Manager : MonoBehaviour
 {
@@ -33,13 +34,14 @@ public class MapGenerator_Manager : MonoBehaviour
 
     // public RoomPrefab data;
     public List<RoomPrefab> ListRoomData;
-    public int CorridorLength, Corridorcount;
+    public int corridorLength, corridorcount;
     public PaintTilemap paintTilemap;
     public CorridorGenerator corridorGenerator;
     public RoomGeneration roomGeneration;
     public WallGenerator WallGenerator;
     HashSet<Vector2Int> corridors;
     public HashSet<Vector2Int> FloorPositions;
+    public Tilemap ProtottypeRoom;
     public static HashSet<Vector2Int> FloorPositionsSave;
     public static HashSet<Vector2Int> CorridorPositionSave;
     public static MapData MapData;
@@ -82,9 +84,9 @@ public class MapGenerator_Manager : MonoBehaviour
         corridors = new HashSet<Vector2Int>();
         FloorPositions = new HashSet<Vector2Int>();
         paintTilemap.Clear();
-        corridorGenerator.corridorcount = Corridorcount;
-        corridorGenerator.corridorLength = CorridorLength;
-        corridors = corridorGenerator.CreateCorridor(roomPositionStart);// tao ra corridor va tu do lay vi tri dau tien cua cac room
+        corridorGenerator.corridorcount = corridorcount;
+        corridorGenerator.corridorLength = corridorLength;
+        corridors = corridorGenerator.CreateCorridor(roomPositionStart);
         FloorPositions = roomGeneration.CreateRoom(roomPositionStart);// tao room tu vị trí các  ô phòng
         FloorPositions.UnionWith(corridors);
         WallGenerator.CreateWall(FloorPositions);
@@ -96,7 +98,21 @@ public class MapGenerator_Manager : MonoBehaviour
             RoomManager.Instance.RoomPosition.Add(item);
 
         }
+        for (int i = 0; i < distinctList.Count; i++)
+        {
+            var _tempObject = Instantiate(ProtottypeRoom);
+            _tempObject.name = "Room " + (i + 1);
+            _tempObject.GetComponent<RoomFloorCollider>().RoomIndex = i + 1;
+            RoomManager.Instance.ListObjectRoom.Add(_tempObject);
+            var _tempListFloor = RoomManager.Instance.DicFloorPos[i];
+            paintTilemap.PaintFloorPosition(_tempListFloor, _tempObject);
+        }
+
         RoomManager.Instance.CreateListRoom();
+        // paintTilemap.PaintFloorPositionTest(RoomManager.Instance.DicFloorPos[0]);
+
+
+
 
 
 

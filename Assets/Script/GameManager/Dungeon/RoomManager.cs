@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 [RequireComponent(typeof(EnemySpawner))]
@@ -18,23 +19,31 @@ public class RoomManager : MonoBehaviour
     private EnemySpawner enemySpawner;
     public static RoomManager Instance { get; private set; }
     public int _tempRoomIndex = 0;
-    public GameObject testGameObject;
+    public GameObject testGameObject; // test se xoa di 
+    public List<Tilemap> ListObjectRoom = new List<Tilemap>();
+
+    public Dictionary<int, HashSet<Vector2Int>> DicFloorPos = new Dictionary<int, HashSet<Vector2Int>>();
     public struct Room
     {
         public int Index; // Số thứ tự của phòng 
-        public Vector2Int RoomPosition;
-        // public HashSet<Vector2Int> FloorPosition;  // vị trí trung tâm của phòng 
+        public Vector2Int RoomPosition; // vị trí trung tâm của phòng 
         public int Width; // chiều rộng của phòng
-        public Room(int index, Vector2Int roomPosition, int width, HashSet<Vector2Int> floorPosition)
+        public HashSet<Vector2Int> FloorPos;
+        public Tilemap FloorCollider;
+        public Room(int index, Vector2Int roomPosition, int width, HashSet<Vector2Int> floorPos, Tilemap floorCollider)
         {
             Index = index;
             RoomPosition = roomPosition;
             Width = width;
-            // FloorPosition = floorPosition;
+            FloorPos = floorPos;
+            FloorCollider = floorCollider;
+
 
         }
 
     }
+    public PaintTilemap paintTilemap;
+
 
     private void Awake()
     {
@@ -79,7 +88,17 @@ public class RoomManager : MonoBehaviour
     public void CreateListRoom()
     {
 
-        for (int i = 0; i < MapGenerator_Manager.Instance.Corridorcount; i++)
+        // for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount; i++)
+        // {
+        //     Room _tempRoom;
+        //     _tempRoom.FloorPos = DicFloorPos[i];
+
+
+
+
+        // }
+
+        for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount; i++)
         {
             var _tempRoomPosition = RoomPosition.ToArray();
 
@@ -87,8 +106,16 @@ public class RoomManager : MonoBehaviour
             _tempRoom.Index = i + 1;
             _tempRoom.RoomPosition = _tempRoomPosition[i];
             _tempRoom.Width = ListRoomSize[i];
+            _tempRoom.FloorPos = DicFloorPos[i];
+            _tempRoom.FloorCollider = ListObjectRoom[i];
+
             ListRoom.Add(_tempRoom);
+
         }
+
+
+
+
         ObserverManager.Notify("Create Room Complete");
 
     }

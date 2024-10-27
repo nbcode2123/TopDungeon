@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1548604483
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: -576177678, guid: 06a920f91cf08d64f8740f5421e3c943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,10 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <WeaponDamage>k__BackingField: 10
-  <WeaponAttackSpeed>k__BackingField: 1
+  <WeaponAttackSpeed>k__BackingField: 0.5
   Bullet: {fileID: 6947970372442421839, guid: 796fca2cba772c7429dba13e1beb1157, type: 3}
   speedRotate: 10
-  speedBullet: 10
+  speedBullet: 20
   tempAngle: 90
   AttackCounter: 0
 --- !u!61 &3212601358651582605

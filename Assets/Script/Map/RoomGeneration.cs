@@ -26,18 +26,21 @@ public class RoomGeneration : MonoBehaviour
     public HashSet<Vector2Int> CreateRoom(List<Vector2Int> roomPositionStart)
     {
         HashSet<Vector2Int> _roomPositions = new HashSet<Vector2Int>();
+        RoomManager.Instance.DicFloorPos = new Dictionary<int, HashSet<Vector2Int>>();
         RoomManager.Instance.ListRoomSize.Clear();
+        // foreach (var position in roomPositionStart)
+        // {
 
+        // }
         for (int i = 0; i < roomPositionStart.Count; i++)
-        {
-
-        }
-        foreach (var position in roomPositionStart)
         {
             var _data = ListRoomData[Random.Range(0, ListRoomData.Count)];
             RoomManager.Instance.ListRoomSize.Add(_data.RoomSize);
-            var _roomFloor = RoomWalk(_data, position);
+            var _roomFloor = RoomWalk(_data, roomPositionStart[i]);
             _roomPositions.UnionWith(_roomFloor);
+            RoomManager.Instance.DicFloorPos.Add(i, new HashSet<Vector2Int>());
+            RoomManager.Instance.DicFloorPos[i].UnionWith(_roomFloor);
+
         }
         return _roomPositions;
     }

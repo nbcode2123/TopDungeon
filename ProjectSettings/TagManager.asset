@@ -9,6 +9,7 @@ TagManager:
   - Monster
   - Character
   - Weapon
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -46,18 +47,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Layer 1
-    uniqueID: 2425651459
-    locked: 0
-  - name: Layer 2
-    uniqueID: 4250941897
-    locked: 0
-  - name: Layer 3
-    uniqueID: 4189426099
-    locked: 0
-  - name: Layer 4
-    uniqueID: 1521776779
-    locked: 0
-  - name: enviroment
+  - name: Enviroment
     uniqueID: 28878937
+    locked: 0
+  - name: UI -UX
+    uniqueID: 3357224317
+    locked: 0
+  - name: Actor
+    uniqueID: 1828882215
+    locked: 0
+  - name: Item
+    uniqueID: 1548604483
+    locked: 0
+  - name: Bullet
+    uniqueID: 4069372367
     locked: 0

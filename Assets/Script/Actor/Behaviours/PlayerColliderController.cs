@@ -44,6 +44,10 @@ public class PlayerColliderController : MonoBehaviour
             gameObject.GetComponent<ActorWeapon>().ChangeActorWeapon(other.gameObject);
 
         }
+        if (other.tag == "Weapon")
+        {
+            Debug.Log(other.GetComponent<RoomFloorCollider>().RoomIndex);
+        }
 
     }
 

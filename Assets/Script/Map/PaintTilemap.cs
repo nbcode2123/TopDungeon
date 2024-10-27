@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class PaintTilemap : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Tilemap floormap, walltilemap, corridormap;
+    public Tilemap floormap, walltilemap, corridormap, testMap;
     public TileBase floorcolor;
     public TileBase corridorcolor, wallcolor, left, right, top, bottom;
     public HashSet<Vector2Int> wallPosition_right = new HashSet<Vector2Int>();
@@ -20,13 +20,20 @@ public class PaintTilemap : MonoBehaviour
         painttilemap(floorPositions, floormap, floorcolor);
 
     }
-    private void painttilemap(HashSet<Vector2Int> floorPositions, Tilemap floormap, TileBase floorcolor)
+    public void PaintFloorPosition(HashSet<Vector2Int> floorPositions, Tilemap floormap)
+    {
+        painttilemap(floorPositions, floormap, floorcolor);
+
+    }
+
+    public void painttilemap(HashSet<Vector2Int> floorPositions, Tilemap floormap, TileBase floorcolor)
     {
         foreach (var floorPositon in floorPositions)
         {
             paintSingleFloor(floorPositon, floormap, floorcolor);
         }
     }
+
     public void PaintCorridor(HashSet<Vector2Int> floorPositions)
     {
         painttilemap(floorPositions, corridormap, corridorcolor);
@@ -34,7 +41,7 @@ public class PaintTilemap : MonoBehaviour
     }
 
 
-    private void paintSingleFloor(Vector2Int floorPositon, Tilemap floormap, TileBase floorcolor)
+    public void paintSingleFloor(Vector2Int floorPositon, Tilemap floormap, TileBase floorcolor)
     {
         var tilePosition = floormap.WorldToCell((Vector3Int)floorPositon);
         floormap.SetTile(tilePosition, floorcolor);
