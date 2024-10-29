@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerLevelManager : MonoBehaviour
 {
     public static PlayerLevelManager Instance { get; set; }
-    public int PlayerLevel;
+    public int PlayerLevel = 1;
+    public int PlayerStage = 1;
     public int PlayerRoom;
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class PlayerLevelManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
     }

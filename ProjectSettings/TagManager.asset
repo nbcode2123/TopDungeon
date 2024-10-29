@@ -20,7 +20,7 @@ TagManager:
   - PlayerSpell
   - Attackable
   - Wall
-  - 
+  - Floor
   - Enemy
   - Weapon
   - PlayerBullet

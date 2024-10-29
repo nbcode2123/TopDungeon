@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public GameObject Player { get; set; }
     [field: SerializeField] public KeyCode AttackButton = KeyCode.Mouse0;
 
-    public int CorridorWidth = 5;
     public GameObject tempWeapon;
 
     private void Awake()

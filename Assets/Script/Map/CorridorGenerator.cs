@@ -77,7 +77,10 @@ public class CorridorGenerator : MonoBehaviour
         // to phan corridor bi thieu chi mang tinh chat trang tri
         foreach (var position in roomPositionStart)
         {
-            var corridorwidth = GameManager.Instance.CorridorWidth;
+
+
+
+            var corridorwidth = MapGenerator_Manager.Instance.corridorwidth;
             var tempValue = corridorwidth / 2;
 
             for (int i = -tempValue; i <= tempValue; i++)
@@ -97,8 +100,7 @@ public class CorridorGenerator : MonoBehaviour
     }
     private void CorridorExpand(List<Vector2Int> corridors, int positioninDirection2d)
     {
-        // int corridorwidth = GameController.instance.CorridorWidth;
-        int corridorwidth = GameManager.Instance.CorridorWidth;
+        var corridorwidth = MapGenerator_Manager.Instance.corridorwidth;
         Vector2Int direction1 = new Vector2Int();
         Vector2Int direction2 = new Vector2Int();
         if (positioninDirection2d == 0 || positioninDirection2d == 2)

@@ -40,6 +40,7 @@ public class MapGenerator_Manager : MonoBehaviour
     public RoomGeneration roomGeneration;
     public WallGenerator WallGenerator;
     HashSet<Vector2Int> corridors;
+    public int corridorwidth = 5;
     public HashSet<Vector2Int> FloorPositions;
     public Tilemap ProtottypeRoom;
     public static HashSet<Vector2Int> FloorPositionsSave;
