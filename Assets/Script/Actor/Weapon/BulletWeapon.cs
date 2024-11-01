@@ -36,7 +36,6 @@ public class BulletWeapon : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
         other.gameObject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
         gameObject.SetActive(false);
 

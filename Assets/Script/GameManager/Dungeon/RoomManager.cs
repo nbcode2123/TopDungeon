@@ -2,27 +2,21 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
-[RequireComponent(typeof(EnemySpawner))]
 public class RoomManager : MonoBehaviour
 {
-    public List<Vector2Int> RoomPosition;
-    public Vector2Int currentRoomPosition = Vector2Int.zero;
-    public int RoomIndexPlayerStanding;
+    public static RoomManager Instance { get; private set; }
+    public List<Vector2Int> RoomPosition = new List<Vector2Int>();
     public List<int> ListRoomSize = new List<int>();
     public List<Room> ListRoom = new List<Room>();
-    public GameObject Player;
-    private EnemySpawner enemySpawner;
-    public static RoomManager Instance { get; private set; }
-    public int _tempRoomIndex = 0;
-    public GameObject testGameObject; // test se xoa di 
     public List<Tilemap> ListObjectRoom = new List<Tilemap>();
-
+    public List<Tilemap> ListObjectRoomWall = new List<Tilemap>();
     public Dictionary<int, HashSet<Vector2Int>> DicFloorPos = new Dictionary<int, HashSet<Vector2Int>>();
+    public int EnemyEachRoom = 5; //** đưa vào GameManager để  quản lý 
     public struct Room
     {
         public int Index; // Số thứ tự của phòng 
@@ -30,19 +24,21 @@ public class RoomManager : MonoBehaviour
         public int Width; // chiều rộng của phòng
         public HashSet<Vector2Int> FloorPos;
         public Tilemap FloorCollider;
-        public Room(int index, Vector2Int roomPosition, int width, HashSet<Vector2Int> floorPos, Tilemap floorCollider)
+        public Tilemap WallCollider;
+        public int NumberEnemy;
+        public Room(int index, Vector2Int roomPosition, int width, HashSet<Vector2Int> floorPos, Tilemap floorCollider, Tilemap wallCollider, int numberEnemy)
         {
             Index = index;
             RoomPosition = roomPosition;
             Width = width;
             FloorPos = floorPos;
             FloorCollider = floorCollider;
-
+            WallCollider = wallCollider;
+            NumberEnemy = numberEnemy;
 
         }
 
     }
-    public PaintTilemap paintTilemap;
 
 
     private void Awake()
@@ -65,9 +61,6 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameManager.Instance.Player;
-        RoomIndexPlayerStanding = 1;
-        enemySpawner = gameObject.GetComponent<EnemySpawner>();
 
 
 
@@ -79,7 +72,7 @@ public class RoomManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            // ActiveEnemyInRoom();
+
         }
 
 
@@ -87,18 +80,7 @@ public class RoomManager : MonoBehaviour
 
     public void CreateListRoom()
     {
-
-        // for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount; i++)
-        // {
-        //     Room _tempRoom;
-        //     _tempRoom.FloorPos = DicFloorPos[i];
-
-
-
-
-        // }
-
-        for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount; i++)
+        for (int i = 0; i < MapGenerator_Manager.Instance.corridorcount + 1; i++)
         {
             var _tempRoomPosition = RoomPosition.ToArray();
 
@@ -108,41 +90,23 @@ public class RoomManager : MonoBehaviour
             _tempRoom.Width = ListRoomSize[i];
             _tempRoom.FloorPos = DicFloorPos[i];
             _tempRoom.FloorCollider = ListObjectRoom[i];
+            _tempRoom.WallCollider = ListObjectRoomWall[i];
+            _tempRoom.NumberEnemy = EnemyEachRoom;
+            _tempRoom.WallCollider.gameObject.SetActive(false);
+            _tempRoom.FloorCollider.GetComponent<RoomStats>().Index = _tempRoom.Index;
+            _tempRoom.FloorCollider.GetComponent<RoomStats>().Wall = _tempRoom.WallCollider;
+            _tempRoom.FloorCollider.GetComponent<RoomStats>().NumberEnemy = EnemyEachRoom;
+            _tempRoom.FloorCollider.GetComponent<RoomStats>().Floor = _tempRoom.FloorPos;
+
 
             ListRoom.Add(_tempRoom);
-
         }
-
-
-
-
-        ObserverManager.Notify("Create Room Complete");
+        ObserverManager.Notify("Create List Room Complete");
 
     }
 
 
 
-
-    public void ActiveEnemyInRoom()
-    {
-        Debug.Log(enemySpawner.ListRoomSpawner.Count);
-        _tempRoomIndex += 1;
-        var _tempCurrentRoom = enemySpawner.ListRoomSpawner[_tempRoomIndex];
-        var _tempListPositionConvertToVector3 = new List<Vector3>();
-
-        Debug.Log(_tempCurrentRoom.SpawnPosition.Count);
-
-
-        for (int i = 0; i < _tempCurrentRoom.SpawnPosition.Count; i++)
-        {
-            _tempListPositionConvertToVector3.Add(new Vector3(_tempCurrentRoom.SpawnPosition[i].x, _tempCurrentRoom.SpawnPosition[i].y, 0));
-        }
-
-        ObjectPoolManager.Instance.ActiveThePool(enemySpawner.EyeBatEnemy.name, _tempListPositionConvertToVector3);
-
-
-
-    }
 
 
 }

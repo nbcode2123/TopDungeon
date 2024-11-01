@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Paintwall : PaintTilemap
 {
-    HashSet<Vector2Int> wallPosition_right = new HashSet<Vector2Int>();
-    HashSet<Vector2Int> wallPosition_left = new HashSet<Vector2Int>();
-    HashSet<Vector2Int> wallPosition_top = new HashSet<Vector2Int>();
-    HashSet<Vector2Int> wallPosition_bottom = new HashSet<Vector2Int>();
 
     // Start is called before the first frame update
     public void PaintWall(PaintTilemap paintTilemap)

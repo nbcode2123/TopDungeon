@@ -34,7 +34,6 @@ public class ObserverManager : MonoBehaviour
         else if (Listeners.ContainsKey(name))
         {
             Listeners[name].Add(callback);
-
         }
     }
     public static void RemoveListener(string name, Action<object[]> callback)
@@ -44,7 +43,6 @@ public class ObserverManager : MonoBehaviour
         if (Listeners.ContainsKey(name))
         {
             Listeners[name].Remove(callback);
-
         }
         if (Listeners[name].Count == 0)
         {
@@ -57,7 +55,6 @@ public class ObserverManager : MonoBehaviour
         if (!Listeners.ContainsKey(name))
         {
             return;
-
         }
         foreach (var ListenerName in Listeners[name])
         {

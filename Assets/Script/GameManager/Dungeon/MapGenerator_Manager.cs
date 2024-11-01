@@ -42,9 +42,12 @@ public class MapGenerator_Manager : MonoBehaviour
     HashSet<Vector2Int> corridors;
     public int corridorwidth = 5;
     public HashSet<Vector2Int> FloorPositions;
-    public Tilemap ProtottypeRoom;
+    public Tilemap ProtottypeRoom; // object đại diện cho roomcollider 
+    public Tilemap PrototypeRoomWall; // object đại diện cho roomwallcollider
     public static HashSet<Vector2Int> FloorPositionsSave;
     public static HashSet<Vector2Int> CorridorPositionSave;
+    public List<Vector2Int> roomPositionStart;
+
     public static MapData MapData;
     private string isNewMap = "New Map";
     public void GeneratorMap()
@@ -78,45 +81,71 @@ public class MapGenerator_Manager : MonoBehaviour
         PaintMap(MapData.floorPosition, MapData.corridorPosition);
 
     }
-
-    public void CreateMap(params object[] data)
+    public void ClearOldMapVariable()
     {
-        List<Vector2Int> roomPositionStart = new List<Vector2Int>();// danh sach vi tri bat dau cua 1 phong 
-        corridors = new HashSet<Vector2Int>();
-        FloorPositions = new HashSet<Vector2Int>();
-        paintTilemap.Clear();
-        corridorGenerator.corridorcount = corridorcount;
-        corridorGenerator.corridorLength = corridorLength;
-        corridors = corridorGenerator.CreateCorridor(roomPositionStart);
-        FloorPositions = roomGeneration.CreateRoom(roomPositionStart);// tao room tu vị trí các  ô phòng
+        roomPositionStart = new List<Vector2Int>();// danh sach vi tri bat dau cua 1 phong 
+        corridors = new HashSet<Vector2Int>(); // danh sach vi tri hanh lang 
+        FloorPositions = new HashSet<Vector2Int>(); // danh sach vi tri cac o san 
+        paintTilemap.Clear(); // xoa cac tilemap da to 
+    }
+    public void GenerateMapPosition()
+    {
+        corridorGenerator.corridorcount = corridorcount; // Truyen so luong hanh lang cho Generator 
+        corridorGenerator.corridorLength = corridorLength;// Truyen chieu dai  hanh lang cho Generator  
+        corridors = corridorGenerator.CreateCorridor(roomPositionStart); // Generate Hanh lang kem theo tham chieu vi chi trung tam cua cac phong
+        FloorPositions = roomGeneration.CreateRoom(roomPositionStart);// tao room tu vị trí các  ô trung tam cua phong 
         FloorPositions.UnionWith(corridors);
         WallGenerator.CreateWall(FloorPositions);
-        PaintMap(FloorPositions, corridors);
-        RoomManager.Instance.RoomPosition = new List<Vector2Int>();
-        List<Vector2Int> distinctList = roomPositionStart.Distinct().ToList(); // ;loại bỏ các giá trị trùng trong vị trí phòng trong trường hợp các phòng bị chồng lên nhau 
-        foreach (var item in distinctList)
+    }
+    public void ClearVariableInRoomManager()
+    {
+        RoomManager.Instance.ListObjectRoom.Clear();// 
+        RoomManager.Instance.RoomPosition.Clear();
+        RoomManager.Instance.DicFloorPos.Clear();
+        RoomManager.Instance.ListObjectRoomWall.Clear();
+    }
+    public void TransmitVariableToRoomManager()
+    {
+        List<Vector2Int> distinctList = roomPositionStart.Distinct().ToList();
+        foreach (var item in distinctList) // lay ra vi tri trung cua cac phong de quan ly trong Room manager
         {
             RoomManager.Instance.RoomPosition.Add(item);
 
         }
-        for (int i = 0; i < distinctList.Count; i++)
+        for (int i = 0; i < distinctList.Count; i++) // voi moi phong tao ra  object dai dien cho san cua phong do 
         {
-            var _tempObject = Instantiate(ProtottypeRoom);
-            _tempObject.name = "Room " + (i + 1);
-            _tempObject.GetComponent<RoomFloorCollider>().RoomIndex = i + 1;
-            RoomManager.Instance.ListObjectRoom.Add(_tempObject);
+            var _tempObjectFloorCollider = Instantiate(ProtottypeRoom);
+            _tempObjectFloorCollider.name = "Room" + (i + 1);
+            _tempObjectFloorCollider.GetComponent<RoomStats>().Index = i + 1;
+            RoomManager.Instance.ListObjectRoom.Add(_tempObjectFloorCollider);
             var _tempListFloor = RoomManager.Instance.DicFloorPos[i];
-            paintTilemap.PaintFloorPosition(_tempListFloor, _tempObject);
+            paintTilemap.PaintFloorPosition(_tempListFloor, _tempObjectFloorCollider);
         }
+        for (int i = 0; i < distinctList.Count; i++) // voi moi phong tao ra object dai dien cho wall cua phong do 
+        {
 
-        RoomManager.Instance.CreateListRoom();
-        // paintTilemap.PaintFloorPositionTest(RoomManager.Instance.DicFloorPos[0]);
+            var _tempObjectWallCollider = Instantiate(PrototypeRoomWall);
+            _tempObjectWallCollider.name = "Wall" + (i + 1);
+            _tempObjectWallCollider.GetComponent<RoomStats>().Index = i + 1;
+            RoomManager.Instance.ListObjectRoomWall.Add(_tempObjectWallCollider);
+            HashSet<Vector2Int> _tempListFloor = RoomManager.Instance.DicFloorPos[i];
+            var _TempListWallPos = WallGenerator.CreateWall(_tempListFloor);
+            paintTilemap.PaintFloorPosition(_TempListWallPos, _tempObjectWallCollider);
 
 
 
 
+        }
+    }
 
-
+    public void CreateMap(params object[] data)
+    {
+        ClearVariableInRoomManager();
+        ClearOldMapVariable();
+        GenerateMapPosition();
+        TransmitVariableToRoomManager();
+        PaintMap(FloorPositions, corridors); // son tilemap cho cac phong va hanh lang
+        RoomManager.Instance.CreateListRoom(); // tao danh sach cac phong trong RoomManager
     }
     public void PaintMap(HashSet<Vector2Int> FloorPositions, HashSet<Vector2Int> corridors)
     {

@@ -12,8 +12,13 @@ public class EyeBallShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ObjectPoolManager.Instance.CreatePoolForObject(Bullet);
-        ObjectPoolManager.Instance.SpawnThePool(Bullet.name, 10);
+        if (ObjectPoolManager.Instance.ListPoolName.Contains(Bullet.name) == false)
+        {
+            ObjectPoolManager.Instance.CreatePoolForObject(Bullet);
+            ObjectPoolManager.Instance.SpawnThePool(Bullet.name, 10);
+        }
+        else return;
+
 
     }
     void Awake()

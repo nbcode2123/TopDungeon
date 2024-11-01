@@ -23,7 +23,7 @@ public class WallGenerator : MonoBehaviour
 
 
     }
-    public void CreateWall(HashSet<Vector2Int> floorPosition) // từ vị trí của floor lấy ra vị trí wall
+    public HashSet<Vector2Int> CreateWall(HashSet<Vector2Int> floorPosition) // từ vị trí của floor lấy ra vị trí wall
     {
         ClearWallMap();
         HashSet<Vector2Int> wallPosition = new HashSet<Vector2Int>(); // hashset chứa vị trí của tường 
@@ -56,6 +56,7 @@ public class WallGenerator : MonoBehaviour
 
             }
         }
+        return wallPosition;
     }
     // Update is called once per frame
     void Update()

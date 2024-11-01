@@ -6,7 +6,6 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour
 {
     public static ObjectPoolManager Instance;
-
     public class Pool
     {
         public string Name;
@@ -30,17 +29,11 @@ public class ObjectPoolManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         ListPool = new List<Pool>();
-
     }
 
     void Start()
     {
-
-
-
     }
-
-
     public void SpawnThePool(string NamePool, int PoolSize)
     {
         var _pool = ListPool.Find(p => p.Name == NamePool);
@@ -68,7 +61,6 @@ public class ObjectPoolManager : MonoBehaviour
     }
     public void CreatePoolForObject(GameObject PoolObject)
     {
-
         var _tempPool = new Pool();
         _tempPool.Name = PoolObject.name;
         _tempPool.Prefab = PoolObject;
@@ -117,11 +109,9 @@ public class ObjectPoolManager : MonoBehaviour
         Destroy(_tempParentObject);
     }
     public void DontDestroyPool(string NamePool)
-
     {
         GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
         DontDestroyOnLoad(_tempParentObject);
-
     }
 
 

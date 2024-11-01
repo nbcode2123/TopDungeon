@@ -28,6 +28,16 @@ public class PlayerColliderController : MonoBehaviour
 
 
         }
+        if (other.tag == "Floor")
+        {
+            var _roomIndex = other.gameObject.GetComponent<RoomStats>().Index;
+            if (_roomIndex != PlayerLevelManager.Instance.PlayerRoom || _roomIndex != 1)
+            {
+                PlayerLevelManager.Instance.PlayerRoom = _roomIndex;
+                ObserverManager.Notify("Enter New Room", _roomIndex);
+            }
+            else return;
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
@@ -44,9 +54,7 @@ public class PlayerColliderController : MonoBehaviour
             gameObject.GetComponent<ActorWeapon>().ChangeActorWeapon(other.gameObject);
 
         }
-        if (other.tag == "Floor")
-        {
-        }
+
 
     }
 

@@ -895,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 8219230814369269168, guid: 123d4b171629a5a46b4cbadaffafed7d,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8219230814369269168, guid: 123d4b171629a5a46b4cbadaffafed7d,
         type: 3}
@@ -4252,7 +4252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 0}
   AttackButton: 323
-  CorridorWidth: 5
   tempWeapon: {fileID: 0}
 --- !u!114 &2047986334
 MonoBehaviour:

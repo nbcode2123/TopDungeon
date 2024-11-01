@@ -8,7 +8,7 @@ public class PlayerLevelManager : MonoBehaviour
     public static PlayerLevelManager Instance { get; set; }
     public int PlayerLevel = 1;
     public int PlayerStage = 1;
-    public int PlayerRoom;
+    public int PlayerRoom = 1;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,6 +27,7 @@ public class PlayerLevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
 
 
     }

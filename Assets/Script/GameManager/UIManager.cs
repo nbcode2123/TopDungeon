@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        ObserverManager.AddListener("EnterNewRoom ", AlertWhenEnterNewRoom);
+        ObserverManager.AddListener("Enter New Room ", AlertWhenEnterNewRoom);
         ObserverManager.AddListener("EnterWeapon", AlertWhenTakeNewWeapon);
         ObserverManager.AddListener("OutWeapon", TurnOffAlerNewWeapon);
 

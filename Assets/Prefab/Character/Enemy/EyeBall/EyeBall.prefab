@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 1155583159214270825}
   - component: {fileID: 6952176564316344351}
   - component: {fileID: 8273042681384669985}
-  - component: {fileID: 7955088297792981381}
   - component: {fileID: 5980742693751729571}
   m_Layer: 10
   m_Name: EyeBall
@@ -81,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1828882215
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6ae9d3fd605789548b5f0003d52c1885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,10 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ed03631e3b05d43b9b40ef0572ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 2436070574558882891, guid: f30d4d4b998abcb4bbaf0f777e6be9ac, type: 3}
   SpeedBullet: 5
   Damage: 10
-  RangeAttack: 15
 --- !u!114 &4431297316808102079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRange: 15
   <MoveSpeed>k__BackingField: 10
-  <DefaultAttackDamage>k__BackingField: 10
+  <AttackDamage>k__BackingField: 0
   <ActorName>k__BackingField: EyeBall
   <MaxHeath>k__BackingField: 50
   <currentHeath>k__BackingField: 0
@@ -236,23 +234,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.42363024, y: -0.23535013}
   m_Size: {x: 2.0084105, y: 2.0084105}
   m_Direction: 0
---- !u!114 &7955088297792981381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365847530755816972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf7b8808497cc34a82981826fd0c08a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  markPosition: {x: 12, y: 10, z: 0}
-  Range: 5
-  TimeDelay: 10
-  RandomMovePosition: {x: 0, y: 0, z: 0}
-  distanceToPos: 0
 --- !u!50 &5980742693751729571
 Rigidbody2D:
   serializedVersion: 4

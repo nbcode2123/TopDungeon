@@ -8,7 +8,7 @@ public class PaintTilemap : MonoBehaviour
 {
     // Start is called before the first frame update
     public Tilemap floormap, walltilemap, corridormap, testMap;
-    public TileBase floorcolor;
+    public TileBase floorcolor, DoorColor;
     public TileBase corridorcolor, wallcolor, left, right, top, bottom;
     public HashSet<Vector2Int> wallPosition_right = new HashSet<Vector2Int>();
     public HashSet<Vector2Int> wallPosition_left = new HashSet<Vector2Int>();
@@ -25,6 +25,11 @@ public class PaintTilemap : MonoBehaviour
         painttilemap(floorPositions, floormap, floorcolor);
 
     }
+    public void PaintDoorPosition(HashSet<Vector2Int> floorPositions, Tilemap floormap)
+    {
+        painttilemap(floorPositions, floormap, DoorColor);
+
+    }
 
     public void painttilemap(HashSet<Vector2Int> floorPositions, Tilemap floormap, TileBase floorcolor)
     {
@@ -39,6 +44,7 @@ public class PaintTilemap : MonoBehaviour
         painttilemap(floorPositions, corridormap, corridorcolor);
 
     }
+
 
 
     public void paintSingleFloor(Vector2Int floorPositon, Tilemap floormap, TileBase floorcolor)
