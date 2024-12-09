@@ -1,61 +1,65 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Script.Actor.Weapon;
+using Script.GameManager;
+using Script.GameManager.Dungeon;
+using Script.GameManager.Logic;
 using UnityEngine;
 
-public class PlayerColliderController : MonoBehaviour
+namespace Script.Actor.Behaviours
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-
-    // Update is called once per frame
-    void Update()
+    public class PlayerColliderController : MonoBehaviour
     {
 
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        gameObject.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
-        Debug.Log(other.name);
-        if (other.tag == "Weapon")
+        // Start is called before the first frame update
+        void Start()
         {
-            ObserverManager.Notify("EnterWeapon", new object[] { other.name, other.gameObject });
+        }
 
+
+        // Update is called once per frame
+        void Update()
+        {
 
         }
-        if (other.tag == "Floor")
+        void OnTriggerEnter2D(Collider2D other)
         {
-            var _roomIndex = other.gameObject.GetComponent<RoomStats>().Index;
-            if (_roomIndex != PlayerLevelManager.Instance.PlayerRoom || _roomIndex != 1)
+            gameObject.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
+            if (other.tag == "Weapon")
             {
-                PlayerLevelManager.Instance.PlayerRoom = _roomIndex;
-                ObserverManager.Notify("Enter New Room", _roomIndex);
+                ObserverManager.Notify("EnterWeapon", new object[] { other.name, other.gameObject });
+
+
             }
-            else return;
+            if (other.tag == "Floor")
+            {
+                var _roomIndex = other.gameObject.GetComponent<RoomControl>().Index;
+                var isComplete = other.gameObject.GetComponent<RoomControl>().isComplete;
+                if ((_roomIndex != PlayerLevelManager.Instance.PlayerRoom || _roomIndex != 1) && isComplete == false)
+                {
+                    PlayerLevelManager.Instance.PlayerRoom = _roomIndex;
+                    ObserverManager.Notify("Enter New Room", _roomIndex);
+                }
+                else return;
+            }
         }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Weapon")
+        void OnTriggerExit2D(Collider2D other)
         {
-            ObserverManager.Notify("OutWeapon");
+            if (other.tag == "Weapon")
+            {
+                ObserverManager.Notify("OutWeapon");
 
+            }
         }
-    }
-    public void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Weapon" && Input.GetKey(InputManager.Instance.ActiveObject))
+        public void OnTriggerStay2D(Collider2D other)
         {
-            gameObject.GetComponent<ActorWeapon>().ChangeActorWeapon(other.gameObject);
+            Debug.Log(other.name);
+            if (other.tag == "Weapon" && Input.GetKeyDown(InputManager.Instance.ActiveObject))
+            {
+                gameObject.GetComponent<ActorWeapon>().ChangeActorWeapon(other.gameObject);
+
+            }
+
 
         }
 
-
     }
-
 }

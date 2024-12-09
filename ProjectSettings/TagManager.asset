@@ -25,7 +25,7 @@ TagManager:
   - Weapon
   - PlayerBullet
   - EnemyBullet
-  - 
+  - OnlyPlayerContact
   - 
   - 
   - 
@@ -61,4 +61,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 4069372367
+    locked: 0
+  - name: LoadingScene
+    uniqueID: 964882339
     locked: 0

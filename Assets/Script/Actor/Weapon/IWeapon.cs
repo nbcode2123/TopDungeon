@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IWeapon
+namespace Script.Actor.Weapon
 {
-    public float WeaponDamage { get; set; }
-    public float WeaponAttackSpeed { get; set; }
-    public void Attack();
+    public interface IWeapon
+    {
+        public float WeaponDamage { get; set; }
+        public float WeaponAttackSpeed { get; set; }
+        public void Attack();
 
 
 
+    }
 }

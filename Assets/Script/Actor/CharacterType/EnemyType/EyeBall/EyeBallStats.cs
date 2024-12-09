@@ -1,57 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Script.Actor.Behaviours.Interface;
 using UnityEngine;
 
-public class EyeBallStats : MonoBehaviour, IActorStats
+namespace Script.Actor.CharacterType.EnemyType.EyeBall
 {
-    public float AttackRange;
-    [field: SerializeField]
-    public float MoveSpeed { get; set; }
-    [field: SerializeField]
-
-    public float AttackDamage { get; set; }
-    [field: SerializeField]
-
-    public string ActorName { get; set; }
-    [field: SerializeField]
-
-    public float MaxHeath { get; set; }
-    [field: SerializeField]
-
-    public float currentHeath { get; set; }
-    [field: SerializeField]
-
-    public float AttackSpeed { get; set; }
-    public bool isDeath { get; set; }
-    public void Death()
+    public class EyeBallStats : MonoBehaviour, IActorStats
     {
-        gameObject.GetComponent<Animator>().SetBool("isDeath", true);
+        public float AttackRange;
+        [field: SerializeField]
+        public float MoveSpeed { get; set; }
+        [field: SerializeField]
 
-    }
+        public float AttackDamage { get; set; }
+        [field: SerializeField]
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHeath = MaxHeath;
+        public string ActorName { get; set; }
+        [field: SerializeField]
 
-    }
+        public float MaxHeath { get; set; }
+        [field: SerializeField]
 
-    // Update is called once per frame
-    void Update()
-    {
+        public float currentHeath { get; set; }
+        [field: SerializeField]
 
-        CheckDeath();
-
-    }
-    public void CheckDeath()
-    {
-        if (currentHeath <= 0)
+        public float AttackSpeed { get; set; }
+        public bool isDeath { get; set; }
+        public void Death()
         {
             gameObject.GetComponent<Animator>().SetBool("isDeath", true);
+
         }
 
+        // Start is called before the first frame update
+        void Start()
+        {
+            currentHeath = MaxHeath;
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+            CheckDeath();
+
+        }
+        public void CheckDeath()
+        {
+            if (currentHeath <= 0)
+            {
+                gameObject.GetComponent<Animator>().SetBool("isDeath", true);
+
+            }
+
+        }
+        void OnEnable()
+        {
+            currentHeath = MaxHeath;
+
+        }
+
+
     }
-
-
 }

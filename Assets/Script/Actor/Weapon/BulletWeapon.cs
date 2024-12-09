@@ -1,45 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.Behaviours;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
 
-
-public class BulletWeapon : MonoBehaviour
+namespace Script.Actor.Weapon
 {
-    [field: SerializeField]
-    public float Damage { get; set; }
-    public float SetActiveTime = 5;
-    private float SetActiveTimer = 0;
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Animator))]
 
-    // Start is called before the first frame update
-    void Start()
+
+    public class BulletWeapon : MonoBehaviour
     {
+        [field: SerializeField]
+        public float Damage { get; set; }
+        public float SetActiveTime = 5;
+        private float SetActiveTimer = 0;
 
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (gameObject.activeSelf == true)
+        // Start is called before the first frame update
+        void Start()
         {
-            SetActiveTimer += Time.deltaTime;
+
+
         }
-        if (SetActiveTimer >= SetActiveTime)
+
+        // Update is called once per frame
+        void Update()
         {
+
+            if (gameObject.activeSelf == true)
+            {
+                SetActiveTimer += Time.deltaTime;
+            }
+            if (SetActiveTimer >= SetActiveTime)
+            {
+                gameObject.SetActive(false);
+                SetActiveTimer = 0;
+            }
+
+        }
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            other.gameObject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
             gameObject.SetActive(false);
-            SetActiveTimer = 0;
+
+
         }
 
     }
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        other.gameObject.GetComponent<TakeDamage>()?.DealDmgToActor(Damage);
-        gameObject.SetActive(false);
-
-
-    }
-
 }

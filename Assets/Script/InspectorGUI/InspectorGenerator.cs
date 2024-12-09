@@ -1,35 +1,39 @@
-
-using UnityEngine;
+using Script.GameManager.Dungeon;
 using UnityEditor;
-[CustomEditor(typeof(MapGenerator_Manager))]
+using UnityEngine;
 
-public class InspectorGenerator : Editor
+namespace Script.InspectorGUI
 {
+    [CustomEditor(typeof(MapGenerator_Manager))]
 
-    public override void OnInspectorGUI()
+    public class InspectorGenerator : Editor
     {
-        base.OnInspectorGUI();
 
-        MapGenerator_Manager mapGenerator = (MapGenerator_Manager)target;
-        if (GUILayout.Button("Generator"))
+        public override void OnInspectorGUI()
         {
-            mapGenerator.GeneratorMap();
+            base.OnInspectorGUI();
+
+            MapGenerator_Manager mapGenerator = (MapGenerator_Manager)target;
+            if (GUILayout.Button("Generator"))
+            {
+                mapGenerator.GeneratorMap();
+
+
+            }
+            if (GUILayout.Button("Clear Tile Map"))
+            {
+                mapGenerator.ClearTileMap();
+            }
+
+
+
 
 
         }
-        if (GUILayout.Button("Clear Tile Map"))
-        {
-            mapGenerator.ClearTileMap();
-        }
-
-
 
 
 
     }
-
-
-
 }
 
 

@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.SaveData.New_Folder;
 using UnityEngine;
 
-public class SaveGame : MonoBehaviour
+namespace Script.SaveData
 {
-    public static MapData mapData;
-
-    public static void init()
+    public class SaveGame : MonoBehaviour
     {
-        mapData = new MapData();
-        // mapData.Save();
-        mapData.Load();
+        public static MapData mapData;
 
+        public static void init()
+        {
+            mapData = new MapData();
+            // mapData.Save();
+            mapData.Load();
+
+        }
     }
 }

@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyTextDmg : MonoBehaviour
+namespace Script.Actor.UI_UX
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DestroyTextDmg : MonoBehaviour
     {
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
-    }
-    public void DestroyDisplayTextDmg()
-    {
+        }
+        public void DestroyDisplayTextDmg()
+        {
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

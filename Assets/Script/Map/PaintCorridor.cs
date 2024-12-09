@@ -1,22 +1,21 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
-public class PaintCorridor : PaintTilemap
+namespace Script.Map
 {
-
-    // Start is called before the first frame update
-    public void PaintCorridorPosition(HashSet<Vector2Int> corridorPosition)
-
+    public class PaintCorridor : PaintTilemap
     {
-        foreach (var position in corridorPosition)
+
+        // Start is called before the first frame update
+        public void PaintCorridorPosition(HashSet<Vector2Int> corridorPosition)
+
         {
-            // PaintSingleCorridor(position);
+            foreach (var position in corridorPosition)
+            {
+                // PaintSingleCorridor(position);
+            }
         }
+
+
     }
-
-
 }

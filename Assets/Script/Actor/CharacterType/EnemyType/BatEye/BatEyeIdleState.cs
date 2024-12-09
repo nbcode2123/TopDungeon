@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.State_Machine;
 using UnityEngine;
 
-public class BatEyeIdleState : BaseState
+namespace Script.Actor.CharacterType.EnemyType.BatEye
 {
-    public BatEyeIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
+    public class BatEyeIdleState : BaseState
     {
+        public BatEyeIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
+        {
 
-    }
-    public override void EnterState()
-    {
-        base.EnterState();
+        }
+        public override void EnterState()
+        {
+            base.EnterState();
 
-    }
-    public override void FrameUpdate()
-    {
-        base.FrameUpdate();
-    }
-    public override void ExitState()
-    {
-        base.ExitState();
+        }
+        public override void FrameUpdate()
+        {
+            base.FrameUpdate();
+        }
+        public override void ExitState()
+        {
+            base.ExitState();
+        }
     }
 }

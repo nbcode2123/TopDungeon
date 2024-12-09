@@ -1,39 +1,43 @@
 using System;
-
 using System.IO;
 using System.Runtime.Serialization;
 using UnityEngine;
-[Serializable]
-public class DataTest
+using UnityEngine.Serialization;
+
+namespace Script.SaveData
 {
-    [SerializeField]
-    private int _Counter;
-    [IgnoreDataMember]
-    public int Counter
+    [Serializable]
+    public class DataTest
     {
-        get => _Counter;
-        set
+        [FormerlySerializedAs("_Counter")] [SerializeField]
+        private int counter;
+        [IgnoreDataMember]
+        public int Counter
         {
-            _Counter = value;
-            Save();
+            get => counter;
+            set
+            {
+                counter = value;
+                Save();
+            }
         }
-    }
-    // Start is called before the first frame update
-    public void Save()
-    {
-        string json = JsonUtility.ToJson(this);
-        File.WriteAllText(Application.persistentDataPath + "/Gamedata.game", json);
-    }
-    public void Load()
-    {
-        string filepath = Path.Combine(Application.persistentDataPath, "/Gamedata.game");
-        if (File.Exists(filepath))
+        // Start is called before the first frame update
+        public void Save()
         {
-            string json = File.ReadAllText(filepath);
-            var data = JsonUtility.FromJson<DataTest>(json);
+            string json = JsonUtility.ToJson(this);
+            File.WriteAllText(Application.persistentDataPath + "/Gamedata.game", json);
+        }
+        public void Load()
+        {
+            string filepath = Path.Combine(Application.persistentDataPath, "/Gamedata.game");
+            if (File.Exists(filepath))
+            {
+                string json = File.ReadAllText(filepath);
+                var data = JsonUtility.FromJson<DataTest>(json);
 
-            Counter = data.Counter;
+                Counter = data.Counter;
 
+            }
         }
     }
 }

@@ -1,41 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerLevelManager : MonoBehaviour
+namespace Script.GameManager.Dungeon
 {
-    public static PlayerLevelManager Instance { get; set; }
-    public int PlayerLevel = 1;
-    public int PlayerStage = 1;
-    public int PlayerRoom = 1;
-    private void Awake()
+    public class PlayerLevelManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static PlayerLevelManager Instance { get; set; }
+        public int PlayerLevel;
+        public int PlayerStage;
+        public int PlayerRoom;
+        private void Awake()
         {
-            Destroy(gameObject);
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
 
         }
-        else
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+
+
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
         }
 
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 }

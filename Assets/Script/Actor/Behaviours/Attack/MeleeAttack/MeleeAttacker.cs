@@ -1,44 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.Behaviours.Interface;
 using UnityEngine;
 
-public class MeleeAttacker : MonoBehaviour
+namespace Script.Actor.Behaviours.Attack.MeleeAttack
 {
-    [field: SerializeField]
-    public Transform AttackTranform { set; get; }
-    public float AttackRange { set; get; }
-    [field: SerializeField]
-    public LayerMask AttackableLayer { set; get; }
-    public RaycastHit2D[] hits { set; get; }
-    public float AttackDmg { set; get; }
-
-
-    public void Attackdefault()
+    public class MeleeAttacker : MonoBehaviour
     {
-        hits = Physics2D.CircleCastAll(AttackTranform.position, AttackRange, gameObject.transform.right, 0f, AttackableLayer);
-        for (int i = 0; i < hits.Length; i++)
+        [field: SerializeField]
+        public Transform AttackTranform { set; get; }
+        public float AttackRange { set; get; }
+        [field: SerializeField]
+        public LayerMask AttackableLayer { set; get; }
+        public RaycastHit2D[] hits { set; get; }
+        public float AttackDmg { set; get; }
+
+
+        public void Attackdefault()
         {
-            string enemyName = hits[i].collider.gameObject.name;
-            Debug.Log(enemyName);
-            if (enemyName != null)
+            hits = Physics2D.CircleCastAll(AttackTranform.position, AttackRange, gameObject.transform.right, 0f, AttackableLayer);
+            for (int i = 0; i < hits.Length; i++)
             {
-                float targetHeal = hits[i].collider.gameObject.GetComponent<IActorStats>().currentHeath;
-                Debug.Log(targetHeal);
-                if (targetHeal != 0)
+                string enemyName = hits[i].collider.gameObject.name;
+                Debug.Log(enemyName);
+                if (enemyName != null)
                 {
-                    hits[i].collider.GetComponent<Animator>().SetBool("isTakeDmg", true);
-                    hits[i].collider.gameObject.GetComponent<TakeDamage>().DealDmgToActor(AttackDmg);
+                    float targetHeal = hits[i].collider.gameObject.GetComponent<IActorStats>().currentHeath;
+                    Debug.Log(targetHeal);
+                    if (targetHeal != 0)
+                    {
+                        hits[i].collider.GetComponent<Animator>().SetBool("isTakeDmg", true);
+                        hits[i].collider.gameObject.GetComponent<TakeDamage>().DealDmgToActor(AttackDmg);
 
 
+                    }
                 }
             }
         }
+        // public void OnDrawGizmosSelected()
+        // {
+        //     Gizmos.DrawWireSphere(attackTranform.transform.position, attackRange / 2);
+
+
+        // }
+
     }
-    // public void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.DrawWireSphere(attackTranform.transform.position, attackRange / 2);
-
-
-    // }
-
 }

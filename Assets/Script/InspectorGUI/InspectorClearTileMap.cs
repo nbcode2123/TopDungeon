@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Script.Map;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(PaintTilemap))]
-public class InspectorClearTileMap : Editor
+namespace Script.InspectorGUI
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(PaintTilemap))]
+    public class InspectorClearTileMap : Editor
     {
-        base.OnInspectorGUI();
-        PaintTilemap paintTilemap = (PaintTilemap)target;
-        if (GUILayout.Button("Clear Tile Map"))
+        public override void OnInspectorGUI()
         {
-            paintTilemap.Clear();
+            base.OnInspectorGUI();
+            PaintTilemap paintTilemap = (PaintTilemap)target;
+            if (GUILayout.Button("Clear Tile Map"))
+            {
+                paintTilemap.Clear();
+            }
         }
     }
 }

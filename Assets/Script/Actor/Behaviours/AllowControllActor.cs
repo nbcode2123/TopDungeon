@@ -1,69 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Script.Actor.Behaviours.Interface;
+using Script.GameManager;
 using UnityEngine;
 
-public class AllowControllActor : MonoBehaviour
+namespace Script.Actor.Behaviours
 {
-    public Vector2 MoveDirection { get; set; }
-    private Rigidbody2D rigidbodyCharactor { get; set; }
-    public KeyCode DefaultAttackBtn { get; set; } = KeyCode.Mouse0;
-    public bool IsFaceingRight { get; set; } = true;
-    public bool isActorDeath { get; set; }
-    public float MoveSpeed;
-    private IActorStats ActorStats;
-    // Start is called before the first frame update
-    void Start()
+    public class AllowControllActor : MonoBehaviour
     {
-        rigidbodyCharactor = gameObject.GetComponent<Rigidbody2D>();
-        if (gameObject.GetComponent<IActorStats>() != null)
+        public Vector2 MoveDirection { get; set; }
+        private Rigidbody2D rigidbodyCharactor { get; set; }
+        public KeyCode DefaultAttackBtn { get; set; } = KeyCode.Mouse0;
+        public bool IsFaceingRight { get; set; } = true;
+        public bool isActorDeath { get; set; }
+        public float MoveSpeed;
+        private IActorStats ActorStats;
+        // Start is called before the first frame update
+        void Start()
         {
-            ActorStats = gameObject.GetComponent<IActorStats>();
-            MoveSpeed = ActorStats.MoveSpeed;
-        }
-        else MoveSpeed = 10f;
-
-
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        ControllActor();
-    }
-    public void ControllActor()
-    {
-        if (gameObject.GetComponent<IPlayerStats>().isDeath == false)
-        {
-            MoveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            MoveDirection.Normalize();
-            rigidbodyCharactor.velocity = MoveDirection * MoveSpeed;
-            if (MoveDirection != Vector2.zero)
+            rigidbodyCharactor = gameObject.GetComponent<Rigidbody2D>();
+            if (gameObject.GetComponent<IActorStats>() != null)
             {
-                ObserverManager.Notify("Player Move");
-
+                ActorStats = gameObject.GetComponent<IActorStats>();
+                MoveSpeed = ActorStats.MoveSpeed;
             }
-            CheckForLeftOrRightFacing(rigidbodyCharactor.velocity);
+            else MoveSpeed = 10f;
+
+
+
+
+
         }
-        else return;
-    }
-    public void CheckForLeftOrRightFacing(Vector2 velocity)
-    {
-        if (IsFaceingRight && velocity.x < 0f)
+
+        // Update is called once per frame
+        void Update()
         {
-            Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFaceingRight = !IsFaceingRight;
+
+            ControllActor();
         }
-        else if (!IsFaceingRight && velocity.x > 0f)
+        public void ControllActor()
         {
-            Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFaceingRight = !IsFaceingRight;
+            if (gameObject.GetComponent<IPlayerStats>().isDeath == false)
+            {
+                MoveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                MoveDirection.Normalize();
+                rigidbodyCharactor.velocity = MoveDirection * MoveSpeed;
+                if (MoveDirection != Vector2.zero)
+                {
+                    ObserverManager.Notify("Player Move");
+
+                }
+                CheckForLeftOrRightFacing(rigidbodyCharactor.velocity);
+            }
+            else return;
+        }
+        public void CheckForLeftOrRightFacing(Vector2 velocity)
+        {
+            if (IsFaceingRight && velocity.x < 0f)
+            {
+                Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(rotator);
+                IsFaceingRight = !IsFaceingRight;
+            }
+            else if (!IsFaceingRight && velocity.x > 0f)
+            {
+                Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(rotator);
+                IsFaceingRight = !IsFaceingRight;
+            }
         }
     }
 }

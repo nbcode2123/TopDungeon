@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Script.SaveData.New_Folder;
 
-public static class Inventory
+namespace Script.SaveData
 {
-
-    public static MapData mapData;
-
-    public static void init()
+    public static class Inventory
     {
-        mapData = new MapData();
-        // mapData.Save();
-        mapData.Load();
+
+        public static MapData mapData;
+
+        public static void init()
+        {
+            mapData = new MapData();
+            // mapData.Save();
+            mapData.Load();
+
+        }
 
     }
-
 }

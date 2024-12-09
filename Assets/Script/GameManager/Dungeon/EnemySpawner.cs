@@ -1,53 +1,59 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace Script.GameManager.Dungeon
 {
-    public static EnemySpawner Instance { get; set; }
-    public List<GameObject> ListEnemy;
-    public int Difficulty;
-    public int NumberEnemy;
-
-    private void Awake()
+    public class EnemySpawner : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static EnemySpawner Instance { get; set; }
+        public List<GameObject> ListEnemy;
+        public int Difficulty;
+        public int NumberEnemy;
+
+        public void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+
+
+
+        }
+
+
+        // Start is called before the first frame update
+        public void Start()
+        {
+            ObserverManager.AddListener("Create List Room Complete", CreateObjectPoolForHoldMap);
+
+
+
+        }
+
+        // Update is called once per frame
+        public void Update()
         {
 
-            Destroy(gameObject);
         }
-        else
+        public void CreateObjectPoolForHoldMap(object[] data)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (!ObjectPoolManager.Instance.ListPoolName.Contains(ListEnemy[0].name))
+            {
+                ObjectPoolManager.Instance.CreatePoolForObject(ListEnemy[0]);
+                ObjectPoolManager.Instance.SpawnThePool(ListEnemy[0].name, NumberEnemy);
+            }
+
+
+
         }
 
 
-
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        ObserverManager.AddListener("Create List Room Complete", CreateObjectPoolForHoldMap);
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    public void CreateObjectPoolForHoldMap(object[] data)
-    {
-        ObjectPoolManager.Instance.CreatePoolForObject(ListEnemy[0]);
-        ObjectPoolManager.Instance.SpawnThePool(ListEnemy[0].name, NumberEnemy);
-
-
-    }
-
-
 }

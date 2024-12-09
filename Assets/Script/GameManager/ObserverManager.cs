@@ -1,77 +1,78 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
-public class ObserverManager : MonoBehaviour
+namespace Script.GameManager
 {
-    void Awake()
+    public class ObserverManager : MonoBehaviour
     {
-        Listeners.Clear();
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    #region Observer Subject  
-    public static Dictionary<string, List<Action<object[]>>> Listeners = new Dictionary<string, List<Action<object[]>>>();
-    public static void AddListener(string name, Action<object[]> callback)
-    {
-        if (!Listeners.ContainsKey(name))
+        void Awake()
         {
-            Listeners.Add(name, new List<Action<object[]>>());
-            Listeners[name].Add(callback);
+            Listeners.Clear();
+
         }
-        else if (Listeners.ContainsKey(name))
+        // Start is called before the first frame update
+        void Start()
         {
-            Listeners[name].Add(callback);
-        }
-    }
-    public static void RemoveListener(string name, Action<object[]> callback)
-    {
-        if (!Listeners.ContainsKey(name))
-            return;
-        if (Listeners.ContainsKey(name))
-        {
-            Listeners[name].Remove(callback);
-        }
-        if (Listeners[name].Count == 0)
-        {
-            Listeners.Remove(name);
+
         }
 
-    }
-    public static void Notify(string name, params object[] data)
-    {
-        if (!Listeners.ContainsKey(name))
+        // Update is called once per frame
+        void Update()
         {
-            return;
+
         }
-        foreach (var ListenerName in Listeners[name])
+        #region Observer Subject  
+        public static Dictionary<string, List<Action<object[]>>> Listeners = new Dictionary<string, List<Action<object[]>>>();
+        public static void AddListener(string name, Action<object[]> callback)
         {
-            try
+            if (!Listeners.ContainsKey(name))
             {
-                ListenerName?.Invoke(data);
-
+                Listeners.Add(name, new List<Action<object[]>>());
+                Listeners[name].Add(callback);
             }
-            catch (Exception e)
+            else if (Listeners.ContainsKey(name))
             {
-
-                Debug.LogError("Observer problem " + e + ListenerName);
+                Listeners[name].Add(callback);
+            }
+        }
+        public static void RemoveListener(string name, Action<object[]> callback)
+        {
+            if (!Listeners.ContainsKey(name))
+                return;
+            if (Listeners.ContainsKey(name))
+            {
+                Listeners[name].Remove(callback);
+            }
+            if (Listeners[name].Count == 0)
+            {
+                Listeners.Remove(name);
             }
 
-
-
         }
+        public static void Notify(string name, params object[] data)
+        {
+            if (!Listeners.ContainsKey(name))
+            {
+                return;
+            }
+            foreach (var ListenerName in Listeners[name])
+            {
+                try
+                {
+                    ListenerName?.Invoke(data);
+
+                }
+                catch (Exception e)
+                {
+
+                    Debug.LogError("Observer problem " + e + ListenerName);
+                }
+
+
+
+            }
+        }
+        #endregion
     }
-    #endregion
 }

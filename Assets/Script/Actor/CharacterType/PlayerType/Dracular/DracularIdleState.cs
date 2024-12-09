@@ -1,25 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.State_Machine;
 using UnityEngine;
 
-public class DracularIdleState : BaseState
+namespace Script.Actor.CharacterType.PlayerType.Dracular
 {
-    public DracularIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
+    public class DracularIdleState : BaseState
     {
+        public DracularIdleState(GameObject actor, StateMachine stateMachine) : base(actor, stateMachine)
+        {
+
+        }
+        public override void EnterState()
+        {
+            base.EnterState();
+        }
+        public override void FrameUpdate()
+        {
+            base.FrameUpdate();
+
+        }
+        public override void ExitState()
+        {
+            base.ExitState();
+        }
 
     }
-    public override void EnterState()
-    {
-        base.EnterState();
-    }
-    public override void FrameUpdate()
-    {
-        base.FrameUpdate();
-
-    }
-    public override void ExitState()
-    {
-        base.ExitState();
-    }
-
 }

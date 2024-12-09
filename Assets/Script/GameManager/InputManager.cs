@@ -1,38 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+namespace Script.GameManager
 {
-    public static InputManager Instance { get; private set; }
-    public KeyCode ActiveObject = KeyCode.H;
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    private void Awake()
+    public class InputManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
-
+        public static InputManager Instance { get; private set; }
+        public KeyCode ActiveObject = KeyCode.H;
+        /// <summary>
+        /// Awake is called when the script instance is being loaded.
+        /// </summary>
+        private void Awake()
         {
-            Destroy(gameObject);
+            if (Instance != null && Instance != this)
+
+            {
+                Destroy(gameObject);
+
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
 
         }
-        else
+        // Start is called before the first frame update
+        void Start()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+
         }
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        }
     }
 }

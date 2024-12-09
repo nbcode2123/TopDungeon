@@ -1,34 +1,34 @@
-
-using System;
-using System.Collections.Generic;
-using TMPro;
+using Script.Actor.Behaviours.Interface;
 using UnityEngine;
-public class TakeDamage : MonoBehaviour
+
+namespace Script.Actor.Behaviours
 {
-    private void Start()
+    public class TakeDamage : MonoBehaviour
     {
-
-    }
-    void Update()
-    {
-    }
-    public void DealDmgToActor(float DamageTaken) // gaay dmg len nhan vat 
-    {
-        Debug.Log(gameObject.name + "bi dmg ");
-        if (gameObject.GetComponent<IActorStats>().currentHeath >= DamageTaken)
+        private void Start()
         {
-            gameObject.GetComponent<IActorStats>().currentHeath -= DamageTaken;
-            gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
-
 
         }
-        if (gameObject.GetComponent<IActorStats>().currentHeath <= DamageTaken)
+        void Update()
         {
-            gameObject.GetComponent<IActorStats>().currentHeath = 0;
-
-
         }
+        public void DealDmgToActor(float DamageTaken) // gaay dmg len nhan vat 
+        {
+            if (gameObject.GetComponent<IActorStats>().currentHeath >= DamageTaken)
+            {
+                gameObject.GetComponent<IActorStats>().currentHeath -= DamageTaken;
+                gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
+
+
+            }
+            if (gameObject.GetComponent<IActorStats>().currentHeath <= DamageTaken)
+            {
+                gameObject.GetComponent<IActorStats>().currentHeath = 0;
+
+
+            }
+        }
+
+
     }
-
-
 }

@@ -1,36 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.Behaviours.Interface;
 using UnityEngine;
 
-public class DracularStats : MonoBehaviour, IPlayerStats
+namespace Script.Actor.CharacterType.PlayerType.Dracular
 {
-    [field: SerializeField]
-    public float MaxHeath { get; set; }
-    [field: SerializeField]
-    public float currentHeath { get; set; }
-    [field: SerializeField]
-    public float MoveSpeed { get; set; }
-
-    [field: SerializeField]
-    public float AttackDamage { get; set; }
-    [field: SerializeField]
-    public string ActorName { get; set; }
-    [field: SerializeField]
-    public GameObject DefaultWeapon { get; set; }
-    public string Skill { get; set; }
-    public bool isDeath { get; set; } // kiem tra song hay chet 
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class DracularStats : MonoBehaviour, IPlayerStats
     {
+        [field: SerializeField]
+        public float MaxHeath { get; set; }
+        [field: SerializeField]
+        public float currentHeath { get; set; }
+        [field: SerializeField]
+        public float MoveSpeed { get; set; }
 
-    }
+        [field: SerializeField]
+        public float AttackDamage { get; set; }
+        [field: SerializeField]
+        public string ActorName { get; set; }
+        [field: SerializeField]
+        public GameObject DefaultWeapon { get; set; }
+        public string Skill { get; set; }
+        public bool isDeath { get; set; } // kiem tra song hay chet 
 
-    // Update is called once per frame
-    void Update()
-    {
 
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

@@ -1,74 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
+using Script.Actor.Behaviours.Interface;
 using UnityEngine;
 
-public class PlayerChaser : MonoBehaviour
+namespace Script.GameManager.Logic
 {
-
-    public float AttackDistance { get; set; }
-    public float OutRangeDistance { get; set; }
-    public GameObject PlayerTrans { get; set; }
-    public Vector2 moveDirection { get; set; }
-    public float DistanceToPlayer { get; set; }
-    public bool IsFaceingRight { get; set; } = true;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerChaser : MonoBehaviour
     {
 
-        PlayerTrans = GameManager.Instance.Player;// tam thoi 
+        public float AttackDistance { get; set; }
+        public float OutRangeDistance { get; set; }
+        public GameObject PlayerTrans { get; set; }
+        public Vector2 moveDirection { get; set; }
+        public float DistanceToPlayer { get; set; }
+        public bool IsFaceingRight { get; set; } = true;
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        // FollowPlayer();
-
-    }
-    public Vector2 FollowPlayer()
-    {
-        // DistanceToPlayer = Vector2.Distance(gameObject.transform.position, PlayerTrans.transform.position);
-        moveDirection = new Vector2(PlayerTrans.transform.position.x - gameObject.transform.position.x, PlayerTrans.transform.position.y - gameObject.transform.position.y);
-        moveDirection.Normalize();
-        // if (DistanceToPlayer > AttackDistance && DistanceToPlayer < OutRangeDistance)
-        // {
-        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerTrans.transform.position, gameObject.GetComponent<IActorStats>().MoveSpeed * Time.deltaTime);
-        if (moveDirection.x > 0 && !IsFaceingRight)
+        // Start is called before the first frame update
+        void Start()
         {
-            Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFaceingRight = !IsFaceingRight;
 
+            PlayerTrans = GameManager.Instance.Player;// tam thoi 
 
         }
-        if (moveDirection.x < 0 && IsFaceingRight)
+
+        // Update is called once per frame
+        void Update()
         {
-            Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFaceingRight = !IsFaceingRight;
+
+            // FollowPlayer();
+
+        }
+        public Vector2 FollowPlayer()
+        {
+            // DistanceToPlayer = Vector2.Distance(gameObject.transform.position, PlayerTrans.transform.position);
+            moveDirection = new Vector2(PlayerTrans.transform.position.x - gameObject.transform.position.x, PlayerTrans.transform.position.y - gameObject.transform.position.y);
+            moveDirection.Normalize();
+            // if (DistanceToPlayer > AttackDistance && DistanceToPlayer < OutRangeDistance)
+            // {
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, PlayerTrans.transform.position, gameObject.GetComponent<IActorStats>().MoveSpeed * Time.deltaTime);
+            if (moveDirection.x > 0 && !IsFaceingRight)
+            {
+                Vector3 rotator = new Vector3(transform.rotation.x, 0, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(rotator);
+                IsFaceingRight = !IsFaceingRight;
+
+
+            }
+            if (moveDirection.x < 0 && IsFaceingRight)
+            {
+                Vector3 rotator = new Vector3(transform.rotation.x, 180, transform.rotation.z);
+                transform.rotation = Quaternion.Euler(rotator);
+                IsFaceingRight = !IsFaceingRight;
+            }
+
+            // }
+            // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x > 0)
+            // {
+            //     moveDirection = Vector2.zero;
+            // }
+            // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x < 0)
+            // {
+            //     moveDirection = Vector2.zero;
+            // }
+            return moveDirection;
+
+        }
+        public void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(gameObject.transform.position, OutRangeDistance);
+            Gizmos.DrawWireSphere(gameObject.transform.position, AttackDistance);
+
         }
 
-        // }
-        // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x > 0)
-        // {
-        //     moveDirection = Vector2.zero;
-        // }
-        // else if ((DistanceToPlayer > OutRangeDistance || DistanceToPlayer <= AttackDistance) && moveDirection.x < 0)
-        // {
-        //     moveDirection = Vector2.zero;
-        // }
-        return moveDirection;
 
     }
-    public void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(gameObject.transform.position, OutRangeDistance);
-        Gizmos.DrawWireSphere(gameObject.transform.position, AttackDistance);
-
-    }
-
-
 }

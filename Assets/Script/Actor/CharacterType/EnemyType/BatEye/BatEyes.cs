@@ -1,42 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BatEyes : MonoBehaviour
+namespace Script.Actor.CharacterType.EnemyType.BatEye
 {
-
-
-    // Start is called before the first frame update
-    public void Start()
+    public class BatEyes : MonoBehaviour
     {
 
 
-
-
-    }
-
-    // Update is called once per frame
-    public void Update()
-    {
+        // Start is called before the first frame update
+        public void Start()
+        {
 
 
 
-    }
-    public void OnDrawGizmosSelected()
-    {
-        // Gizmos.DrawWireSphere(gameObject.transform.position, OutRangeDistance);
-        // Gizmos.DrawWireSphere(gameObject.transform.position, AttackDistance);
-        // Gizmos.DrawWireSphere(AttackTranform.transform.position, AttackRange);
+
+        }
+
+        // Update is called once per frame
+        public void Update()
+        {
 
 
-    }
-    public void setEndAttackAnimation()
-    {
-        gameObject.GetComponent<Animator>().SetBool("isAttack", false);
 
-    }
-    public void setEndTakeDamageAnimation()
-    {
-        gameObject.GetComponent<Animator>().SetBool("isTakeDmg", false);
+        }
+        public void OnDrawGizmosSelected()
+        {
+            // Gizmos.DrawWireSphere(gameObject.transform.position, OutRangeDistance);
+            // Gizmos.DrawWireSphere(gameObject.transform.position, AttackDistance);
+            // Gizmos.DrawWireSphere(AttackTranform.transform.position, AttackRange);
+
+
+        }
+        public void setEndAttackAnimation()
+        {
+            gameObject.GetComponent<Animator>().SetBool("isAttack", false);
+
+        }
+        public void setEndTakeDamageAnimation()
+        {
+            gameObject.GetComponent<Animator>().SetBool("isTakeDmg", false);
+        }
     }
 }

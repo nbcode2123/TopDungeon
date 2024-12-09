@@ -1,54 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using Script.GameManager;
 using UnityEngine;
 
-public class EyeBallShooter : MonoBehaviour
+namespace Script.Actor.CharacterType.EnemyType.EyeBall
 {
-    public GameObject Bullet;
-    public float SpeedBullet;
-    public float Damage;
-    public float attackcounter { get; set; }
-
-    // Start is called before the first frame update
-    void Start()
+    public class EyeBallShooter : MonoBehaviour
     {
-        if (ObjectPoolManager.Instance.ListPoolName.Contains(Bullet.name) == false)
+        public GameObject Bullet;
+        public float SpeedBullet;
+        public float Damage;
+        public float attackcounter { get; set; }
+        // Start is called before the first frame update
+        public void OnEnable()
         {
-            ObjectPoolManager.Instance.CreatePoolForObject(Bullet);
-            ObjectPoolManager.Instance.SpawnThePool(Bullet.name, 10);
+            if (!ObjectPoolManager.Instance.ListPoolName.Contains(Bullet.name))
+            {
+                ObjectPoolManager.Instance.CreatePoolForObject(Bullet);
+                ObjectPoolManager.Instance.SpawnThePool(Bullet.name, 30);
+            }
+            else return;
+
+
         }
-        else return;
+
+        public void ShootTheBall()
+        {
+            var _tempBullet = ObjectPoolManager.Instance.GetObjectFromPool(Bullet.name);
+            _tempBullet.SetActive(true);
+            _tempBullet.transform.position = gameObject.transform.position;
+            _tempBullet.transform.rotation = gameObject.transform.rotation;
+            _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = gameObject.GetComponent<EyeBallStats>().AttackDamage;
+
+            var _tempDireciton = (GameManager.GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
+
+            Rigidbody2D rb = _tempBullet.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * SpeedBullet; // Bắn đạn theo hướng firePoint
+
+
+        }
 
 
     }
-    void Awake()
-    {
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-
-
-    }
-    public void ShootTheBall()
-    {
-        var _tempBullet = ObjectPoolManager.Instance.GetObjectFromPool(Bullet.name);
-        _tempBullet.SetActive(true);
-        _tempBullet.transform.position = gameObject.transform.position;
-        _tempBullet.transform.rotation = gameObject.transform.rotation;
-        _tempBullet.GetComponent<EyeBallSkillDmg>().Damage = gameObject.GetComponent<EyeBallStats>().AttackDamage;
-
-        var _tempDireciton = (GameManager.Instance.Player.transform.position - _tempBullet.transform.position).normalized;
-
-        Rigidbody2D rb = _tempBullet.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(_tempDireciton.x, _tempDireciton.y).normalized * SpeedBullet; // Bắn đạn theo hướng firePoint
-
-
-    }
-
-
 }
