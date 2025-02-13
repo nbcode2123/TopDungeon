@@ -20,24 +20,7 @@ public class PlayerColliderController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        gameObject.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
-        Debug.Log(other.name);
-        if (other.tag == "Weapon")
-        {
-            ObserverManager.Notify("EnterWeapon", new object[] { other.name, other.gameObject });
-
-
-        }
-        if (other.tag == "Floor")
-        {
-            var _roomIndex = other.gameObject.GetComponent<RoomStats>().Index;
-            if (_roomIndex != PlayerLevelManager.Instance.PlayerRoom || _roomIndex != 1)
-            {
-                PlayerLevelManager.Instance.PlayerRoom = _roomIndex;
-                ObserverManager.Notify("Enter New Room", _roomIndex);
-            }
-            else return;
-        }
+       
     }
     void OnTriggerExit2D(Collider2D other)
     {

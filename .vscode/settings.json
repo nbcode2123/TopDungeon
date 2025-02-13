@@ -51,7 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Top dungeon.sln",
+    "dotnet.defaultSolution": "TopDungeon.sln",
     "cSpell.words": [
         "Controll"
     ]
