@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatEyeStats : MonoBehaviour, IActorStats
+public class BatEyeStats : MonoBehaviour
 {
     [field: SerializeField]
     public float MaxHeath { get; set; }

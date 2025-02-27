@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseState
+public abstract class BaseState
 {
     public GameObject actor;
     public StateMachine stateMachine;

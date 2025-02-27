@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DracularStats : MonoBehaviour, IPlayerStats
+public class DracularStats : MonoBehaviour
 {
     [field: SerializeField]
     public float MaxHeath { get; set; }

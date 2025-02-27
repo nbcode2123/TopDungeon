@@ -34,43 +34,58 @@ public class ObjectPoolManager : MonoBehaviour
     void Start()
     {
     }
-    public void SpawnThePool(string NamePool, int PoolSize)
+    public void SpawnThePool(string namePool, int poolSize)
     {
-        var _pool = ListPool.Find(p => p.Name == NamePool);
-        GameObject _tempParentObject = new GameObject(NamePool + "Pool");
-        for (int i = 0; i < PoolSize; i++)
+        var _pool = ListPool.Find(p => p.Name == namePool);
+        GameObject _tempParentObject = new GameObject(namePool + "Pool");
+        for (int i = 0; i < poolSize; i++)
         {
             var _tempObject = Instantiate(_pool.Prefab);
+            _tempObject.name = _pool.Prefab.name + i;
             _tempObject.SetActive(false);
             _tempObject.transform.parent = _tempParentObject.transform;
             _pool.ListGameObject.Add(_tempObject);
 
         }
     }
-    public void SpawnThePool(string NamePool, int PoolSize, GameObject gameobjectParent)
+    public void SpawnThePool(string namePool, int poolSize, GameObject gameobjectParent)
     {
-        var _pool = ListPool.Find(p => p.Name == NamePool);
-        for (int i = 0; i < PoolSize; i++)
+        var _pool = ListPool.Find(p => p.Name == namePool);
+        _pool.ListGameObject.Clear();
+        for (int i = 0; i < poolSize; i++)
         {
             var _tempObject = Instantiate(_pool.Prefab);
+            _tempObject.name = _pool.Prefab.name + i;
             _tempObject.SetActive(false);
             _tempObject.transform.SetParent(gameobjectParent.transform);
             _pool.ListGameObject.Add(_tempObject);
 
         }
     }
-    public void CreatePoolForObject(GameObject PoolObject)
+
+    public void CreatePoolForDuplicateObject(GameObject poolObject)
     {
-        var _tempPool = new Pool();
-        _tempPool.Name = PoolObject.name;
-        _tempPool.Prefab = PoolObject;
-        _tempPool.ListGameObject = new List<GameObject>();
-        ListPool.Add(_tempPool);
-        ListPoolName.Add(PoolObject.name);
+        DestroyPoolObject(poolObject.name);
+        if (!ListPoolName.Contains(poolObject.name))
+        {
+            var _tempPool = new Pool();
+            _tempPool.Name = poolObject.name;
+            _tempPool.Prefab = poolObject;
+            _tempPool.ListGameObject = new List<GameObject>();
+            ListPool.Add(_tempPool);
+            ListPoolName.Add(poolObject.name);
+        }
+        else
+        {
+            ClearPoolObject(poolObject.name);
+        }
+
+
     }
-    public void ActiveThePool(string NamePool, List<Vector3> GameObjectPosition)
+
+    public void ActiveThePool(string namePool, List<Vector3Int> GameObjectPosition)
     {
-        var _tempPool = ListPool.Find(p => p.Name == NamePool);
+        var _tempPool = ListPool.Find(p => p.Name == namePool);
         if (_tempPool != null)
         {
             for (int i = 0; i < _tempPool.ListGameObject.Count; i++)
@@ -80,38 +95,64 @@ public class ObjectPoolManager : MonoBehaviour
 
             }
         }
-        else Debug.Log("Missing Pooling object " + NamePool);
+        else Debug.Log("Missing Pooling object " + namePool);
     }
-    public GameObject GetObjectFromPool(string NamePool)
-
+    public void ActiveThePool(string namePool)
     {
-        GameObject _tempOject = null;
-        var _tempPool = ListPool.Find(p => p.Name == NamePool);
+        var _tempPool = ListPool.Find(p => p.Name == namePool);
+        if (_tempPool != null)
         {
             for (int i = 0; i < _tempPool.ListGameObject.Count; i++)
             {
-                if (_tempPool.ListGameObject[i].activeSelf == false)
-                {
-                    _tempOject = _tempPool.ListGameObject[i];
-                    break;
-                }
-
+                _tempPool.ListGameObject[i].SetActive(true);
 
             }
         }
+    }
+    public GameObject GetObjectFromPool(string namePool)
+
+    {
+        GameObject _tempOject = null;
+        var _tempPool = ListPool.Find(p => p.Name == namePool);
+
+        for (int i = 0; i < _tempPool.ListGameObject.Count; i++)
+        {
+            if (_tempPool.ListGameObject[i].activeSelf == false)
+            {
+                _tempOject = _tempPool.ListGameObject[i];
+                break;
+            }
+
+        }
         return _tempOject;
     }
-    public void RemovePool(string NamePool)
+    public void ClearPoolObject(string namePool)
     {
-        var _tempPool = ListPool.Find(p => p.Name == NamePool);
-        ListPool.Remove(_tempPool);
-        GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
-        Destroy(_tempParentObject);
+        var _tempPool = ListPool.Find(p => p.Name == namePool);
+        _tempPool.ListGameObject.Clear();
+        DestroyPoolObject(namePool);
+
+    }
+    public void DestroyPoolObject(string namePool)
+    {
+
+        GameObject _tempParentObject = GameObject.Find(namePool + "Pool");
+        if (_tempParentObject != null)
+        {
+            DestroyImmediate(_tempParentObject);
+
+        }
+
     }
     public void DontDestroyPool(string NamePool)
     {
         GameObject _tempParentObject = GameObject.Find(NamePool + "Pool");
         DontDestroyOnLoad(_tempParentObject);
+    }
+    public List<GameObject> ListObjectFromPool(string namePool)
+    {
+        return ListPool.Find(p => p.Name == namePool).ListGameObject;
+
     }
 
 

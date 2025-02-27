@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2233220478617371625}
   - component: {fileID: 3132950970590851259}
   - component: {fileID: 1120367153382798055}
-  - component: {fileID: 8371067352749238696}
   m_Layer: 7
   m_Name: SkeletonWolf
   m_TagString: Untagged
@@ -182,38 +181,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8371067352749238696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120367153382798059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e0578f027e6b4640ade92fdd0895b30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <attackTranform>k__BackingField: {fileID: 6292980290324052688}
-  <attackRange>k__BackingField: 0
-  <attackableLayer>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 8
-  <MaxHeath>k__BackingField: 100
-  <currentHeath>k__BackingField: 0
-  <MoveSpeed>k__BackingField: 5
-  <AttackSpeed>k__BackingField: 3
-  <DefaultAttackDamage>k__BackingField: 0
-  <AttackDistance>k__BackingField: 3.05
-  <OutRangeDistance>k__BackingField: 6.96
-  <PlayerTrans>k__BackingField: {fileID: 0}
-  <moveDirection>k__BackingField: {x: 0, y: 0}
-  <DistanceToPlayer>k__BackingField: 0
-  <textDmg>k__BackingField: {fileID: 6515770334889020405, guid: fcf3f902c243c194f991492ce307b073,
-    type: 3}
-  <attackCounter>k__BackingField: 0
-  GameObjectTransformPosition: {x: 0, y: 0, z: 0}
-  <IsFaceingRight>k__BackingField: 0
 --- !u!1 &8882825590775098905
 GameObject:
   m_ObjectHideFlags: 0

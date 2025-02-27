@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class EyeBallStats : MonoBehaviour, IActorStats
+public class EyeBallStats : MonoBehaviour
 {
     public float AttackRange;
     [field: SerializeField]

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbdb22c1f16a5945bae1d0a7934c0ad, type: 3}
+  m_Name: TileMapAssetConcept _GlassDungeon
+  m_EditorClassIdentifier: 
+  FloorTileMap:
+  - {fileID: 11400000, guid: 309bf827d0ddea84ca50824a0f18a6ec, type: 2}
+  - {fileID: 11400000, guid: 68c8e4615f3931049a5229d431b2418c, type: 2}
+  - {fileID: 11400000, guid: 979cd8ddd3af70d41985ed3f46fb5f96, type: 2}
+  - {fileID: 11400000, guid: da7d1e269efc83845b925bd28d443f83, type: 2}
+  - {fileID: 11400000, guid: 67a611b7963738248b53983daab3b0e7, type: 2}
+  - {fileID: 11400000, guid: edb5e6b68cc88214aa161078bd254aa5, type: 2}
+  - {fileID: 11400000, guid: bd0593acbac52e74186775c76d148319, type: 2}
+  - {fileID: 11400000, guid: 03f7f4546af626342bf9974bd0bf91bd, type: 2}
+  - {fileID: 11400000, guid: f85c9ab6ed9d5134ea16596208cb8e19, type: 2}
+  - {fileID: 11400000, guid: aacd5a2c6d29f0e4b892a9c9e4cd2c10, type: 2}
+  - {fileID: 11400000, guid: a84a60250bcfb0345a49865d8076f17c, type: 2}
+  - {fileID: 11400000, guid: 676ee341487cabe4bb3584d42012480a, type: 2}
+  - {fileID: 11400000, guid: 312085cee3b9fd94f8df1308e7f72b65, type: 2}
+  - {fileID: 11400000, guid: d6a9a111f300a8946923e673570188a2, type: 2}
+  - {fileID: 11400000, guid: a971876006220654db66e01e2e7697a6, type: 2}
+  - {fileID: 11400000, guid: cdd931acdfec356488db55df4518c5d6, type: 2}
+  - {fileID: 11400000, guid: 720f4ecc59f0c9e468784dde71aaf7c2, type: 2}
+  - {fileID: 11400000, guid: 4b6dac425e908be44912b5f16032f491, type: 2}
+  - {fileID: 11400000, guid: d4b1b1cc199577a4a9b9497a2623663b, type: 2}
+  TopWallTileMap: {fileID: 11400000, guid: 5171ba46e518f734298afe6d00b49168, type: 2}
+  DownWallTileMap: {fileID: 11400000, guid: 9785d90c4c86df54cb3c9c1d55aea90d, type: 2}
+  RightWallTileMap: {fileID: 11400000, guid: c58e511d6e749dc479a231f2c5ab12ce, type: 2}
+  LeftWallTileMap: {fileID: 11400000, guid: 516a9f875078bf24a82d6e8cd9db36c4, type: 2}
+  TopLeftWallTileMap: {fileID: 11400000, guid: 2e77e9c971f6d014e8765c2b81083acc, type: 2}
+  TopRightWallTileMap: {fileID: 11400000, guid: 58ff97f9c0cb30748a6ff1dbe3e98bbf,
+    type: 2}
+  BotLeftWallTileMap: {fileID: 11400000, guid: 68204b10595620e459b50307f76e4557, type: 2}
+  BotRightWallTileMap: {fileID: 11400000, guid: 416e1b3dd83658f4f841ac6f186fb66f,
+    type: 2}
+  Architecture:
+  - {fileID: 8593833809961369380, guid: 8e3951e6d0bfd2243acf4e9759165486, type: 3}
+  - {fileID: 1735882230255643879, guid: 53fb2c9a8bee87b408f7a75c1046fa4c, type: 3}
+  - {fileID: 5837080656432332669, guid: e1f445ee36abd71459941adafc313087, type: 3}
+  - {fileID: 3339115645573001735, guid: 1e73c022d38350d4f9bc9fe582c92f2d, type: 3}
+  - {fileID: 3947315224589484600, guid: 71de76b4276b693499aa524a49f51159, type: 3}
