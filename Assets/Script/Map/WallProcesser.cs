@@ -24,12 +24,7 @@ public class WallProcesser : MonoBehaviour
                 Vector2Int _isWallPosition = position + Direction2D[i];
                 if (!floorPositions.Contains(_isWallPosition))
                 {
-                    // switch (i){
-                    //     case 0:  top.Add(_isWallPosition); break;
-                    //     case 1:  bot.Add(_isWallPosition); break;
-                    //     case 2:  left.Add(_isWallPosition); break;
-                    //     case 3:  right.Add(_isWallPosition); break;
-                    // }
+
 
                     if (i == 2)
                     {

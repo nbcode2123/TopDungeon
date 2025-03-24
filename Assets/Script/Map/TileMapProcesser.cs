@@ -43,8 +43,8 @@ public class TileMapProcesser : MonoBehaviour
   }
   public void ClearAllTileMap()
   {
-    TileMapCollector.Instance.FloorTileMap.ClearAllTiles();
-    TileMapCollector.Instance.WallTileMapDungeon.ClearAllTiles();
+    DungeonConcept.Instance.FloorTileMap.ClearAllTiles();
+    DungeonConcept.Instance.WallTileMapDungeon.ClearAllTiles();
   }
   public void PaintTileMapWithConcept()
   {

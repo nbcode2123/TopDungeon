@@ -1,34 +1,29 @@
 
-// using System;
-// using System.Collections.Generic;
-// using TMPro;
-// using UnityEngine;
-// public class TakeDamage : MonoBehaviour
-// {
-//     private void Start()
-//     {
-
-//     }
-//     void Update()
-//     {
-//     }
-//     public void DealDmgToActor(float DamageTaken) // gaay dmg len nhan vat 
-//     {
-//         Debug.Log(gameObject.name + "bi dmg ");
-//         if (gameObject.GetComponent<IActorStats>().currentHeath >= DamageTaken)
-//         {
-//             gameObject.GetComponent<IActorStats>().currentHeath -= DamageTaken;
-//             gameObject.GetComponent<Animator>().SetBool("isTakeDmg", true);
+using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+public class DamageCaculator : MonoBehaviour, IDamageable
+{
+    public event Action OnDamage;
+    public event Action OnDeath;
+    public void TakeDamage(float damage)
+    {
+        var _characterStats = gameObject.GetComponent<CharactorStats>();
+        Debug.Log(gameObject.name + "bi dmg ");
+        if (_characterStats.currentHealth >= damage)
+        {
+            _characterStats.currentHealth -= damage;
+            OnDamage?.Invoke();
 
 
-//         }
-//         if (gameObject.GetComponent<IActorStats>().currentHeath <= DamageTaken)
-//         {
-//             gameObject.GetComponent<IActorStats>().currentHeath = 0;
+        }
+        if (_characterStats.currentHealth <= damage)
+        {
+            _characterStats.currentHealth = 0;
+            OnDeath?.Invoke();
 
 
-//         }
-//     }
-
-
-// }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,24 +8,32 @@ public class EyeBallLooking : MonoBehaviour
     public GameObject player { get; set; }
     public Vector3 PlayerTrans { set; get; }
     public float speedRotate = 10;
+    public Action OnActive;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameManager.Instance.Player;
+        // player = GameManager.Instance.Player;
 
     }
-
+    void OnEnable()
+    {
+        OnActive += LookToPlayer;
+    }
+    void OnDisable()
+    {
+        OnActive -= LookToPlayer;
+    }
     // Update is called once per frame
     void Update()
     {
-        // LookToPlayer();
-
+        OnActive?.Invoke();
     }
     public void LookToPlayer()
     {
-        PlayerTrans = player.transform.position;
         if (player != null)
         {
+            PlayerTrans = player.transform.position;
+
 
             Vector3 vectorToTarget = transform.position - player.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;

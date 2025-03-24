@@ -17,11 +17,14 @@ public class TileMapAssetConcept : ScriptableObject
     public TileBase TopRightWallTileMap;
     public TileBase BotLeftWallTileMap;
     public TileBase BotRightWallTileMap;
+    public TileBase WallTileBase;
+    public TileBase FloorTileBase;
     public List<GameObject> Architecture;
     public GameObject RandomArchitecture()
     {
         return Architecture[Random.Range(0, Architecture.Count)];
     }
+    public List<GameObject> Enemy;
 
 
 }

@@ -31,7 +31,9 @@ public class GateWayToDungeon : MonoBehaviour
             UI_GateWayBegin.SetActive(false);
 
         }
-        else return;
+
+
+
 
 
     }

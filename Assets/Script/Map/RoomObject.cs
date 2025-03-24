@@ -8,6 +8,8 @@ public class RoomObject : MonoBehaviour
     public int Index;
     public GameObject FloorObject;
     public GameObject WallObject;
+    public bool isComplete = false;
+    public List<Vector2Int> ListFloorPosition;
 
 
     // Start is called before the first frame update

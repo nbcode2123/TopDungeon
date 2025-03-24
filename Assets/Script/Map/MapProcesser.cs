@@ -34,6 +34,23 @@ public class MapProcesser : MonoBehaviour
     public List<Vector2Int> FloorPosition;
     public List<Vector2Int> ListRoomCenterPosition; // co the xoa 
     public List<GameObject> ListRoomObject;
+    public TileMapAssetConcept tileMapAssetConcept;
+    void OnEnable()
+    {
+        ObserverManager.AddListener("DungeonStart", MapGenerator);
+
+    }
+    void OnDisable()
+    {
+        ObserverManager.RemoveListener("DungeonStart", MapGenerator);
+
+    }
+    void OnDestroy()
+    {
+        ObserverManager.RemoveListener("DungeonStart", MapGenerator);
+
+
+    }
 
     public void Start()
     {
@@ -47,18 +64,20 @@ public class MapProcesser : MonoBehaviour
     public void MapGenerator()
     {
         InitializeGeneration();
-        CreateRoomObjectPooling();
+        DecideConcept();
+        CreateRoomObjectPooling(); // rao ra pool cho object dai dien cho cac room
         CreateRoomAndColider();
         AddEnviromentToRoom();
         PaintTileMap(FloorPosition);
+        ObserverManager.Notify("Map Generator Complete");
     }
     public void InitializeGeneration()
     {
-        TileMapProcesser.Instance.ClearAllTileMap();
-        ListRoomCenterPosition.Clear();
-        ListRoomObject.Clear();
-        FloorPosition.Clear();
-        MapManager.Instance.TilemapAssetConcept = TileMapCollector.Instance.TilebaseCollector[0];
+        TileMapProcesser.Instance.ClearAllTileMap(); // clear tat ca cac tilemap 
+        ListRoomCenterPosition.Clear(); // clear vi tri trung tam cua cac phong
+        ListRoomObject.Clear(); // clear cac object dai dien cho room
+        FloorPosition.Clear(); // clear danh sach vi tri floor 
+        MapManager.Instance.TilemapAssetConcept = DungeonConcept.Instance.TilebaseCollector[0]; //! lay ra concept map, nho code lai 
 
 
     }
@@ -86,29 +105,35 @@ public class MapProcesser : MonoBehaviour
         for (int i = 0; i < RoomNumber; i++)
         {
             ListRoomCenterPosition.Add(_currentPosition);
-            var _tempRoomFloorPosition = roomGenerator.FloorGenerator(_currentPosition, RoomSize);
-            FloorPosition.AddRange(_tempRoomFloorPosition);
+            var _floorPositionEachRoom = roomGenerator.FloorGenerator(_currentPosition, RoomSize);
+            FloorPosition.AddRange(_floorPositionEachRoom);
             if (i != RoomNumber - 1)
             {
                 _currentPosition = CreateColider(_currentPosition, coliderDirection[i]);
             }
-            var _wallPositionEachRoom = wallProcesser.WallGenerator(_tempRoomFloorPosition);
-            CreateRoomObjectComponents(i, _wallPositionEachRoom, _tempRoomFloorPosition);
+            var _wallPositionEachRoom = wallProcesser.WallGenerator(_floorPositionEachRoom);
+            CreateRoomObjectComponents(i, _wallPositionEachRoom, _floorPositionEachRoom);
         }
     }
     public Vector2Int CreateColider(Vector2Int startPostion, Vector2Int direction)
     {
         Vector2Int _currentPosition = startPostion;
-        var _colider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom, direction);
+        var _colider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
         FloorPosition.AddRange(_colider.WalkPosition);
         _currentPosition = _colider.EndPosition;
         while (ListRoomCenterPosition.Contains(_colider.EndPosition))
         {
-            _colider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom, direction);
+            _colider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
             FloorPosition.AddRange(_colider.WalkPosition);
             _currentPosition = _colider.EndPosition;
         }
         return _currentPosition;
+
+    }
+    public void DecideConcept()
+    {
+        DungeonConcept.Instance.ChosingTileBaseConcept(tileMapAssetConcept);
+
 
     }
 
@@ -117,21 +142,20 @@ public class MapProcesser : MonoBehaviour
 
     public void PaintTileMap(List<Vector2Int> floorPosition)
     {
-        var _tilebaseInCollector = MapManager.Instance.TilemapAssetConcept;
-        TileMapCollector.Instance.ChosingTileBaseConcept(_tilebaseInCollector);
-        var _tileFloorTileMap = TileMapCollector.Instance.FloorTileMap;
-        var _tileFloorTilebase = TileMapCollector.Instance.FloorTileBase;
+        tileMapAssetConcept = MapManager.Instance.TilemapAssetConcept;
+        var _tileFloorTileMap = DungeonConcept.Instance.FloorTileMap;
+        var _tileFloorTilebase = DungeonConcept.Instance.FloorTileBase;
         TileMapProcesser.Instance.PaintTileMapWithMultipleTileBase(floorPosition, _tileFloorTilebase, _tileFloorTileMap);
         var _wallListPosition = wallProcesser.WallDirectionGenerator(floorPosition);
-        var _wallTileBase = TileMapCollector.Instance.WallTileMapDungeon;
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.topWall, TileMapCollector.Instance.TopTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botWall, TileMapCollector.Instance.DownTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.rightWall, TileMapCollector.Instance.RightTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.leftWall, TileMapCollector.Instance.LeftTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.topleftWall, TileMapCollector.Instance.TopLeftTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.toprightWall, TileMapCollector.Instance.TopRightTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botleftWall, TileMapCollector.Instance.BotLeftTileMap, _wallTileBase);
-        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botrightWall, TileMapCollector.Instance.BotRightTileMap, _wallTileBase);
+        var _wallTileBase = DungeonConcept.Instance.WallTileMapDungeon;
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.topWall, DungeonConcept.Instance.TopTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botWall, DungeonConcept.Instance.DownTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.rightWall, DungeonConcept.Instance.RightTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.leftWall, DungeonConcept.Instance.LeftTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.topleftWall, DungeonConcept.Instance.TopLeftTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.toprightWall, DungeonConcept.Instance.TopRightTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botleftWall, DungeonConcept.Instance.BotLeftTileMap, _wallTileBase);
+        TileMapProcesser.Instance.PaintTileMap(_wallListPosition.botrightWall, DungeonConcept.Instance.BotRightTileMap, _wallTileBase);
     }
 
     public void CreateRoomObjectComponents(int index, List<Vector2Int> wallPostion, List<Vector2Int> floorPositon)
@@ -140,10 +164,16 @@ public class MapProcesser : MonoBehaviour
         ListRoomObject[index].transform.position = Vector3.zero;
         ListRoomObject[index].GetComponent<RoomObject>().Index = index;
         ObjectPoolManager.Instance.ActiveThePool(RoomObject.name);
+        ListRoomObject[index].GetComponent<RoomObject>().ListFloorPosition = new List<Vector2Int>(floorPositon);
+        if (index != 0 && index != RoomNumber)
+        {
+            ListRoomObject[index].AddComponent<EnemySpawner>();
+            ListRoomObject[index].GetComponent<EnemySpawner>().RoomIndex = index;
+        }
         Tilemap _roomWallTilemap = ListRoomObject[index].transform.Find("RoomWall").GetComponent<Tilemap>();
-        TileMapProcesser.Instance.PaintTileMap(wallPostion, TileMapCollector.Instance.Testting, _roomWallTilemap);
+        TileMapProcesser.Instance.PaintTileMap(wallPostion, DungeonConcept.Instance.WallRoomTileBase, _roomWallTilemap);
         Tilemap _roomFloorTilemap = ListRoomObject[index].transform.Find("RoomFloor").GetComponent<Tilemap>();
-        TileMapProcesser.Instance.PaintTileMap(floorPositon, TileMapCollector.Instance.Testting, _roomFloorTilemap);
+        TileMapProcesser.Instance.PaintTileMap(floorPositon, DungeonConcept.Instance.FloorRoomTileBase, _roomFloorTilemap);
     }
     public void NotifyRoomToMapManager(int index)
     {

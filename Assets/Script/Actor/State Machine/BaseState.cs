@@ -7,13 +7,17 @@ public abstract class BaseState
 {
     public GameObject actor;
     public StateMachine stateMachine;
-    public BaseState(GameObject actor, StateMachine stateMachine)
+    public Animator animator;
+    public bool isComplete;
+    public BaseState(GameObject actor, StateMachine stateMachine, Animator animator)
     {
         this.actor = actor;
         this.stateMachine = stateMachine;
+        this.animator = animator;
+
     }
     // Start is called before the first frame update
-    public virtual void EnterState() { }
-    public virtual void ExitState() { }
-    public virtual void FrameUpdate() { }
+    public abstract void EnterState();
+    public abstract void ExitState();
+    public abstract void FrameUpdate();
 }
