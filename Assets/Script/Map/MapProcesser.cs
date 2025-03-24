@@ -167,7 +167,6 @@ public class MapProcesser : MonoBehaviour
         ListRoomObject[index].GetComponent<RoomObject>().ListFloorPosition = new List<Vector2Int>(floorPositon);
         if (index != 0 && index != RoomNumber)
         {
-            ListRoomObject[index].AddComponent<EnemySpawner>();
             ListRoomObject[index].GetComponent<EnemySpawner>().RoomIndex = index;
         }
         Tilemap _roomWallTilemap = ListRoomObject[index].transform.Find("RoomWall").GetComponent<Tilemap>();

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3846733436316045256}
   - component: {fileID: 4935857911283331396}
   - component: {fileID: -4941652628795210968}
+  - component: {fileID: 5267243959730478756}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -63,6 +64,28 @@ MonoBehaviour:
   FloorObject: {fileID: 0}
   WallObject: {fileID: 0}
   isComplete: 0
+  ListFloorPosition: []
+--- !u!114 &5267243959730478756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073737475488914192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6acb9c39fcdf609488d853ac79eedae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomIndex: 0
+  NumberEnemyEachWave: 0
+  NumberEnemy: 5
+  NumberEnemyPooling: 10
+  SpawnPoint: []
+  EnemyPrefab: []
+  isComplete: 0
+  ListFloorPosition: []
+  EnemyInThisRoom: []
 --- !u!1 &3091911888414940095
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,8 +32,19 @@ public class EnemySpawner : MonoBehaviour
     //     }
 
     // }
+    void OnDisable()
+    {
+        ObserverManager.RemoveListener<int>("Enter New Room", CheckNewRoomEnter);
+
+
+    }
+    void OnDestroy()
+    {
+        ObserverManager.RemoveListener<int>("Enter New Room", CheckNewRoomEnter);
+    }
     public void CreateSpawnPoint()
     {
+        SpawnPoint = new List<Vector2Int>();
         for (int i = 0; i < NumberEnemy; i++)
         {
             SpawnPoint.Add(ListFloorPosition[Random.Range(0, ListFloorPosition.Count)]);
@@ -51,6 +62,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void ActiveSpawner()
     {
+        EnemyInThisRoom = new List<GameObject>();
         for (int i = 0; i < NumberEnemy; i++)
         {
             var prefab = EnemyPrefab[Random.Range(0, EnemyPrefab.Count)];
