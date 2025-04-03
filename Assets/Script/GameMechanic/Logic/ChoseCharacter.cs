@@ -15,11 +15,13 @@ public class ChoseCharacter : MonoBehaviour
 
 
 
+
     void Start()
     {
         UI_ChosingCharacterBorder.SetActive(false);
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = MiddleScreen.transform;
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
+
 
 
     }
@@ -68,9 +70,10 @@ public class ChoseCharacter : MonoBehaviour
         UI_ChosingCharacterBorder.SetActive(false);
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = TargetCharacter.transform;
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
-        TargetCharacter.AddComponent<PlayerStateController>();
         TargetCharacter.AddComponent<MovePlayer>();
         TargetCharacter.AddComponent<WeaponController>();
+        TargetCharacter.AddComponent<PlayerStateController>();
+
         // TargetCharacter.GetComponent<PlayerStats>().ChangeActorWeapon(_tempObecjt);
         ConfirmPlayer();
         gameObject.SetActive(false);

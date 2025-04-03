@@ -1,17 +1,21 @@
 
 using UnityEngine;
 
-public class RangeWeapon : MonoBehaviour, IWeapon
+public class RangeWeapon : MonoBehaviour, IRangeWeapon
 {
     public Vector3 MousePos { get; set; }
     [field: SerializeField] public float WeaponDamage { get; set; }
     [field: SerializeField] public float WeaponAttackSpeed { get; set; }
+
     public GameObject Bullet;
     private float SpeedRotate = 10;
     [SerializeField] private float SpeedBullet = 10;
     private float tempAngle = 90;
     private float AttackCounter = 0;
-    public Camera Camera;
+    public Camera CurrentCamera;
+    [SerializeField] public bool ActiveWeapon { get; set; } = false;
+
+    public int PoolBulletNumber = 20;
 
     public void Attack()
     {
@@ -26,14 +30,29 @@ public class RangeWeapon : MonoBehaviour, IWeapon
 
 
     }
+    public void Start()
+    {
+        CurrentCamera = GameManager.Instance.Camera;
+    }
     void OnEnable()
     {
         ObserverManager.AddListener("DungeonStart", ChangeCamera);
-        Camera = GameManager.Instance.Camera;
+        if (GameManager.Instance.Camera != null)
+        {
+            CurrentCamera = GameManager.Instance.Camera;
+
+        }
+    }
+    public void EnableWeapon()
+    {
+        ActiveWeapon = true;
+        gameObject.tag = "WeaponPlayer";
+
+
     }
     public void ChangeCamera()
     {
-        Camera = PropertyDungeon.Instance.Camera;
+        CurrentCamera = PropertyDungeon.Instance.Camera;
     }
     void OnDisable()
     {
@@ -43,21 +62,31 @@ public class RangeWeapon : MonoBehaviour, IWeapon
     void Update()
     {
         AttackCounter += Time.deltaTime;
-        SpinWeaponFollowCursor();
+        if (ActiveWeapon == true)
+        {
+            SpinWeaponFollowCursor();
 
+        }
+
+    }
+    public void DisableWeapon()
+    {
+        gameObject.transform.rotation = Quaternion.identity;
+        ActiveWeapon = false;
+        gameObject.tag = "Weapon";
     }
     public void CreateAmmo()
     {
         ObjectPoolManager.Instance.CreatePoolForDuplicateObject(Bullet);
-        ObjectPoolManager.Instance.SpawnThePool(Bullet.name, 10);
+        ObjectPoolManager.Instance.SpawnThePool(Bullet.name, PoolBulletNumber);
         ObjectPoolManager.Instance.DontDestroyPool(Bullet.name);
     }
     public void SpinWeaponFollowCursor()
     {
-        if (Camera != null)
+        if (CurrentCamera != null)
         {
             Vector3 mouseScreenPosition = Input.mousePosition;
-            MousePos = Camera.ScreenToWorldPoint(mouseScreenPosition);
+            MousePos = CurrentCamera.ScreenToWorldPoint(mouseScreenPosition);
             Vector3 vectorToTarget = MousePos - gameObject.transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q2 = Quaternion.AngleAxis(angle - tempAngle, Vector3.forward);

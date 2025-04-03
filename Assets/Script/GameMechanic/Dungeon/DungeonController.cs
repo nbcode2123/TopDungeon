@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DungeonController : MonoBehaviour
@@ -31,6 +32,14 @@ public class DungeonController : MonoBehaviour
         CurrentRoom = 0;
         Gold = 0;
         Coin = 0;
+    }
+    void Start()
+    {
+        ObserverManager.AddListener("EnemyDie", CountEnemy);
+    }
+    public void CountEnemy()
+    {
+        NumberEnemyScount++;
     }
 
 }

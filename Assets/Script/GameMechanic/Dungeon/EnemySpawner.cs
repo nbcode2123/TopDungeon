@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         ObserverManager.AddListener<int>("Enter New Room", CheckNewRoomEnter);
+        ObserverManager.AddListener<GameObject>("EnemyDie", EnemyDie);
         ListFloorPosition = gameObject.GetComponent<RoomObject>().ListFloorPosition;
         EnemyPrefab = DungeonConcept.Instance.Enemy;
         CreateSpawnPoint();
@@ -36,12 +37,27 @@ public class EnemySpawner : MonoBehaviour
     {
         ObserverManager.RemoveListener<int>("Enter New Room", CheckNewRoomEnter);
 
+        ObserverManager.RemoveListener<GameObject>("EnemyDie", EnemyDie);
+
+
+
 
     }
     void OnDestroy()
     {
         ObserverManager.RemoveListener<int>("Enter New Room", CheckNewRoomEnter);
+        ObserverManager.RemoveListener<GameObject>("EnemyDie", EnemyDie);
+
+
     }
+    public void Complete(int _indexSpawner)
+    {
+        if (_indexSpawner == RoomIndex)
+        {
+            isComplete = true;
+        }
+    }
+
     public void CreateSpawnPoint()
     {
         SpawnPoint = new List<Vector2Int>();
@@ -55,9 +71,23 @@ public class EnemySpawner : MonoBehaviour
     {
         if (_indexSpawner == RoomIndex && isComplete == false)
         {
-            Debug.Log("ActiveSpawner");
             ActiveSpawner();
         }
+
+    }
+    public void EnemyDie(GameObject enemy)
+    {
+        if (EnemyInThisRoom.Contains(enemy))
+        {
+            EnemyInThisRoom.Remove(enemy);
+        }
+        if (EnemyInThisRoom.Count == 0 && DungeonController.Instance.CurrentRoom == RoomIndex)
+        {
+            ObserverManager.Notify("Room Complete", RoomIndex);
+            isComplete = true;
+        }
+
+
 
     }
     public void ActiveSpawner()
@@ -67,6 +97,8 @@ public class EnemySpawner : MonoBehaviour
         {
             var prefab = EnemyPrefab[Random.Range(0, EnemyPrefab.Count)];
             var _enemyObject = Instantiate(prefab, new Vector3(SpawnPoint[i].x, SpawnPoint[i].y, 0), Quaternion.identity);
+            _enemyObject.GetComponent<EnemyMarkRoomIndex>().RoomIndex = RoomIndex;
+            _enemyObject.SetActive(true);
             EnemyInThisRoom.Add(_enemyObject);
 
         }

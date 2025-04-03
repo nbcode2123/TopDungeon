@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
+// [RequireComponent(typeof(Rigidbody2D))]
+// [RequireComponent(typeof(Animator))]
 
 
 public class BulletWeapon : MonoBehaviour
@@ -29,8 +29,8 @@ public class BulletWeapon : MonoBehaviour
         }
         if (SetActiveTimer >= SetActiveTime)
         {
-            // gameObject.SetActive(false);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            // Destroy(gameObject);
             SetActiveTimer = 0;
         }
 
@@ -42,18 +42,29 @@ public class BulletWeapon : MonoBehaviour
         //     other.gameObject.GetComponent<IDamageable>()?.TakeDamage(Damage);
         //     gameObject.SetActive(false);
         // }
+        CheckObjectTrigger(other);
+
+
+
+    }
+    public virtual void CheckObjectTrigger(Collider2D other)
+    {
         if (other.gameObject.tag == "Wall")
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            gameObject.SetActive(false);
+
         }
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            gameObject.SetActive(false);
             other.gameObject.GetComponent<IDamageable>().TakeDamage(Damage);
         }
 
 
 
     }
+
 
 }

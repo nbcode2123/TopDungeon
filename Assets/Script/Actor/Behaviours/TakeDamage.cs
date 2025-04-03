@@ -10,7 +10,7 @@ public class DamageCaculator : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         var _characterStats = gameObject.GetComponent<CharactorStats>();
-        Debug.Log(gameObject.name + "bi dmg ");
+        // Debug.Log(gameObject.name + "bi dmg ");
         if (_characterStats.currentHealth >= damage)
         {
             _characterStats.currentHealth -= damage;
@@ -22,8 +22,10 @@ public class DamageCaculator : MonoBehaviour, IDamageable
         {
             _characterStats.currentHealth = 0;
             OnDeath?.Invoke();
+            // gameObject.SetActive(false); //! se sua lai viec enemy disable sau 
 
 
         }
+
     }
 }

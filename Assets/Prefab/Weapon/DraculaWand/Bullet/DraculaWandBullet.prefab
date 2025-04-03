@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1826328746425119031}
   - component: {fileID: 3130361741224923099}
   - component: {fileID: 6235664684551050414}
-  - component: {fileID: 7592224727422825275}
   - component: {fileID: 8852729606061055929}
+  - component: {fileID: 1542425224472917327}
   m_Layer: 12
   m_Name: DraculaWandBullet
   m_TagString: Untagged
@@ -136,20 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7592224727422825275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6947970372442421839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446320b3864647d4fb74f9fadbbb1c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 10
-  SetActiveTime: 5
 --- !u!61 &8852729606061055929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,3 +181,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7697587, y: 0.77768695}
   m_EdgeRadius: 0
+--- !u!114 &1542425224472917327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947970372442421839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446320b3864647d4fb74f9fadbbb1c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 10
+  SetActiveTime: 10

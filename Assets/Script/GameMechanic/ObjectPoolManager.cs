@@ -16,6 +16,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     public List<Pool> ListPool = new List<Pool>();
 
+
     void Awake()
     {
         if (Instance != null && Instance != this)

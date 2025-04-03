@@ -23,6 +23,7 @@ public class RangeEnemyStateController : MonoBehaviour
         stateMachine.Initialize(IdleState);
 
 
+
     }
     void Update()
     {
@@ -34,12 +35,17 @@ public class RangeEnemyStateController : MonoBehaviour
         AttackRangeCollider.GetComponent<IColliderTrigger>().OnEnterTrigger += ChangeToAttackState;
 
         AttackRangeCollider.GetComponent<IColliderTrigger>().OnExitTrigger += ChangeToIdleState;
+        gameObject.GetComponent<DamageCaculator>().OnDeath += LockDeathState;
+        gameObject.GetComponent<DamageCaculator>().OnDeath += ChangeToDeathState;
     }
     void OnDestroy()
     {
         // AttackRangeCollider.GetComponent<IColliderTrigger>().OnStayTrigger -= ChangeToAttackState;
         AttackRangeCollider.GetComponent<IColliderTrigger>().OnEnterTrigger -= ChangeToAttackState;
         AttackRangeCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
+        gameObject.GetComponent<DamageCaculator>().OnDeath -= LockDeathState;
+        gameObject.GetComponent<DamageCaculator>().OnDeath -= ChangeToDeathState;
+
     }
     public void ChangetoAttackState()
     {
@@ -61,6 +67,12 @@ public class RangeEnemyStateController : MonoBehaviour
     public void ChangeToDamageState()
     {
         stateMachine.ChangeState(DamageState);
+    }
+    public void LockDeathState()
+    {
+        AttackRangeCollider.GetComponent<IColliderTrigger>().OnEnterTrigger -= ChangeToAttackState;
+        AttackRangeCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
+
     }
 
 }

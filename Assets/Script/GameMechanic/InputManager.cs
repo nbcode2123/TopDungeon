@@ -8,7 +8,11 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance { get; private set; }
     public KeyCode ActiveObject = KeyCode.H;
     public KeyCode Attack = KeyCode.Mouse0;
+    public KeyCode ChangeWeapon = KeyCode.G;
+    public KeyCode TakeWeapon = KeyCode.F;
+
     public event Action OnAttack;
+    public event Action OnChangeWeapon;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -41,6 +45,11 @@ public class InputManager : MonoBehaviour
         {
             OnAttack?.Invoke();
         }
+        if (Input.GetKey(ChangeWeapon))
+        {
+            OnChangeWeapon?.Invoke();
+        }
+
 
     }
 }

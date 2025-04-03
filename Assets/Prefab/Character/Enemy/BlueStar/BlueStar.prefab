@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 7753265716815015868}
   - component: {fileID: 4193082209072952891}
   - component: {fileID: 281107256809421440}
+  - component: {fileID: 9099328799401862886}
+  - component: {fileID: 1401769992235912168}
   m_Layer: 10
   m_Name: BlueStar
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccd522bae625334798880577d4986e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 1
+  damage: 0
+  attackSpeed: 2
   Bullet: {fileID: 5221896472505156359, guid: 5cd281f6d7ff6d748b0beaa0a3aa147b, type: 3}
   bulletCount: 10
   AngleRange: 360
@@ -188,11 +191,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75a628334ca8e44d8b3c3724462cc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 0
+  <MaxHealth>k__BackingField: 10
   <currentHealth>k__BackingField: 0
   <MoveSpeed>k__BackingField: 0
-  <AttackDamage>k__BackingField: 0
+  <AttackDamage>k__BackingField: 1
   <ActorName>k__BackingField: 
+--- !u!114 &9099328799401862886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605018294734877934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9084ff0dd163118428f8c02c5603f9e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomIndex: 0
+  EnemyIndex: 0
+--- !u!114 &1401769992235912168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605018294734877934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ccb508ba4098646a51fa2553c21348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3887997407761589729
 GameObject:
   m_ObjectHideFlags: 0

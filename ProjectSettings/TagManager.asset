@@ -11,6 +11,9 @@ TagManager:
   - Weapon
   - Floor
   - Enemy
+  - PlayerBullet
+  - LootItem
+  - WeaponPlayer
   layers:
   - Default
   - TransparentFX
@@ -26,7 +29,7 @@ TagManager:
   - Weapon
   - PlayerBullet
   - EnemyBullet
-  - 
+  - LootItem
   - 
   - 
   - 

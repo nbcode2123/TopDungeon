@@ -8,6 +8,7 @@ using UnityEngine.Windows.Speech;
 
 public class ObserverManager : MonoBehaviour
 {
+
     void Awake()
     {
         Listeners.Clear();

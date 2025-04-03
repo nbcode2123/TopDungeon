@@ -38,7 +38,7 @@ public class MeleeEnemyStateController : MonoBehaviour, IAttackState, IIdleState
 
 
     }
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         AttackCollider.GetComponent<IColliderTrigger>().OnEnterTrigger += ChangeToAttackState;
         ChaseCollider.GetComponent<IColliderTrigger>().OnEnterTrigger += ChangeToMoveState;
@@ -46,6 +46,9 @@ public class MeleeEnemyStateController : MonoBehaviour, IAttackState, IIdleState
         AttackCollider.GetComponent<IColliderTrigger>().OnExitTrigger += ChangToChaseState;
         ChaseCollider.GetComponent<IColliderDetectObject>().DectectObject += ChangeToChaseState;
         ChaseCollider.GetComponent<IColliderTrigger>().OnExitTrigger += ChangeToIdleState;
+
+        gameObject.GetComponent<DamageCaculator>().OnDeath += ChangeToDeathState;
+
 
 
 
@@ -65,6 +68,9 @@ public class MeleeEnemyStateController : MonoBehaviour, IAttackState, IIdleState
         AttackCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangToChaseState;
         ChaseCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
         ChaseCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
+
+        gameObject.GetComponent<DamageCaculator>().OnDeath -= ChangeToDeathState;
+
 
 
     }
@@ -117,6 +123,16 @@ public class MeleeEnemyStateController : MonoBehaviour, IAttackState, IIdleState
     public void ChangeToMoveState()
     {
         stateMachine.ChangeState(MoveState);
+
+    }
+    public void LockDeathState()
+    {
+        AttackCollider.GetComponent<IColliderTrigger>().OnEnterTrigger -= ChangeToAttackState;
+        ChaseCollider.GetComponent<IColliderDetectObject>().DectectObject -= ChangeToChaseState;
+
+        AttackCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangToChaseState;
+        ChaseCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
+        ChaseCollider.GetComponent<IColliderTrigger>().OnExitTrigger -= ChangeToIdleState;
 
     }
 

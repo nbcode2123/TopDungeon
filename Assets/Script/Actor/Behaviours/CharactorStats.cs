@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharactorStats : MonoBehaviour
@@ -22,6 +23,11 @@ public class CharactorStats : MonoBehaviour
     protected virtual void Start()
     {
 
+    }
+
+    void OnEnable()
+    {
+        currentHealth = MaxHealth;
     }
 
 }

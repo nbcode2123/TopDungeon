@@ -165,6 +165,11 @@ public class MapProcesser : MonoBehaviour
         ListRoomObject[index].GetComponent<RoomObject>().Index = index;
         ObjectPoolManager.Instance.ActiveThePool(RoomObject.name);
         ListRoomObject[index].GetComponent<RoomObject>().ListFloorPosition = new List<Vector2Int>(floorPositon);
+        if (index == 0)
+        {
+            ListRoomObject[index].GetComponent<EnemySpawner>().isComplete = true;
+            ListRoomObject[index].GetComponent<RoomObject>().isComplete = true;
+        }
         if (index != 0 && index != RoomNumber)
         {
             ListRoomObject[index].GetComponent<EnemySpawner>().RoomIndex = index;

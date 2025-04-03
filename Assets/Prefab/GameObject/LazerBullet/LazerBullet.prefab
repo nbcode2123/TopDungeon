@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5277040594830189421}
   - component: {fileID: 1161118407786043762}
   - component: {fileID: 3021570843035433207}
-  - component: {fileID: 4814442473565474378}
   - component: {fileID: 3163829100992754183}
+  - component: {fileID: 3048755625402075448}
   m_Layer: 13
   m_Name: LazerBullet
   m_TagString: Untagged
@@ -136,20 +136,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4814442473565474378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5221896472505156359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446320b3864647d4fb74f9fadbbb1c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 0
-  SetActiveTime: 10
 --- !u!61 &3163829100992754183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,3 +181,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.81245995, y: 0.37983036}
   m_EdgeRadius: 0
+--- !u!114 &3048755625402075448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221896472505156359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204a5caecc0a13f4a96abdc684dac534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 10
+  SetActiveTime: 10
