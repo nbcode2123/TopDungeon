@@ -205,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 809248394}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: NewGame
+      - m_Target: {fileID: 809248396}
+        m_TargetAssemblyTypeName: MeneScenen, Assembly-CSharp
+        m_MethodName: LobbyScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -472,8 +472,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 809248394}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+      - m_Target: {fileID: 809248396}
+        m_TargetAssemblyTypeName: MeneScenen, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
@@ -739,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809248395}
-  - component: {fileID: 809248394}
+  - component: {fileID: 809248396}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -747,18 +747,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &809248394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 809248393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91dc13083955a3a41a01632ca37c654a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &809248395
 Transform:
   m_ObjectHideFlags: 0
@@ -774,6 +762,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809248396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809248393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d6e389ee478e145beaac1a7eb0ec3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1183733929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1637707142
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 809248394}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1

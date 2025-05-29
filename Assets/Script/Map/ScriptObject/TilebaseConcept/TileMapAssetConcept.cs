@@ -25,6 +25,8 @@ public class TileMapAssetConcept : ScriptableObject
         return Architecture[Random.Range(0, Architecture.Count)];
     }
     public List<GameObject> Enemy;
+    public List<GameObject> Boss;
+
 
 
 }

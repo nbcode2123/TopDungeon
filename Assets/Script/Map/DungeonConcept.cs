@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class DungeonConcept : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class DungeonConcept : MonoBehaviour
     public TileBase FloorRoomTileBase;
     public List<TileBase> FloorTileBase;
     public List<GameObject> Enemy;
+    public List<GameObject> Boss;
 
     public static DungeonConcept Instance { get; private set; }
     void Awake()
@@ -30,10 +31,11 @@ public class DungeonConcept : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
-    public List<TileMapAssetConcept> TilebaseCollector;
+    public List<TileMapAssetConcept> TilebaseCollection;
+    public TileMapAssetConcept CurrentTileMapAsset;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,34 @@ public class DungeonConcept : MonoBehaviour
     {
 
     }
-    public void ChosingTileBaseConcept(TileMapAssetConcept tilebase)
+    // public TileMapAssetConcept SetUpTileMapConcept()
+    // {
+
+    // }
+    public void ChoosingRandomTileBaseConcept()
+    {
+        if (CurrentTileMapAsset == null)
+        {
+            CurrentTileMapAsset = TilebaseCollection[Random.Range(0, TilebaseCollection.Count)];
+
+            // CurrentTileMapAsset = TilebaseCollection[0];
+
+        }
+        else if (CurrentTileMapAsset != null && DungeonController.Instance.Level != 1)
+        {
+            List<TileMapAssetConcept> _tempTileBasCollection = new List<TileMapAssetConcept>(TilebaseCollection);
+            _tempTileBasCollection.Remove(CurrentTileMapAsset);
+            CurrentTileMapAsset = _tempTileBasCollection[Random.Range(0, _tempTileBasCollection.Count)];
+            CurrentTileMapAsset = TilebaseCollection[0];
+
+
+        }
+        else return;
+
+        ChoosingTileBaseConcept(CurrentTileMapAsset);
+
+    }
+    public void ChoosingTileBaseConcept(TileMapAssetConcept tilebase)
     {
         FloorTileBase = tilebase.FloorTileMap;
         TopTileMap = tilebase.TopWallTileMap;
@@ -61,5 +90,23 @@ public class DungeonConcept : MonoBehaviour
         WallRoomTileBase = tilebase.WallTileBase;
         FloorRoomTileBase = tilebase.FloorTileBase;
         Enemy = new List<GameObject>(tilebase.Enemy);
+        Boss = tilebase.Boss;
+        CreateBulletPoolingForBulletEnemy();
+    }
+    public void CreateBulletPoolingForBulletEnemy()
+    {
+
+        foreach (var obj in Enemy)
+        {
+            var _tempBulletObj = obj.GetComponent<RangeAttack>()?.Bullet;
+            if (_tempBulletObj != null)
+            {
+                ObjectPoolManager.Instance.CreatePoolForDuplicateObject(_tempBulletObj);
+                ObjectPoolManager.Instance.SpawnThePool(_tempBulletObj.name, 200);
+            }
+
+        }
+
+
     }
 }

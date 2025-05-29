@@ -98,11 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f673a70a864afd428860a10e7bd4b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WeaponDamage>k__BackingField: 10
-  <WeaponAttackSpeed>k__BackingField: 0.5
-  Bullet: {fileID: 6947970372442421839, guid: 796fca2cba772c7429dba13e1beb1157, type: 3}
-  SpeedBullet: 20
-  Camera: {fileID: 0}
+  weaponDamage: 2
+  weaponAttackSpeed: 1
+  bullet: {fileID: 6947970372442421839, guid: 796fca2cba772c7429dba13e1beb1157, type: 3}
+  speedBullet: 20
+  CurrentCamera: {fileID: 0}
+  weaponEnergy: 2
+  PoolBulletNumber: 40
 --- !u!61 &3212601358651582605
 BoxCollider2D:
   m_ObjectHideFlags: 0

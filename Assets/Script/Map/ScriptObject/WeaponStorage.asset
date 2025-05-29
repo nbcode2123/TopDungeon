@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cd09a269ea37e459166f60db27ff6f, type: 3}
+  m_Name: WeaponStorage
+  m_EditorClassIdentifier: 
+  CommonWeapon:
+  - {fileID: 4796653370302451714, guid: e77d20a09ad360b46b2011f4ce7365fc, type: 3}
+  RareWeapon:
+  - {fileID: 1071497357304696866, guid: b0129c6bf739c5e43affebce4d05b07a, type: 3}
+  EpicWeapon:
+  - {fileID: 1169444261119264160, guid: b5c34864ea512e542b72bc87ca7104c6, type: 3}
+  CommonRate: 60
+  RareRate: 30
+  EpicRate: 10

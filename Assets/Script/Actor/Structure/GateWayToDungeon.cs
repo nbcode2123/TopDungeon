@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GateWayToDungeon : MonoBehaviour
 {
     public GameObject UI_GateWayBegin;
+    public GameObject Button;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,19 @@ public class GateWayToDungeon : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        UI_GateWayBegin.SetActive(true);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            UI_GateWayBegin.SetActive(true);
+            Button.SetActive(true);
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (UI_GateWayBegin != null)
+        if (UI_GateWayBegin != null && other.gameObject.tag == "Player")
         {
             UI_GateWayBegin.SetActive(false);
+            Button.SetActive(false);
+
 
         }
 
@@ -37,5 +44,6 @@ public class GateWayToDungeon : MonoBehaviour
 
 
     }
+
 }
 

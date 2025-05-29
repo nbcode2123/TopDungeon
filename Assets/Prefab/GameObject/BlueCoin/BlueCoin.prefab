@@ -121,8 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DropRate: 0
-  Value: 0
+  Value: 50
   MoveSpeed: 10
+  Threshold: 0.5
+  isGold: 0
 --- !u!58 &-2609594338293009967
 CircleCollider2D:
   m_ObjectHideFlags: 0

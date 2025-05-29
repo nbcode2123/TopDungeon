@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbdb22c1f16a5945bae1d0a7934c0ad, type: 3}
+  m_Name: TileMapAssetConcept _GrassDungeon
+  m_EditorClassIdentifier: 
+  FloorTileMap:
+  - {fileID: 11400000, guid: 9a82794bba7df8748b7b24f285d0b0df, type: 2}
+  - {fileID: 11400000, guid: 39f3acdeaf644d44e9e95271d54a4b40, type: 2}
+  - {fileID: 11400000, guid: f93709b2731970a43b7d181a7a763b0b, type: 2}
+  - {fileID: 11400000, guid: 967dfb9a19d11fb43928190c139acdc1, type: 2}
+  - {fileID: 11400000, guid: 79c36417233c0c24faa6a75808822e1a, type: 2}
+  - {fileID: 11400000, guid: 68ae0123dd5048d4b865aee15e4db0b0, type: 2}
+  TopWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  DownWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  RightWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  LeftWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  TopLeftWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  TopRightWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639,
+    type: 2}
+  BotLeftWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  BotRightWallTileMap: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639,
+    type: 2}
+  WallTileBase: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  FloorTileBase: {fileID: 11400000, guid: 2a7515f54378df649bd573296cf93639, type: 2}
+  Architecture:
+  - {fileID: 8593833809961369380, guid: 8e3951e6d0bfd2243acf4e9759165486, type: 3}
+  - {fileID: 1735882230255643879, guid: 53fb2c9a8bee87b408f7a75c1046fa4c, type: 3}
+  - {fileID: 5837080656432332669, guid: e1f445ee36abd71459941adafc313087, type: 3}
+  - {fileID: 3339115645573001735, guid: 1e73c022d38350d4f9bc9fe582c92f2d, type: 3}
+  - {fileID: 3947315224589484600, guid: 71de76b4276b693499aa524a49f51159, type: 3}
+  Enemy:
+  - {fileID: 1605018294734877934, guid: ce6c3a281c679d942b70493e827a028f, type: 3}
+  - {fileID: 3735393397812200835, guid: 4448210c7412a684a9a37f9868360a9d, type: 3}
+  Boss:
+  - {fileID: 391817671322342841, guid: a64f6a1dbce45134ab5f3f386b5bb6d5, type: 3}

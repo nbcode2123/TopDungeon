@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(MapProcesser))]
+[CustomEditor(typeof(MapProcessor))]
 
 public class TestButtonEditor : Editor
 {
@@ -11,16 +11,17 @@ public class TestButtonEditor : Editor
     {
         DrawDefaultInspector();
 
-        MapProcesser script = (MapProcesser)target;
+        MapProcessor script = (MapProcessor)target;
         if (GUILayout.Button("Nhấn để tạo ra các phòng "))
         {
         }
         if (GUILayout.Button("Generate Map Seed "))
         {
-            script.InitializeGeneration();
-            script.MapGenerator();
+            // script.InitializeGeneration();
+            script.StartMapProcess();
 
         }
 
     }
+
 }
