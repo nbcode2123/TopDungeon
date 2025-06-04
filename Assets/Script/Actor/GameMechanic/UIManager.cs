@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerStatsEnergy;
 
 
+
     public static UIManager Instance { get; private set; }
     void Awake()
     {
@@ -42,9 +43,23 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(PauseCanvasUI);
 
         }
+
+    }
+    public void BackToMenu()
+    {
+        Destroy(gameObject);
+        Destroy(ScenePlayerCanvas);
+        // DontDestroyOnLoad(ChoosingWeaponName);
+        // DontDestroyOnLoad(ChoosingWeaponAlert);
+        Destroy(BackToMenuBtn);
+        Destroy(PauseBtn);
+        Destroy(PauseCanvas);
+        Destroy(PlayerStatsCanvas);
+        Destroy(PauseCanvasUI);
     }
     private void Start()
     {
+
         BackToMenuBtn.SetActive(true);
         PauseBtn.SetActive(false);
         PauseCanvas.SetActive(false);
@@ -62,6 +77,12 @@ public class UIManager : MonoBehaviour
 
 
 
+
+
+    }
+    public void PlayUISFX()
+    {
+        ObserverManager.Notify("Audio", "UIClick");
     }
     public void BackToLobbyTrigger()
     {
@@ -80,6 +101,7 @@ public class UIManager : MonoBehaviour
         ObserverManager.RemoveListener("Map Generator Complete", TurnOnPauseBtn);
 
 
+
     }
     private void OnDisable()
     {
@@ -91,6 +113,7 @@ public class UIManager : MonoBehaviour
         ObserverManager.RemoveListener("Map Generator Complete", TurnOnPauseBtn);
         // ObserverManager.RemoveListener("Select Player Complete", TurnOffBackToLobbyBtn);
         // ObserverManager.RemoveListener("MenuScene", TurnOffBackToLobbyBtn);
+
 
     }
     public void TurnOnBackToMeneBtn()
@@ -117,6 +140,7 @@ public class UIManager : MonoBehaviour
     public void TurnOnPauseCanvas()
     {
         PauseCanvas.SetActive(true);
+        PlayUISFX();
         Time.timeScale = 0f;
     }
 
@@ -124,11 +148,15 @@ public class UIManager : MonoBehaviour
     {
         PauseCanvas.SetActive(false);
         Time.timeScale = 1f;
+        PlayUISFX();
+
 
     }
     public void TurnOnPauseBtn()
     {
         PauseBtn.SetActive(true);
+        PlayUISFX();
+
     }
 
 
@@ -139,12 +167,16 @@ public class UIManager : MonoBehaviour
     public void TurnOffBackToLobbyBtn()
     {
         BackToMenuBtn.SetActive(false);
+        PlayUISFX();
+
 
     }
     public void TurnOffChoosingCharacterCanvas()
     {
         ChoosingCharacterCanvas.SetActive(false);
         gameObject.GetComponent<ChooseCharacter>().ExitChoosingCharacter();
+        PlayUISFX();
+
     }
     public void TurnOnPlayerStatsUI()
     {

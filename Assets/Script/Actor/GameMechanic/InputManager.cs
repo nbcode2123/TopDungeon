@@ -36,8 +36,18 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // ObserverManager.AddListener("MenuScene", BackToMenu);
 
     }
+    private void OnDestroy()
+    {
+        // ObserverManager.RemoveListener("MenuScene", BackToMenu);
+
+    }
+    // public void BackToMenu()
+    // {
+    //     Destroy(gameObject);
+    // }
 
     // Update is called once per frame
     void Update()

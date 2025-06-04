@@ -43,6 +43,9 @@ public class LootItemController : MonoBehaviour
             DungeonController.Instance.CoinCounter += Value;
 
         }
+        ObserverManager.Notify("Audio", "CoinLoot");
+
+
         Destroy(gameObject);
 
     }

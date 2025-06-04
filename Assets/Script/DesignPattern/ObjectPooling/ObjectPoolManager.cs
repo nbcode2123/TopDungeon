@@ -56,6 +56,7 @@ public class ObjectPoolManager : MonoBehaviour
 
 
     }
+
     public void SpawnThePool(string namePool, int poolSize, GameObject gameobjectParent)// tao ra pool object tu pool nma duoc gan cho 1 object lam parent 
     {
         var _pool = ListPool.Find(p => p.Name == namePool);

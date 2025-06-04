@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -24,6 +25,7 @@ public class MapProcessor : MonoBehaviour
 
         // MapGenerator();
     }
+    public GameObject TextMeshPro;
     public RoomGenerator roomGenerator;  // chua cac phuong thuc tao ra cac thanh phan cua 1 room bao gom floor, wall
     public TileMapProcessor TileMapProcessor;  // chua cac phuong thuc de paint tile map 
     // public ColiderGenerator coliderGenerator;
@@ -59,46 +61,66 @@ public class MapProcessor : MonoBehaviour
     public void Start()
     {
 
-        coliderGenerator = gameObject.GetComponent<ColiderGenerator>();
-        TileMapProcessor = gameObject.GetComponent<TileMapProcessor>();
-        roomGenerator = gameObject.GetComponent<RoomGenerator>();
-        wallProcesser = gameObject.GetComponent<WallProcesser>();
-        environmentGenerator = gameObject.GetComponent<EnvironmentGenerator>();
-        PropertyDungeon.Instance.LoadingSceneCanvas.SetActive(true);
-        UIManager.Instance.PlayerStatsCanvas.SetActive(false);
+        // coliderGenerator = gameObject.GetComponent<ColiderGenerator>();
+        // TileMapProcessor = gameObject.GetComponent<TileMapProcessor>();
+        // roomGenerator = gameObject.GetComponent<RoomGenerator>();
+        // wallProcesser = gameObject.GetComponent<WallProcesser>();
+        // environmentGenerator = gameObject.GetComponent<EnvironmentGenerator>();
+
 
 
 
     }
-
-
-    public IEnumerator MapGenerator()
+    public void LoadMapFileSave()
     {
-        yield return null;
+
+    }
+    public void SaveMapFileSave()
+    {
+
+    }
+    public void TextChange(string text)
+    {
+        TextMeshPro.GetComponent<TextMeshProUGUI>().text = text;
+
+    }
+
+
+    public void MapGenerator()
+    {
+
         ObserverManager.Notify("Map Generator Start");
         InitializeGeneration();
         Debug.Log("khoi tao lai map");
-        yield return new WaitForSeconds(2f);
+        TextChange("khoi tao lai map");
         DecideConcept();
+        TextChange("Concept");
+
 
         CreateRoomObjectPooling(); // rao ra pool cho object dai dien cho cac room
+        TextChange("RoomObject pooling");
 
-        yield return new WaitForSeconds(2f);
+
 
         CreateRoomAndCollider();
+        TextChange("Create room and collider");
+
         Debug.Log("Tao phong va hanh lang ");
 
-        yield return new WaitForSeconds(2f);
         PaintTileMap(FloorPosition);
+        TextChange("Too tile map");
+
         Debug.Log("To mau tile map  ");
 
-        yield return new WaitForSeconds(2f);
         AddEnvironmentToRoom();
+        TextChange("tao moi truong");
+
         Debug.Log("Tao moi truong  ");
 
-        yield return new WaitForSeconds(2f);
 
         ObserverManager.Notify("Map Generator Complete");
+        TextChange("Hoang thanh tao map");
+
         Debug.Log("Hoan thanh tai map  ");
         for (int i = 0; i < ListRoomObject.Count; i++)
         {
@@ -106,9 +128,10 @@ public class MapProcessor : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(2f);
         // LoadingProgressReporter.Instance.WaitScene.SetActive(false);
         ObserverManager.Notify("DungeonStart");
+        TextChange("dungeon start");
+
         PropertyDungeon.Instance.LoadingSceneCanvas.SetActive(false);
         UIManager.Instance.PlayerStatsCanvas.SetActive(true);
 
@@ -118,50 +141,9 @@ public class MapProcessor : MonoBehaviour
     }
     public void StartMapProcess()
     {
-        StartCoroutine(MapGenerator());
+        MapGenerator();
     }
-    // public IEnumerator MapGenerator()
-    // {
-    //     yield return Step(() => InitializeGeneration(), "InitializeGeneration");
 
-    //     yield return new WaitForSeconds(2f);
-
-    //     yield return Step(() => DecideConcept(), "DecideConcept");
-
-    //     yield return Step(() => CreateRoomObjectPooling(), "CreateRoomObjectPooling");
-
-    //     yield return new WaitForSeconds(2f);
-
-    //     yield return Step(() => CreateRoomAndCollider(), "CreateRoomAndCollider");
-
-    //     yield return new WaitForSeconds(2f);
-
-    //     yield return Step(() => AddEnvironmentToRoom(), "AddEnvironmentToRoom");
-
-    //     yield return new WaitForSeconds(2f);
-
-    //     yield return Step(() => PaintTileMap(FloorPosition), "PaintTileMap");
-
-    //     yield return new WaitForSeconds(2f);
-
-    //     yield return Step(() => ObserverManager.Notify("Map Generator Complete"), "Notify Complete");
-
-    //     yield return new WaitForSeconds(2f);
-    // }
-
-    // private IEnumerator Step(Action action, string stepName)
-    // {
-    //     try
-    //     {
-    //         action();
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         Debug.LogError($"Lỗi tại bước: {stepName} | {ex.Message}\n{ex.StackTrace}");
-    //     }
-
-    //     yield return null;
-    // }
     public void InitializeGeneration()
     {
         Debug.Log("Khoi tao map ");
@@ -196,88 +178,22 @@ public class MapProcessor : MonoBehaviour
     public void CreateRoomObjectPooling()
     {
 
-        try
-        {
-            // ObjectPoolManager.Instance.CreatePoolForDuplicateObject(RoomObject);
-            // ObjectPoolManager.Instance.SpawnThePool(RoomObject.name, RoomNumber);
-            // ListRoomObject = ObjectPoolManager.Instance.FindListObjectFromPool(RoomObject.name);
-            for (int i = 0; i < RoomNumber; i++)
-            {
-                GameObject _tempRoomObj = Instantiate(RoomObject);
-                _tempRoomObj.name = "Room" + i;
-                ListRoomObject.Add(_tempRoomObj);
-            }
-        }
-        catch (Exception ex)
-        {
 
-            Debug.LogError("Lỗi khi gọi CreateRoomAndCollider: " + ex.Message);
+        for (int i = 0; i < RoomNumber; i++)
+        {
+            GameObject _tempRoomObj = Instantiate(RoomObject);
+            _tempRoomObj.name = "Room" + i;
+            ListRoomObject.Add(_tempRoomObj);
         }
+
     }
     public List<Vector2Int> CreateColliderDirection()
     {
 
-        try
-        {
-            coliderGenerator.ColiderDirectionGenerator(RoomNumber);
-            return coliderGenerator.ColiderDirection;
-        }
-        catch (Exception ex)
-        {
 
-            Debug.LogError("Lỗi khi gọi CreateRoomAndCollider: " + ex.Message);
-            return null;
-        }
+        coliderGenerator.ColiderDirectionGenerator(RoomNumber);
+        return coliderGenerator.ColiderDirection;
 
-    }
-    public void CreateRoomAndCollider()
-    {
-
-        try
-        {
-            var _colliderDirection = CreateColliderDirection();
-            CreateRoom(_colliderDirection, Vector2Int.zero);
-        }
-        catch (Exception ex)
-        {
-
-            Debug.LogError("Lỗi khi gọi CreateRoomAndCollider: " + ex.Message);
-        }
-    }
-    public void CreateRoom(List<Vector2Int> coliderDirection, Vector2Int startPosition)
-    {
-
-        var _currentPosition = startPosition;
-        for (int i = 0; i < RoomNumber; i++)
-        {
-            ListRoomCenterPosition.Add(_currentPosition);
-            var _floorPositionEachRoom = roomGenerator.FloorGenerator(_currentPosition, RoomSize);
-
-            FloorPosition.AddRange(_floorPositionEachRoom);
-            if (i != RoomNumber - 1)
-            {
-                _currentPosition = CreateCollider(_currentPosition, coliderDirection[i]);
-            }
-            var _wallPositionEachRoom = wallProcesser.WallGenerator(_floorPositionEachRoom);
-            // PaintTileMap(_floorPositionEachRoom); //! testing
-            CreateRoomObjectComponents(i, _wallPositionEachRoom, _floorPositionEachRoom);
-        }
-    }
-    public Vector2Int CreateCollider(Vector2Int startPosition, Vector2Int direction)
-    {
-        Vector2Int _currentPosition = startPosition;
-        var _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
-
-        FloorPosition.AddRange(_collider.WalkPosition);
-        // PaintTileMap(_collider.WalkPosition);//! testing 
-        _currentPosition = _collider.EndPosition;
-        while (ListRoomCenterPosition.Contains(_collider.EndPosition))
-        {
-            _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
-            FloorPosition.AddRange(_collider.WalkPosition);
-            _currentPosition = _collider.EndPosition;
-        }
-        return _currentPosition;
 
     }
     public void DecideConcept()
@@ -317,6 +233,49 @@ public class MapProcessor : MonoBehaviour
         }
 
     }
+    public void CreateRoomAndCollider()
+    {
+
+
+        var _colliderDirection = CreateColliderDirection();
+        CreateRoom(_colliderDirection, Vector2Int.zero);
+
+    }
+    public void CreateRoom(List<Vector2Int> coliderDirection, Vector2Int startPosition)
+    {
+
+        var _currentPosition = startPosition;
+        for (int i = 0; i < RoomNumber; i++)
+        {
+            ListRoomCenterPosition.Add(_currentPosition);
+            var _floorPositionEachRoom = roomGenerator.FloorGenerator(_currentPosition, RoomSize);
+
+            FloorPosition.AddRange(_floorPositionEachRoom);
+            if (i != RoomNumber - 1)
+            {
+                _currentPosition = CreateCollider(_currentPosition, coliderDirection[i]);
+            }
+            var _wallPositionEachRoom = wallProcesser.WallGenerator(_floorPositionEachRoom);
+            CreateRoomObjectComponents(i, _wallPositionEachRoom, _floorPositionEachRoom);
+        }
+    }
+    public Vector2Int CreateCollider(Vector2Int startPosition, Vector2Int direction)
+    {
+        Vector2Int _currentPosition = startPosition;
+        var _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
+
+        FloorPosition.AddRange(_collider.WalkPosition);
+        _currentPosition = _collider.EndPosition;
+        while (ListRoomCenterPosition.Contains(_collider.EndPosition))
+        {
+            _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
+            FloorPosition.AddRange(_collider.WalkPosition);
+            _currentPosition = _collider.EndPosition;
+        }
+        return _currentPosition;
+
+    }
+
 
     public void CreateRoomObjectComponents(int index, List<Vector2Int> wallPostion, List<Vector2Int> floorPositon)
     {
@@ -345,6 +304,7 @@ public class MapProcessor : MonoBehaviour
         else if (index != 0 && index == RoomNumber - 1 && _isBossStage == true)
         {
             ListRoomObject[index].GetComponent<RoomSpawner>().isThisBossStage = true;
+            ListRoomObject[index].GetComponent<RoomSpawner>().BossStageSetPrefab();
         }
         else if (index != 0 && index == RoomNumber - 1 && _isBossStage == false)
         {

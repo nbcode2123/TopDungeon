@@ -27,11 +27,7 @@ public class RoomSpawner : MonoBehaviour
             EnemyPrefab = DungeonConcept.Instance.Enemy;
 
         }
-        else if (isThisBossStage == true)
-        {
-            EnemyPrefab = DungeonConcept.Instance.Boss;
 
-        }
 
 
         // CreateSpawnPoint();
@@ -159,7 +155,7 @@ public class RoomSpawner : MonoBehaviour
 
             }
         }
-        else
+        else if (isThisBossStage == true)
         {
             GameObject _enemyObject = Instantiate(EnemyPrefab[0], new Vector3(SpawnPoint[0].x, SpawnPoint[0].y, 0), Quaternion.identity);
             EnemyInThisRoom.Add(_enemyObject);
@@ -205,6 +201,12 @@ public class RoomSpawner : MonoBehaviour
         TrashCan.Instance.TrashObj.Add(_transferGate);
 
 
+    }
+    public void BossStageSetPrefab()
+    {
+        EnemyPrefab.Clear();
+
+        EnemyPrefab = DungeonConcept.Instance.Boss;
     }
 
 

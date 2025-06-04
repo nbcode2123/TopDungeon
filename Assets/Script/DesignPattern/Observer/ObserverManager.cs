@@ -12,6 +12,7 @@ public class ObserverManager : MonoBehaviour
     void Awake()
     {
         Listeners.Clear();
+        DontDestroyOnLoad(gameObject);
 
     }
 

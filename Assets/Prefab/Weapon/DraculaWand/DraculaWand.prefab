@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 2
-  weaponAttackSpeed: 1
+  weaponAttackSpeed: 0.5
   bullet: {fileID: 6947970372442421839, guid: 796fca2cba772c7429dba13e1beb1157, type: 3}
   speedBullet: 20
   CurrentCamera: {fileID: 0}

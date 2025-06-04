@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemyStats : MonoBehaviour, IMovement, IAttackable, IHeath
@@ -66,7 +65,7 @@ public class EnemyStats : MonoBehaviour, IMovement, IAttackable, IHeath
 
     public float GetMovementSpeed()
     {
-        throw new NotImplementedException();
+        return MovementSpeed;
     }
 
     public void IncreaseAttackDamage(int value)
@@ -92,6 +91,7 @@ public class EnemyStats : MonoBehaviour, IMovement, IAttackable, IHeath
     // Start is called before the first frame update
     void Start()
     {
+        CurrentHeath = MaxHeath;
 
     }
 

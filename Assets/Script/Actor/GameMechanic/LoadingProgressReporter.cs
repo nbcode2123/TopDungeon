@@ -16,6 +16,7 @@ public class LoadingProgressReporter : MonoBehaviour
         {
             Instance = this;
         }
+
     }
     public static float CurrentProgress { get; private set; } = 0;
     public static bool IsDone { get; private set; } = false;
@@ -26,6 +27,8 @@ public class LoadingProgressReporter : MonoBehaviour
     {
         // WaitScene.SetActive(true);
         // Step 1: Setup camera, player...
+        PropertyDungeon.Instance.LoadingSceneCanvas.SetActive(true);
+        UIManager.Instance.PlayerStatsCanvas.SetActive(false);
         GameManager.Instance.Player = GameObject.Find("Player");
         Debug.Log("Xác định Player");
 
@@ -49,7 +52,7 @@ public class LoadingProgressReporter : MonoBehaviour
 
         // Step 3: Tạo map từng bước một
         // yield return GenerateMapStepByStep();
-        yield return StartCoroutine(MapProcessor.Instance.MapGenerator());
+        MapProcessor.Instance.MapGenerator();
         Debug.Log("Hoan thanh tao map");
         // Step 2: Init Value
         // WaitScene.SetActive(false);
@@ -57,19 +60,19 @@ public class LoadingProgressReporter : MonoBehaviour
         IsDone = true;
     }
 
-    IEnumerator GenerateMapStepByStep()
-    {
-        MapProcessor.Instance.InitializeGeneration(); yield return null; CurrentProgress = 0.5f;
-        MapProcessor.Instance.DecideConcept(); yield return null; CurrentProgress = 0.6f;
-        MapProcessor.Instance.CreateRoomObjectPooling(); yield return null; CurrentProgress = 0.7f;
-        MapProcessor.Instance.CreateRoomAndCollider(); yield return null; CurrentProgress = 0.8f;
-        MapProcessor.Instance.AddEnvironmentToRoom(); yield return null; CurrentProgress = 0.9f;
-        MapProcessor.Instance.PaintTileMap(MapProcessor.Instance.FloorPosition);
-        ObserverManager.Notify("DungeonStart");
-        yield return null;
+    // IEnumerator GenerateMapStepByStep()
+    // {
+    //     MapProcessor.Instance.InitializeGeneration(); yield return null; CurrentProgress = 0.5f;
+    //     MapProcessor.Instance.DecideConcept(); yield return null; CurrentProgress = 0.6f;
+    //     MapProcessor.Instance.CreateRoomObjectPooling(); yield return null; CurrentProgress = 0.7f;
+    //     MapProcessor.Instance.CreateRoomAndCollider(); yield return null; CurrentProgress = 0.8f;
+    //     MapProcessor.Instance.AddEnvironmentToRoom(); yield return null; CurrentProgress = 0.9f;
+    //     MapProcessor.Instance.PaintTileMap(MapProcessor.Instance.FloorPosition);
+    //     ObserverManager.Notify("DungeonStart");
+    //     yield return null;
 
-        ObserverManager.Notify("Map Generator Complete");
-    }
+    //     ObserverManager.Notify("Map Generator Complete");
+    // }
     public IEnumerator ProcessCreateMap()
 
     {
@@ -86,7 +89,7 @@ public class LoadingProgressReporter : MonoBehaviour
 
         // Step 3: Tạo map từng bước một
         // yield return GenerateMapStepByStep();
-        yield return StartCoroutine(MapProcessor.Instance.MapGenerator());
+        // yield return StartCoroutine(MapProcessor.Instance.MapGenerator());
         Debug.Log("Hoan thanh tao map");
         // Step 2: Init Value
 
@@ -121,7 +124,7 @@ public class LoadingProgressReporter : MonoBehaviour
 
         // Step 3: Tạo map từng bước một
         // yield return GenerateMapStepByStep();
-        yield return StartCoroutine(MapProcessor.Instance.MapGenerator());
+        // yield return StartCoroutine(MapProcessor.Instance.MapGenerator());
         Debug.Log("Hoan thanh tao map");
         // Step 2: Init Value
         // WaitScene.SetActive(false);

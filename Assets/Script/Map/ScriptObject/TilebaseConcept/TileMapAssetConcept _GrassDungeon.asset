@@ -40,5 +40,8 @@ MonoBehaviour:
   Enemy:
   - {fileID: 1605018294734877934, guid: ce6c3a281c679d942b70493e827a028f, type: 3}
   - {fileID: 3735393397812200835, guid: 4448210c7412a684a9a37f9868360a9d, type: 3}
+  - {fileID: 9025459906185747893, guid: e1ce726c98081d3469eb9814ca154471, type: 3}
+  - {fileID: 796077562939782113, guid: e33967516b9fd3f4eb4c57fdf4198ab5, type: 3}
+  - {fileID: 642773412029377148, guid: c6c44e15ad3f223408fba75a6ffed2f7, type: 3}
   Boss:
-  - {fileID: 391817671322342841, guid: a64f6a1dbce45134ab5f3f386b5bb6d5, type: 3}
+  - {fileID: 5447775477856937010, guid: d1a6d294bad0c3b40b071a1cfbbc3ac3, type: 3}

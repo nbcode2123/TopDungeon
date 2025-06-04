@@ -36,7 +36,7 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
     private float tempAngle = 90;
     private float AttackCounter = 0;
     public Camera CurrentCamera;
-    [SerializeField] public bool ActiveWeapon { get; set; } = false;
+    [field: SerializeField] public bool ActiveWeapon { get; set; } = false;
     public int weaponEnergy;
     public int WeaponEnergy
     {
@@ -141,6 +141,8 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
             Quaternion q2 = Quaternion.AngleAxis(angle - tempAngle, Vector3.forward);
             gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, q2, SpeedRotate);
         }
+
+
 
     }
     public void ShootBullet(Vector3 targetCursor)

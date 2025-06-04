@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.SearchService;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(ObserverManager))]
-[RequireComponent(typeof(UIManager))]
+using UnityEngine;
+
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +30,7 @@ public class GameManager : MonoBehaviour
         ObserverManager.AddListener("MenuScene", ReturnToMenu);
 
     }
+
     public void ReturnToLobby()
     {
         Destroy(Player);
@@ -51,10 +47,12 @@ public class GameManager : MonoBehaviour
     {
         ObserverManager.RemoveListener("MenuScene", ReturnToMenu);
 
+
     }
     private void OnDisable()
     {
         ObserverManager.RemoveListener("MenuScene", ReturnToMenu);
+
 
     }
 

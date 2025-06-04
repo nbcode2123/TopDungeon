@@ -1,13 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemyBulletWeapon : BulletWeapon
 {
-
+    private bool isHasPoolObj;
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+    private void OnEnable()
+    {
+        // isHasPoolObj = ObjectPoolManager.Instance.CheckForPoolExistence(gameObject.name);
 
     }
 
@@ -21,14 +25,30 @@ public class EnemyBulletWeapon : BulletWeapon
     {
         if (other.gameObject.tag == "Wall")
         {
-            // Destroy(gameObject);
-            gameObject.SetActive(false);
+            if (isHasPoolObj)
+            {
+                gameObject.SetActive(false);
+
+            }
+            else if (isHasPoolObj == false)
+            {
+                Destroy(gameObject);
+
+            }
 
         }
         if (other.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            gameObject.SetActive(false);
+            if (isHasPoolObj)
+            {
+                gameObject.SetActive(false);
+
+            }
+            else if (isHasPoolObj == false)
+            {
+                Destroy(gameObject);
+
+            }
 
             other.gameObject.GetComponent<IDamageable>()?.TakeDamage(Damage);
         }

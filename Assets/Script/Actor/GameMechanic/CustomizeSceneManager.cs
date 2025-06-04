@@ -14,8 +14,8 @@ public class CustomizeSceneManager : MonoBehaviour
     public void GoToDungeonScene()
     {
 
-        SceneManager.LoadScene("DungeonScene");
-        ObserverManager.Notify("DungeonScene");
+        SceneManager.LoadSceneAsync("DungeonScene");
+        // ObserverManager.Notify("DungeonScene");
 
     }
     public void BackToLobby()
@@ -28,17 +28,16 @@ public class CustomizeSceneManager : MonoBehaviour
     public void BackToMenu()
     {
         Destroy(gameObject);
-
-        SceneManager.LoadScene("MenuScene");
         ObserverManager.Notify("MenuScene");
+        SceneManager.LoadScene("MenuScene");
 
 
     }
     public void ExitGame()
     {
 
-        EditorApplication.isPlaying = false;
-
+        // EditorApplication.isPlaying = false;
+        Application.Quit(); // Dành cho bản build
 
     }
     public void GoToDungeon()

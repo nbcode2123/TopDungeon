@@ -40,6 +40,7 @@ public class ChooseCharacter : MonoBehaviour
 
     public void ZoomToCharacter()
     {
+
         if (Input.GetMouseButtonDown(0)) // Kiểm tra khi nhấn chuột trái
         {
             Vector2 rayPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -63,9 +64,16 @@ public class ChooseCharacter : MonoBehaviour
         UI_ChoosingCharacterBorder.SetActive(false);
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = MiddleScreen.transform;
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
+        PlayUISFX();
+
+    }
+    public void PlayUISFX()
+    {
+        ObserverManager.Notify("Audio", "UIClick");
     }
     public void ExceptCharacter()
     {
+        PlayUISFX();
         DontDestroyOnLoad(TargetCharacter);
         GameManager.Instance.Player = TargetCharacter;
         TargetCharacter.name = "Player";
