@@ -28,9 +28,9 @@ public class PropertyLobby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.Camera = Camera;
-        GameManager.Instance.CinemaCamera = CinemachineCamera;
-        GameObject gameManagerObj = GameManager.Instance.gameObject;
+        // GameManager.Instance.Camera = Camera;
+        // GameManager.Instance.CinemaCamera = CinemachineCamera;
+        // GameObject gameManagerObj = GameManager.Instance.gameObject;
 
         // gameManagerObj.GetComponent<ChooseCharacter>().TurnOffBorderBtn.GetComponent<Button>().onClick += 
 
@@ -45,6 +45,7 @@ public class PropertyLobby : MonoBehaviour
     }
     public void GoToDungeonScene()
     {
-        SceneManager.LoadScene("DungeonScene");
+        // SceneManager.LoadScene("DungeonScene");
+        ObserverManager.Notify("Start Dungeon");
     }
 }

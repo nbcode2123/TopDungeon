@@ -75,6 +75,20 @@ public class DungeonConcept : MonoBehaviour
         ChoosingTileBaseConcept(CurrentTileMapAsset);
 
     }
+    public void ChooseTilebaseConceptWithId(int id)
+    {
+        for (int i = 0; i < TilebaseCollection.Count; i++)
+        {
+            if (TilebaseCollection[i].ConceptId == id)
+            {
+                CurrentTileMapAsset = TilebaseCollection[i];
+                break;
+            }
+        }
+        ChoosingTileBaseConcept(CurrentTileMapAsset);
+
+
+    }
     public void ChoosingTileBaseConcept(TileMapAssetConcept tilebase)
     {
         FloorTileBase = tilebase.FloorTileMap;

@@ -201,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446320b3864647d4fb74f9fadbbb1c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 10
+  <Damage>k__BackingField: 1
   SetActiveTime: 5

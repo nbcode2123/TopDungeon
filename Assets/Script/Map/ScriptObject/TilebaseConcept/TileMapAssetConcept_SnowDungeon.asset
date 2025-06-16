@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbdb22c1f16a5945bae1d0a7934c0ad, type: 3}
   m_Name: TileMapAssetConcept_SnowDungeon
   m_EditorClassIdentifier: 
+  ConceptId: 1
   FloorTileMap:
   - {fileID: 11400000, guid: caf6e90cf29029148ad4c9e05aead224, type: 2}
   - {fileID: 11400000, guid: 589ca476aa2690a47ae489d3ecf46a4b, type: 2}

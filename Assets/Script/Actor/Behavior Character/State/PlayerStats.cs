@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats, IAmmor, IEnergy
 {
+    [SerializeField]
+    private string nameCharacter;
+    public string NameCharacter
+    {
+        get => nameCharacter;
+        set => nameCharacter = value;
+    }
+
+
     public GameObject BaseWeapon;
 
     //  public int MaxAmmor;
@@ -132,11 +141,19 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
         UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
 
     }
+    public int GetMaxAmmor()
+    {
+        return MaxAmmor;
+    }
 
     public int GetCurrentAmmor()
     {
         return CurrentAmmor;
 
+    }
+    public string GetNameCharacter()
+    {
+        return NameCharacter;
     }
 
     public void DecreaseCurrentAmmor(int value)
@@ -177,17 +194,28 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
     {
         return CurrentEnergy;
     }
+    public int GetMaxEnergy()
+    {
+        return MaxEnergy;
+    }
 
     public void DecreaseCurrentEnergy(int value)
     {
         if (value <= CurrentEnergy)
         {
             CurrentEnergy -= value;
+            UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
+            Debug.Log(value);
+
 
         }
         else if (value > CurrentEnergy)
         {
             CurrentEnergy = 0;
+            UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
+            Debug.Log(value);
+
+
         }
 
     }

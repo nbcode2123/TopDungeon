@@ -11,6 +11,7 @@ public class RoomObject : MonoBehaviour
     public GameObject WallObject;
     public bool isComplete = false;
     public List<Vector2Int> ListFloorPosition;
+    public List<Vector2Int> ListWallPosition;
     public Vector2Int CenterPosition;
 
 

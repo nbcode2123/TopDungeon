@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbdb22c1f16a5945bae1d0a7934c0ad, type: 3}
   m_Name: TileMapAssetConcept _GrassDungeon
   m_EditorClassIdentifier: 
+  ConceptId: 0
   FloorTileMap:
   - {fileID: 11400000, guid: 9a82794bba7df8748b7b24f285d0b0df, type: 2}
   - {fileID: 11400000, guid: 39f3acdeaf644d44e9e95271d54a4b40, type: 2}

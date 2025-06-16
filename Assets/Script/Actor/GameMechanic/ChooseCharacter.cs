@@ -11,9 +11,14 @@ public class ChooseCharacter : MonoBehaviour
     public GameObject MiddleScreen;
     public GameObject UI_ChoosingCharacterBorder;
 
-    private GameObject TargetCharacter;
+    public GameObject TargetCharacter;
     public GameObject ExceptBtn;
     public GameObject TurnOffBorderBtn;
+    public GameObject NameCharacterText;
+    public GameObject HeathText;
+    public GameObject AmmorText;
+    public GameObject EnergyText;
+
 
 
 
@@ -54,6 +59,13 @@ public class ChooseCharacter : MonoBehaviour
                     MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = clickedObject.transform;
                     MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 5;
                     UI_ChoosingCharacterBorder.SetActive(true);
+                    NameCharacterText.GetComponent<TextMeshProUGUI>().text = TargetCharacter.GetComponent<PlayerStats>().GetNameCharacter();
+                    HeathText.GetComponent<TextMeshProUGUI>().text = TargetCharacter.GetComponent<PlayerStats>().GetMaxHeath().ToString();
+
+                    AmmorText.GetComponent<TextMeshProUGUI>().text = TargetCharacter.GetComponent<PlayerStats>().GetMaxAmmor().ToString();
+                    EnergyText.GetComponent<TextMeshProUGUI>().text = TargetCharacter.GetComponent<PlayerStats>().GetMaxEnergy().ToString();
+
+
                 }
             }
 
@@ -82,9 +94,11 @@ public class ChooseCharacter : MonoBehaviour
         MainCamera.GetComponent<CinemachineVirtualCamera>().Follow = TargetCharacter.transform;
         MainCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 15;
         TargetCharacter.AddComponent<MovePlayer>();
-        TargetCharacter.AddComponent<WeaponController>();
+        // TargetCharacter.AddComponent<WeaponController>();
         TargetCharacter.AddComponent<PlayerStateController>();
+        ObserverManager.Notify("Select Player Complete", TargetCharacter);
         ObserverManager.Notify("Select Player Complete");
+
 
         // TargetCharacter.GetComponent<PlayerStats>().ChangeActorWeapon(_tempObecjt);
         ConfirmPlayer();

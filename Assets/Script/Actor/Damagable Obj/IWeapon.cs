@@ -11,6 +11,7 @@ public interface IWeapon
     bool ActiveWeapon { get; set; }
     void DisableWeapon();
     void EnableWeapon();
+    int Id { get; set; }
 
 
 

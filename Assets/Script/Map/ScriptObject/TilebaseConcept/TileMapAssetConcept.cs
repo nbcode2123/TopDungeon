@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class TileMapAssetConcept : ScriptableObject
 {
+    public int ConceptId;
     public List<TileBase> FloorTileMap;
     public TileBase TopWallTileMap;
     public TileBase DownWallTileMap;

@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerStatsHeath;
     public GameObject PlayerStatsAmmor;
     public GameObject PlayerStatsEnergy;
+    public GameObject SaveBtn;
+
 
 
 
@@ -32,15 +34,15 @@ public class UIManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(ScenePlayerCanvas);
-            // DontDestroyOnLoad(ChoosingWeaponName);
-            // DontDestroyOnLoad(ChoosingWeaponAlert);
-            DontDestroyOnLoad(BackToMenuBtn);
-            DontDestroyOnLoad(PauseBtn);
-            DontDestroyOnLoad(PauseCanvas);
-            DontDestroyOnLoad(PlayerStatsCanvas);
-            DontDestroyOnLoad(PauseCanvasUI);
+            // DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(ScenePlayerCanvas);
+            // // DontDestroyOnLoad(ChoosingWeaponName);
+            // // DontDestroyOnLoad(ChoosingWeaponAlert);
+            // DontDestroyOnLoad(BackToMenuBtn);
+            // DontDestroyOnLoad(PauseBtn);
+            // DontDestroyOnLoad(PauseCanvas);
+            // DontDestroyOnLoad(PlayerStatsCanvas);
+            // DontDestroyOnLoad(PauseCanvasUI);
 
         }
 
@@ -51,7 +53,7 @@ public class UIManager : MonoBehaviour
         Destroy(ScenePlayerCanvas);
         // DontDestroyOnLoad(ChoosingWeaponName);
         // DontDestroyOnLoad(ChoosingWeaponAlert);
-        Destroy(BackToMenuBtn);
+        // Destroy(BackToMenuBtn);
         Destroy(PauseBtn);
         Destroy(PauseCanvas);
         Destroy(PlayerStatsCanvas);
@@ -60,10 +62,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
 
-        BackToMenuBtn.SetActive(true);
+        // BackToMenuBtn.SetActive(true);
         PauseBtn.SetActive(false);
         PauseCanvas.SetActive(false);
         PlayerStatsCanvas.SetActive(false);
+        SaveBtn.SetActive(false);
+
         // ObserverManager.AddListener("Select Player Complete", TurnOffBackToLobbyBtn);
 
         ObserverManager.AddListener("LobbyScene", BackToLobbyTrigger);
@@ -72,6 +76,8 @@ public class UIManager : MonoBehaviour
         ObserverManager.AddListener("Map Generator Start", TurnOffAll);
         ObserverManager.AddListener("Map Generator Complete", TurnOnPlayerStatsUI);
         ObserverManager.AddListener("Map Generator Complete", TurnOnPauseBtn);
+        ObserverManager.AddListener("Map Generator Complete", TurnOnSaveBtn);
+
 
 
 
@@ -116,9 +122,13 @@ public class UIManager : MonoBehaviour
 
 
     }
+    public void TurnOnSaveBtn()
+    {
+        SaveBtn.SetActive(true);
+    }
     public void TurnOnBackToMeneBtn()
     {
-        BackToMenuBtn.SetActive(true);
+        // BackToMenuBtn.SetActive(true);
 
 
 
@@ -128,7 +138,7 @@ public class UIManager : MonoBehaviour
         // ChoosingWeaponAlert.SetActive(false);
         // ChoosingWeaponName.SetActive(false);
         ScenePlayerCanvas.SetActive(false);
-        BackToMenuBtn.SetActive(false);
+        // BackToMenuBtn.SetActive(false);
         PauseBtn.SetActive(false);
         PauseCanvas.SetActive(false);
         PlayerStatsCanvas.SetActive(false);
@@ -166,7 +176,7 @@ public class UIManager : MonoBehaviour
 
     public void TurnOffBackToLobbyBtn()
     {
-        BackToMenuBtn.SetActive(false);
+        // BackToMenuBtn.SetActive(false);
         PlayUISFX();
 
 
@@ -200,6 +210,10 @@ public class UIManager : MonoBehaviour
     public void PlayerStatsEnergyUpdate(int value)
     {
         PlayerStatsEnergy.GetComponent<Slider>().value = value;
+    }
+    public void SaveGame()
+    {
+        ObserverManager.Notify("Save Game");
     }
 
 

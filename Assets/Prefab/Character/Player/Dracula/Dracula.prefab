@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6978215383707409870}
   - component: {fileID: 1116759611702820966}
   - component: {fileID: 8489388978904298719}
-  - component: {fileID: 5230703217891165406}
   - component: {fileID: 4582318946714348827}
   - component: {fileID: 4304663665330228504}
+  - component: {fileID: 3054455213399576966}
   m_Layer: 3
   m_Name: Dracula
   m_TagString: Character
@@ -183,29 +183,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2159338, y: 1.9860446}
   m_EdgeRadius: 0
---- !u!114 &5230703217891165406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7307046110191164761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1fb50b48f2649f448bfe2447ea5cfdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
-  <currentHealth>k__BackingField: 0
-  <MoveSpeed>k__BackingField: 10
-  <AttackDamage>k__BackingField: 0
-  <ActorName>k__BackingField: Dracular
-  BaseWeapon: {fileID: 5716311193730979100, guid: 138eadb3037e09a448bf70326f3ff22b,
-    type: 3}
-  MaxAmmor: 5
-  MaxEnergy: 100
-  CurrentAmmor: 0
-  CurrentEnergy: 0
 --- !u!114 &4582318946714348827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,3 +207,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1921f1ca59c94484c815b1efcd8ee962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3054455213399576966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307046110191164761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd7af44c1551754a8d9df6b6a17da72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHeath: 200
+  currentHeath: 0
+  movementSpeed: 20
+  nameCharacter: Dracula
+  BaseWeapon: {fileID: 5716311193730979100, guid: 138eadb3037e09a448bf70326f3ff22b,
+    type: 3}
+  maxAmmor: 5
+  currentAmmor: 0
+  timeRecoverAmmor: 2
+  maxEnergy: 100
+  currentEnergy: 0
+  timeRecoverEnergy: 1

@@ -8,154 +8,181 @@ public class WeaponController : MonoBehaviour
     public GameObject Weapon1;
     public GameObject Weapon2;
     public GameObject CurrentWeapon;
+    public GameObject Player;
     private int CurrentWeaponEnergy;
-    // Start is called before the first frame update
-    void Start()
+    private PlayerStats PlayerStats;
+    public static WeaponController Instance { get; private set; }
+    private void Awake()
     {
-
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ChangeWeaponHolding();
-
-    }
-    void OnEnable()
-    {
-
-        GameObject _BaseWeapon = gameObject.GetComponent<PlayerStats>().BaseWeapon;
-        Weapon1 = Instantiate(_BaseWeapon, gameObject.transform.position, Quaternion.identity);
-        Weapon1.GetComponent<IWeapon>().ActiveWeapon = true;
-        Weapon1.GetComponent<RangeWeapon>()?.ChangeCamera();
-        Weapon1.GetComponent<IRangeWeapon>()?.CreateAmmo();
-        InputManager.Instance.OnAttack += Weapon1.GetComponent<IWeapon>().Attack;
-        // InputManager.Instance.OnAttack += UsingEnergy;
-
-        Weapon1.transform.SetParent(gameObject.transform);
-        CurrentWeapon = Weapon1;
-        CurrentWeaponEnergy = CurrentWeapon.GetComponent<IWeapon>().WeaponEnergy;
-
-
-    }
-    public void ChangeWeaponHolding()
-    {
-        if (Input.GetKeyDown(InputManager.Instance.ChangeWeapon))
+        if (Instance != null && Instance != this)
         {
-            if (Weapon2 != null && Weapon1 != null)
-            {
-                if (CurrentWeapon == Weapon2)
-                {
-                    Weapon1.SetActive(true);
-                    Weapon2.SetActive(false);
-                    CurrentWeapon = Weapon1;
-                    CurrentWeaponEnergy = CurrentWeapon.GetComponent<IWeapon>().WeaponEnergy;
-
-                    InputManager.Instance.OnAttack -= Weapon2.GetComponent<IWeapon>().Attack;
-
-
-
-                }
-                else if (CurrentWeapon == Weapon1)
-                {
-                    Weapon1.SetActive(false);
-                    Weapon2.SetActive(true);
-
-                    CurrentWeapon = Weapon2;
-                    CurrentWeaponEnergy = CurrentWeapon.GetComponent<IWeapon>().WeaponEnergy;
-
-                    InputManager.Instance.OnAttack -= Weapon1.GetComponent<IWeapon>().Attack;
-
-                }
-
-
-            }
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
         }
     }
-    public void UsingEnergy()
-
+    private void Start()
     {
-        gameObject.GetComponent<PlayerStats>().UsingEnergy(CurrentWeaponEnergy);
+        ObserverManager.AddListener<GameObject>("Select Player Complete", ChoosingCharacterComplete);
+        ObserverManager.AddListener<GameObject>("WeaponTriggerStay", LootWeapon);
+
     }
-    public void TakeWeapon(GameObject weapon)
+    public void ChoosingCharacterComplete(GameObject player)
+    {
+        Player = player;
+        DefaultWeaponEquipment(player.GetComponent<PlayerStats>().BaseWeapon, player);
+    }
+
+
+    public void DefaultWeaponEquipment(GameObject weapon, GameObject player)
+    {
+        GameObject defaultWeapon = Instantiate(weapon);
+        defaultWeapon.transform.SetParent(player.transform);
+        defaultWeapon.transform.localPosition = Vector3.zero;
+        defaultWeapon.GetComponent<IWeapon>().ActiveWeapon = true;
+        Weapon1 = defaultWeapon;
+        CurrentWeapon = defaultWeapon;
+        defaultWeapon.GetComponent<RangeWeapon>()?.CreateAmmo();
+        InputManager.Instance.RegisterOnAttack(Weapon1.GetComponent<IWeapon>().Attack);
+
+    }
+    public void LootWeapon(GameObject weapon)
     {
         if (Input.GetKeyDown(InputManager.Instance.TakeWeapon))
         {
-            weapon.tag = "WeaponPlayer";
 
+            weapon.tag = "WeaponPlayer";
             if (Weapon2 == null)
             {
-                Weapon1.SetActive(false);
-                InputManager.Instance.OnAttack -= Weapon1.GetComponent<IWeapon>().Attack;
-                Weapon2 = Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
-                Weapon2.GetComponent<IWeapon>().ActiveWeapon = true;
-                Weapon2.GetComponent<IRangeWeapon>()?.CreateAmmo();
-                Weapon2.transform.SetParent(gameObject.transform);
-                InputManager.Instance.OnAttack += Weapon2.GetComponent<IWeapon>().Attack;
+                weapon.transform.SetParent(Player.transform);
+                weapon.transform.localPosition = Vector3.zero;
+                weapon.GetComponent<IWeapon>().ActiveWeapon = true;
+                weapon.GetComponent<RangeWeapon>()?.CreateAmmo();
+                Weapon2 = weapon;
+                TurnOffWeapon(Weapon1);
+                TurnOnWeapon(Weapon2);
                 CurrentWeapon = Weapon2;
-                CurrentWeaponEnergy = CurrentWeapon.GetComponent<IWeapon>().WeaponEnergy;
-
-                Destroy(weapon);
-
-
             }
-            else if (Weapon1 != null && Weapon2 != null)
+            else if (Weapon2 != null && Weapon1 != null)
             {
-                SwapWeapon(CurrentWeapon, weapon);
-                CurrentWeaponEnergy = CurrentWeapon.GetComponent<IWeapon>().WeaponEnergy;
+                if (CurrentWeapon == Weapon1)
+                {
+                    Weapon1 = SwapWeaponInHand(Weapon1, weapon);
+                    CurrentWeapon = Weapon1;
 
+
+
+                }
+                else if (CurrentWeapon == Weapon2)
+                {
+                    Weapon2 = SwapWeaponInHand(Weapon2, weapon);
+                    CurrentWeapon = Weapon2;
+
+
+                }
             }
+        }
 
+
+
+
+    }
+    public GameObject SwapWeaponInHand(GameObject weaponHolding, GameObject weaponLooting)
+    {
+
+        weaponHolding.transform.position = weaponLooting.transform.position;
+        weaponHolding.GetComponent<IWeapon>().DisableWeapon();
+        weaponHolding.transform.SetParent(null);
+        weaponLooting.transform.SetParent(Player.transform);
+        weaponLooting.transform.localPosition = Vector3.zero;
+        weaponLooting.GetComponent<IWeapon>().EnableWeapon();
+        weaponLooting.GetComponent<RangeWeapon>()?.CreateAmmo();
+
+        InputManager.Instance.UnRegisterOnAttack(weaponHolding.GetComponent<IWeapon>().Attack);
+        InputManager.Instance.RegisterOnAttack(weaponLooting.GetComponent<IWeapon>().Attack);
+
+
+
+        return weaponLooting;
+
+
+    }
+    public void ChangeWeapon()
+    {
+        if (Weapon2 != null && Weapon1 != null)
+        {
+            if (CurrentWeapon == Weapon1)
+            {
+                CurrentWeapon = Weapon2;
+                TurnOnWeapon(Weapon2);
+                TurnOffWeapon(Weapon1);
+            }
+            else
+            {
+                CurrentWeapon = Weapon1;
+                TurnOnWeapon(Weapon1);
+                TurnOffWeapon(Weapon2);
+            }
         }
 
     }
-    public void SwapWeapon(GameObject weaponPlayer, GameObject weaponOutside)
+    public void TurnOnWeapon(GameObject weapon)
     {
-        var _tempPosition = weaponOutside.transform.position;
-        weaponOutside.transform.SetParent(gameObject.transform);
-        weaponOutside.GetComponent<IWeapon>().EnableWeapon();
-        InputManager.Instance.OnAttack += weaponOutside.GetComponent<IWeapon>().Attack;
-
-        weaponPlayer.transform.parent = null;
-        weaponPlayer.GetComponent<IWeapon>().DisableWeapon();
-        InputManager.Instance.OnAttack -= weaponPlayer.GetComponent<IWeapon>().Attack;
-        weaponPlayer.transform.position = _tempPosition;
-
-        Weapon2 = weaponOutside;
-
+        weapon.SetActive(true);
+        weapon.GetComponent<IWeapon>().ActiveWeapon = true;
+        InputManager.Instance.RegisterOnAttack(weapon.GetComponent<IWeapon>().Attack);
 
     }
-    private void OnDestroy()
+    public void TurnOffWeapon(GameObject weapon)
+    {
+        weapon.SetActive(false);
+        weapon.GetComponent<IWeapon>().ActiveWeapon = false;
+        InputManager.Instance.UnRegisterOnAttack(weapon.GetComponent<IWeapon>().Attack);
+
+    }
+    public void LoadWeaponData(GameObject weapon1, GameObject weapon2)
     {
         if (Weapon1 != null)
         {
-            InputManager.Instance.OnAttack -= Weapon1.GetComponent<IWeapon>().Attack;
-
+            TurnOffWeapon(Weapon1);
+            Destroy(Weapon1);
         }
         if (Weapon2 != null)
         {
-            InputManager.Instance.OnAttack -= Weapon2.GetComponent<IWeapon>().Attack;
-
-
+            TurnOffWeapon(Weapon2);
+            Destroy(Weapon2);
         }
-        InputManager.Instance.OnAttack -= CurrentWeapon.GetComponent<IWeapon>().Attack;
-        // InputManager.Instance.OnAttack -= UsingEnergy;
 
+        GameObject _tempWeapon1 = Instantiate(weapon1);
+        _tempWeapon1.transform.SetParent(Player.transform);
+        _tempWeapon1.transform.localPosition = Vector3.zero;
+        _tempWeapon1.GetComponent<IWeapon>().ActiveWeapon = true;
+        _tempWeapon1.GetComponent<RangeWeapon>()?.CreateAmmo();
+        Weapon1 = _tempWeapon1;
+        TurnOnWeapon(Weapon1);
 
+        CurrentWeapon = Weapon1;
+        GameObject _tempWeapon2 = Instantiate(weapon2);
+        _tempWeapon2.transform.SetParent(Player.transform);
+        _tempWeapon2.transform.localPosition = Vector3.zero;
+        _tempWeapon2.GetComponent<IWeapon>().ActiveWeapon = true;
+        _tempWeapon2.GetComponent<RangeWeapon>()?.CreateAmmo();
+        Weapon2 = _tempWeapon2;
+        TurnOffWeapon(Weapon2);
 
 
     }
-    private void OnDisable()
+    public void Update()
     {
-        // InputManager.Instance.OnAttack -= UsingEnergy;
+        if (Input.GetKeyDown(InputManager.Instance.ChangeWeapon))
+        {
+            ChangeWeapon();
+        }
 
     }
-    public void CalculatingEnergyBeforeAttack()
-    {
-        // var _currentEnergy = gameObject.GetComponent<PlayerStats>().
 
-    }
+
+
 }

@@ -47,7 +47,7 @@ public class PlayerColliderController : MonoBehaviour
         switch (other.tag)
         {
 
-            case "Weapon": gameObject.GetComponent<WeaponController>()?.TakeWeapon(other.gameObject); break;
+            case "Weapon": ObserverManager.Notify("WeaponTriggerStay", other.gameObject); break;
 
         }
 

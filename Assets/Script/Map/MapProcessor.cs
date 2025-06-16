@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class MapProcessor : MonoBehaviour
 
         // MapGenerator();
     }
-    public GameObject TextMeshPro;
+    // public GameObject TextMeshPro;
     public RoomGenerator roomGenerator;  // chua cac phuong thuc tao ra cac thanh phan cua 1 room bao gom floor, wall
     public TileMapProcessor TileMapProcessor;  // chua cac phuong thuc de paint tile map 
     // public ColiderGenerator coliderGenerator;
@@ -40,6 +41,8 @@ public class MapProcessor : MonoBehaviour
     public List<Vector2Int> ListRoomCenterPosition; // co the xoa 
     public List<GameObject> ListRoomObject;
     public TileMapAssetConcept tileMapAssetConcept;
+    public List<Vector2Int> WallPosition;
+    public List<Vector2Int> ColliderDirection;
     void OnEnable()
     {
         // ObserverManager.AddListener("DungeonStart", MapGenerator); //! kiem tra trong rangeweapon
@@ -79,11 +82,11 @@ public class MapProcessor : MonoBehaviour
     {
 
     }
-    public void TextChange(string text)
-    {
-        TextMeshPro.GetComponent<TextMeshProUGUI>().text = text;
+    // public void TextChange(string text)
+    // {
+    //     TextMeshPro.GetComponent<TextMeshProUGUI>().text = text;
 
-    }
+    // }
 
 
     public void MapGenerator()
@@ -92,34 +95,34 @@ public class MapProcessor : MonoBehaviour
         ObserverManager.Notify("Map Generator Start");
         InitializeGeneration();
         Debug.Log("khoi tao lai map");
-        TextChange("khoi tao lai map");
+        // TextChange("khoi tao lai map");
         DecideConcept();
-        TextChange("Concept");
+        // TextChange("Concept");
 
 
         CreateRoomObjectPooling(); // rao ra pool cho object dai dien cho cac room
-        TextChange("RoomObject pooling");
+        // TextChange("RoomObject pooling");
 
 
 
         CreateRoomAndCollider();
-        TextChange("Create room and collider");
+        // TextChange("Create room and collider");
 
         Debug.Log("Tao phong va hanh lang ");
 
         PaintTileMap(FloorPosition);
-        TextChange("Too tile map");
+        // TextChange("Too tile map");
 
         Debug.Log("To mau tile map  ");
 
         AddEnvironmentToRoom();
-        TextChange("tao moi truong");
+        // TextChange("tao moi truong");
 
         Debug.Log("Tao moi truong  ");
 
 
         ObserverManager.Notify("Map Generator Complete");
-        TextChange("Hoang thanh tao map");
+        // TextChange("Hoang thanh tao map");
 
         Debug.Log("Hoan thanh tai map  ");
         for (int i = 0; i < ListRoomObject.Count; i++)
@@ -130,7 +133,7 @@ public class MapProcessor : MonoBehaviour
 
         // LoadingProgressReporter.Instance.WaitScene.SetActive(false);
         ObserverManager.Notify("DungeonStart");
-        TextChange("dungeon start");
+        // TextChange("dungeon start");
 
         PropertyDungeon.Instance.LoadingSceneCanvas.SetActive(false);
         UIManager.Instance.PlayerStatsCanvas.SetActive(true);
@@ -189,17 +192,43 @@ public class MapProcessor : MonoBehaviour
     }
     public List<Vector2Int> CreateColliderDirection()
     {
+        string filePathDirection = Path.Combine(Application.persistentDataPath, "Direction.json");
+
+        if (FileChecker.CheckFile(filePathDirection))
+        {
+            return DataSaver.LoadListFromJson(filePathDirection);
+
+        }
+        else
+        {
+            coliderGenerator.ColiderDirectionGenerator(RoomNumber); //! 
+            ColliderDirection = new List<Vector2Int>(coliderGenerator.ColiderDirection);
+            return coliderGenerator.ColiderDirection;
+        }
 
 
-        coliderGenerator.ColiderDirectionGenerator(RoomNumber);
-        return coliderGenerator.ColiderDirection;
+
 
 
     }
     public void DecideConcept()
     {
-        DungeonConcept.Instance.ChoosingRandomTileBaseConcept();
-        EnvironmentManager.Instance.TilemapAssetConcept = DungeonConcept.Instance.CurrentTileMapAsset;
+        string filePathConcept = Path.Combine(Application.persistentDataPath, "ConceptId.json");
+
+        if (FileChecker.CheckFile(filePathConcept))
+        {
+            var _idConceptData = DataLoader.DataConceptId();
+            DungeonConcept.Instance.ChooseTilebaseConceptWithId(_idConceptData);
+            DataDelete.DeleteAllFilePath();
+
+
+        }
+        else
+        {
+            DungeonConcept.Instance.ChoosingRandomTileBaseConcept();
+            EnvironmentManager.Instance.TilemapAssetConcept = DungeonConcept.Instance.CurrentTileMapAsset;
+        }
+
 
 
     }
@@ -215,8 +244,10 @@ public class MapProcessor : MonoBehaviour
             var _tileFloorTileMap = DungeonConcept.Instance.FloorTileMap;
             var _tileFloorTilebase = DungeonConcept.Instance.FloorTileBase;
             StartCoroutine(TileMapProcessor.Instance.PaintTileMapWithMultipleTileBase(floorPosition, _tileFloorTilebase, _tileFloorTileMap));
+            WallPosition = new List<Vector2Int>(wallProcesser.WallGenerator(floorPosition));
             var _wallListPosition = wallProcesser.WallDirectionGenerator(floorPosition);
             var _wallTileBase = DungeonConcept.Instance.WallTileMapDungeon;
+
             TileMapProcessor.Instance.PaintTileMap(_wallListPosition.topWall, DungeonConcept.Instance.TopTileMap, _wallTileBase);
             TileMapProcessor.Instance.PaintTileMap(_wallListPosition.botWall, DungeonConcept.Instance.DownTileMap, _wallTileBase);
             TileMapProcessor.Instance.PaintTileMap(_wallListPosition.rightWall, DungeonConcept.Instance.RightTileMap, _wallTileBase);
@@ -277,13 +308,15 @@ public class MapProcessor : MonoBehaviour
     }
 
 
-    public void CreateRoomObjectComponents(int index, List<Vector2Int> wallPostion, List<Vector2Int> floorPositon)
+    public void CreateRoomObjectComponents(int index, List<Vector2Int> wallPosition, List<Vector2Int> floorPosition)
     {
         NotifyRoomToEnvironmentManager(index);
         ListRoomObject[index].transform.position = Vector3.zero;
         ListRoomObject[index].GetComponent<RoomObject>().Index = index;
         ObjectPoolManager.Instance.ActiveThePool(RoomObject.name);
-        ListRoomObject[index].GetComponent<RoomObject>().ListFloorPosition = new List<Vector2Int>(floorPositon);
+        ListRoomObject[index].GetComponent<RoomObject>().ListFloorPosition = new List<Vector2Int>(floorPosition);
+        ListRoomObject[index].GetComponent<RoomObject>().ListWallPosition = new List<Vector2Int>(wallPosition);
+
         ListRoomObject[index].GetComponent<RoomObject>().CenterPosition = ListRoomCenterPosition[index];
         bool _isBossStage = DungeonController.Instance.isBossStage;
         ListRoomObject[index].GetComponent<RoomSpawner>().RoomIndex = index;
@@ -313,9 +346,9 @@ public class MapProcessor : MonoBehaviour
 
         }
         Tilemap _roomWallTilemap = ListRoomObject[index].transform.Find("RoomWall").GetComponent<Tilemap>();
-        TileMapProcessor.Instance.PaintTileMap(wallPostion, DungeonConcept.Instance.WallRoomTileBase, _roomWallTilemap);
+        TileMapProcessor.Instance.PaintTileMap(wallPosition, DungeonConcept.Instance.WallRoomTileBase, _roomWallTilemap);
         Tilemap _roomFloorTilemap = ListRoomObject[index].transform.Find("RoomFloor").GetComponent<Tilemap>();
-        TileMapProcessor.Instance.PaintTileMap(floorPositon, DungeonConcept.Instance.FloorRoomTileBase, _roomFloorTilemap);
+        TileMapProcessor.Instance.PaintTileMap(floorPosition, DungeonConcept.Instance.FloorRoomTileBase, _roomFloorTilemap);
     }
     public void NotifyRoomToEnvironmentManager(int index)
     {

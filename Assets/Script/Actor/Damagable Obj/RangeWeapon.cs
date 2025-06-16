@@ -4,6 +4,12 @@ using UnityEngine;
 public class RangeWeapon : MonoBehaviour, IRangeWeapon
 {
     public Vector3 MousePos { get; set; }
+    public int id;
+    public int Id
+    {
+        get => id;
+        set => id = value;
+    }
     public int weaponDamage;
     public int WeaponDamage
     {
@@ -49,13 +55,17 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
 
     public void Attack()
     {
-
         Vector3 mouseScreenPosition = Input.mousePosition;
         MousePos = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
         Vector3 vectorToTarget = MousePos - gameObject.transform.position;
-        if (AttackCounter >= WeaponAttackSpeed)
+        if (gameObject.GetComponentInParent<PlayerStats>().CurrentEnergy >= WeaponEnergy)
         {
-            ShootBullet(vectorToTarget);
+            if (AttackCounter >= WeaponAttackSpeed)
+            {
+                ShootBullet(vectorToTarget);
+                gameObject.GetComponentInParent<PlayerStats>().DecreaseCurrentEnergy(WeaponEnergy);
+            }
+
         }
 
 
@@ -68,9 +78,9 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
     }
     void Update()
     {
-        AttackCounter += Time.deltaTime;
         if (ActiveWeapon == true)
         {
+            AttackCounter += Time.deltaTime;
             SpinWeaponFollowCursor();
 
         }
@@ -128,7 +138,7 @@ public class RangeWeapon : MonoBehaviour, IRangeWeapon
     {
         ObjectPoolManager.Instance.CreatePoolForDuplicateObject(Bullet);
         ObjectPoolManager.Instance.SpawnThePool(Bullet.name, PoolBulletNumber);
-        ObjectPoolManager.Instance.DontDestroyPool(Bullet.name);
+        // ObjectPoolManager.Instance.DontDestroyPool(Bullet.name);
     }
     public void SpinWeaponFollowCursor()
     {
