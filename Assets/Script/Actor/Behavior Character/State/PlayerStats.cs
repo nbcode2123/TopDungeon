@@ -177,7 +177,19 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
 
     public void IncreaseMaxAmmor(int value)
     {
-        throw new System.NotImplementedException();
+        MaxAmmor += value;
+        if (MaxAmmor < 0)
+        {
+            MaxAmmor = 0;
+
+        }
+        if (MaxAmmor < CurrentAmmor)
+        {
+            CurrentAmmor = MaxAmmor;
+        }
+        UIManager.Instance.PlayerStatsMaxAmmorUpdate(MaxAmmor);
+        UIManager.Instance.PlayerStatsAmmorUpdate(CurrentAmmor);
+
     }
 
     public void DecreaseMaxAmmor(int value)
@@ -205,7 +217,6 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
         {
             CurrentEnergy -= value;
             UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
-            Debug.Log(value);
 
 
         }
@@ -213,7 +224,6 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
         {
             CurrentEnergy = 0;
             UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
-            Debug.Log(value);
 
 
         }
@@ -222,7 +232,14 @@ public class PlayerStats : CharacterStats, IAmmor, IEnergy
 
     public void IncreaseCurrentEnergy(int value)
     {
-        throw new System.NotImplementedException();
+        CurrentEnergy += value;
+        UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
+        if (CurrentEnergy > MaxEnergy)
+        {
+            CurrentEnergy = MaxEnergy;
+            UIManager.Instance.PlayerStatsEnergyUpdate(CurrentEnergy);
+
+        }
     }
 
     public void IncreaseMaxEnergy(int value)

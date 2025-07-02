@@ -27,20 +27,18 @@ public class DungeonController : MonoBehaviour
     public int CurrentRoom;
     public int EnemyCounter;
     public int GoldCounter;
-    public int CoinCounter;
     public int EachStageInLevel = 1;
     public bool isBossStage = false;
     public int MaxLevel;
 
     public void InitializeDungeonValue()
     {
-        Level = 1;
-        Stage = 1;
-        CurrentRoom = 0;
-        GoldCounter = 0;
-        CoinCounter = 0;
-        EnemyCounter = 0;
-        isBossStage = false;
+        // Level = 1;
+        // Stage = 1;
+        // CurrentRoom = 0;
+        // GoldCounter = 0;
+        // EnemyCounter = 0;
+        // isBossStage = false;
 
         string filePathDungeon = Path.Combine(Application.persistentDataPath, "DungeonController.json");
 
@@ -50,10 +48,10 @@ public class DungeonController : MonoBehaviour
             Level = data.Level;
             Stage = data.Stage;
             GoldCounter = data.GoldCounter;
-            CoinCounter = data.CoinCounter;
             EnemyCounter = data.EnemyCounter;
             isBossStage = data.isBossStage;
             CurrentRoom = 0;
+            UIManager.Instance.GoldCounterUI(GoldCounter);
 
 
 
@@ -63,16 +61,20 @@ public class DungeonController : MonoBehaviour
             Level = 1;
             Stage = 1;
             CurrentRoom = 0;
-            GoldCounter = 0;
-            CoinCounter = 0;
+            GoldCounter = 100;
             EnemyCounter = 0;
             isBossStage = false;
+            UIManager.Instance.GoldCounterUI(GoldCounter);
+
         }
     }
     void Start()
     {
         ObserverManager.AddListener("EnemyDie", CountEnemyDie);
         ObserverManager.AddListener("Stage Complete", NewLevelUpdate);
+        MapProcessor.Instance.RoomNumber = 3;
+        MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy = 3;
+
     }
     public void CountEnemyDie()
     {
@@ -124,12 +126,21 @@ public class DungeonController : MonoBehaviour
             GameManager.Instance.Player.transform.position = Vector3.zero;
             CurrentRoom = 0;
             TrashCan.Instance.ClearTrashCan();
+            // DungeonConcept.Instance.ChoosingRandomTileBaseConcept();
+            MapProcessor.Instance.RoomNumber += 1;
+            MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy += 1;
+
+
             MapProcessor.Instance.StartMapProcess();
 
         }
         else if (Stage == EachStageInLevel && Level == MaxLevel)
         {
             ObserverManager.Notify("Game Complete");
+            MapProcessor.Instance.RoomNumber += 1;
+            MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy += 1;
+            TrashCan.Instance.ClearTrashCan();
+
 
         }
         else if (Stage == EachStageInLevel && Level < MaxLevel)
@@ -140,12 +151,23 @@ public class DungeonController : MonoBehaviour
             GameManager.Instance.Player.transform.position = Vector3.zero;
             CurrentRoom = 0;
             TrashCan.Instance.ClearTrashCan();
+            // DungeonConcept.Instance.ChoosingRandomTileBaseConcept();
             MapProcessor.Instance.StartMapProcess();
         }
 
 
 
 
+    }
+    public void DecreaseGoldCounter(int value)
+    {
+        GoldCounter -= value;
+        UIManager.Instance.GoldCounterUI(GoldCounter);
+    }
+    public void IncreaseGoldCounter(int value)
+    {
+        GoldCounter += value;
+        UIManager.Instance.GoldCounterUI(GoldCounter);
     }
 
 

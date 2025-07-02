@@ -154,7 +154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1828882215
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1c57140394499644d9daddec4629f115, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -257,6 +257,7 @@ MonoBehaviour:
   BodyTurret: {fileID: 6360654343766731372}
   RangAttack: {fileID: 2937994741612342137}
   ShootSystem: {fileID: 8821440485389455273}
+  Actor: {fileID: 3735393397812200835}
 --- !u!114 &1153274850693350636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,8 +286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0
-  attackSpeed: 0
-  attackDamage: 2
   maxHeath: 10
   currentHeath: 0
 --- !u!114 &443280673394013029
@@ -431,7 +430,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1828882215
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: f630c281085faee48bdc913f54b1d982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -488,3 +487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2230dd856694d4884dcc584ef16b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
+  BulletSpeed: 8
+  TimeDelay: 1

@@ -13,6 +13,7 @@ public class ControlYellowTurret : MonoBehaviour
     private HeadYellowTurret headYellowTurret;
     private YellowTurretRangeAttackTrigger yellowTurretRangeAttackTrigger;
     private YellowTurretShootSystem turretShootSystem;
+    public GameObject Actor;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -81,5 +82,6 @@ public class ControlYellowTurret : MonoBehaviour
         turretShootSystem.StopCoroutineAttack();
         headYellowTurret.Death();
         BodyTurret.SetActive(false);
+        Actor.GetComponent<Collider2D>().enabled = false;
     }
 }

@@ -15,7 +15,7 @@ public class LootItemController : MonoBehaviour
     {
 
     }
-    void OnTriggerStay2D(Collider2D other)
+    public virtual void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
@@ -23,7 +23,7 @@ public class LootItemController : MonoBehaviour
         }
 
     }
-    void FlyToPlayer(GameObject Player)
+    public virtual void FlyToPlayer(GameObject Player)
     {
         var _direction = new Vector3(Player.transform.position.x - gameObject.transform.position.x, Player.transform.position.y - gameObject.transform.position.y, 0);
         gameObject.transform.position += _direction.normalized * MoveSpeed * Time.deltaTime;
@@ -32,17 +32,10 @@ public class LootItemController : MonoBehaviour
             CalculatorLootItem();
         }
     }
-    public void CalculatorLootItem()
+    public virtual void CalculatorLootItem()
     {
-        if (isGold == true)
-        {
-            DungeonController.Instance.GoldCounter += Value;
-        }
-        else if (isGold == false)
-        {
-            DungeonController.Instance.CoinCounter += Value;
 
-        }
+        DungeonController.Instance.IncreaseGoldCounter(Value);
         ObserverManager.Notify("Audio", "CoinLoot");
 
 

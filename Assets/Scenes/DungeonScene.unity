@@ -216,10 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73976d74d9a5ca542b8e38bbd476c7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextMeshPro: {fileID: 1604008831}
   roomGenerator: {fileID: 49968643}
   TileMapProcessor: {fileID: 354782415}
-  coliderGenerator: {fileID: 49968645}
+  colliderGenerator: {fileID: 0}
   wallProcesser: {fileID: 125780884}
   environmentGenerator: {fileID: 49968648}
   RoomSize: 40
@@ -258,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac15f0db707a08439fa46909349f255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColiderDirection: []
+  ColliderDirection: []
   ColiderExpandSize: 2
 --- !u!114 &49968648
 MonoBehaviour:
@@ -1124,7 +1123,9 @@ MonoBehaviour:
     type: 3}
   TransferGate: {fileID: 2120586720992851220, guid: 8fceef47c288b66418b956e21e6e4ebc,
     type: 3}
+  CharacterLobby: []
   WeaponStorage: []
+  CharacterStorage: []
 --- !u!4 &627897841
 Transform:
   m_ObjectHideFlags: 0

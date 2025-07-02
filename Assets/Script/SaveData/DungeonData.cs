@@ -45,7 +45,6 @@ public class DungeonData : MonoBehaviour
             Stage = DungeonController.Instance.Stage,
             EnemyCounter = DungeonController.Instance.EnemyCounter,
             GoldCounter = DungeonController.Instance.GoldCounter,
-            CoinCounter = DungeonController.Instance.CoinCounter,
             EachStageInLevel = DungeonController.Instance.EachStageInLevel,
             isBossStage = DungeonController.Instance.isBossStage,
             MaxLevel = DungeonController.Instance.MaxLevel

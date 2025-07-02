@@ -376,7 +376,7 @@ TextureImporter:
         height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 46, y: 50, z: 44, w: 47}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1186,27 +1186,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tiles #94419_50
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 275
-        width: 212
-        height: 141
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 18ea63f6b96cf324e97ba37384247e48
-      internalID: -2127025848
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tiles #94419_51
       rect:
         serializedVersion: 2
@@ -1362,7 +1341,7 @@ TextureImporter:
         x: 303
         y: 202
         width: 208
-        height: 184
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2726,6 +2705,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: tiles #94419_50
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 304
+        width: 209
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a4a9c7b2f1633d4a9e84c6e5ea3e40f
+      internalID: -2127025848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2763,6 +2763,8 @@ TextureImporter:
       tiles #94419_119: -1852895337
       tiles #94419_12: -211592718
       tiles #94419_120: -973158472
+      tiles #94419_121: -1571663257
+      tiles #94419_122: -2104948737
       tiles #94419_13: -1900208808
       tiles #94419_14: 1787347080
       tiles #94419_15: 149420515

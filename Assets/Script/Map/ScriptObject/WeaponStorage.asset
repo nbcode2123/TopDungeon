@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CommonWeapon:
   - {fileID: 4796653370302451714, guid: e77d20a09ad360b46b2011f4ce7365fc, type: 3}
+  - {fileID: 7759291666916315028, guid: a073eaf3b4430cd4fb8580459ad175b8, type: 3}
+  - {fileID: 5014203442738625241, guid: cc688d56b9dbde24b87be2d1fcdfcd59, type: 3}
   RareWeapon:
-  - {fileID: 1071497357304696866, guid: b0129c6bf739c5e43affebce4d05b07a, type: 3}
+  - {fileID: 5716311193730979100, guid: 138eadb3037e09a448bf70326f3ff22b, type: 3}
+  - {fileID: 9115372008834228104, guid: f13126ccbfb79a9438746709c3a89a0a, type: 3}
+  - {fileID: 5014203442738625241, guid: cc688d56b9dbde24b87be2d1fcdfcd59, type: 3}
   EpicWeapon:
   - {fileID: 1169444261119264160, guid: b5c34864ea512e542b72bc87ca7104c6, type: 3}
+  - {fileID: 5014203442738625241, guid: cc688d56b9dbde24b87be2d1fcdfcd59, type: 3}
   CommonRate: 60
   RareRate: 30
   EpicRate: 10

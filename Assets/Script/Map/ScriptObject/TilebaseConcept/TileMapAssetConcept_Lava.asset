@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbdb22c1f16a5945bae1d0a7934c0ad, type: 3}
+  m_Name: TileMapAssetConcept_Lava
+  m_EditorClassIdentifier: 
+  ConceptId: 2
+  FloorTileMap:
+  - {fileID: 11400000, guid: 13df1396d3ac34b489849acadce33bc2, type: 2}
+  - {fileID: 11400000, guid: 59e405f558a777f4f98a1bea5721820e, type: 2}
+  - {fileID: 11400000, guid: b0d20d70b3293014794a59af80a5ccf7, type: 2}
+  - {fileID: 11400000, guid: 74f7937f43fc41a4aa7d2c96ce401224, type: 2}
+  - {fileID: 11400000, guid: f03f60fa4e7de9645b503332c9d28cb4, type: 2}
+  - {fileID: 11400000, guid: fe3545fb3a99bc24a81baf625faa15b9, type: 2}
+  TopWallTileMap: {fileID: 11400000, guid: 70eeaa7bda616114284aaad82beed253, type: 2}
+  DownWallTileMap: {fileID: 11400000, guid: ff01893e2a55972408fa7d0ba928cd88, type: 2}
+  RightWallTileMap: {fileID: 11400000, guid: 70eeaa7bda616114284aaad82beed253, type: 2}
+  LeftWallTileMap: {fileID: 11400000, guid: ff01893e2a55972408fa7d0ba928cd88, type: 2}
+  TopLeftWallTileMap: {fileID: 11400000, guid: 70eeaa7bda616114284aaad82beed253, type: 2}
+  TopRightWallTileMap: {fileID: 11400000, guid: ff01893e2a55972408fa7d0ba928cd88,
+    type: 2}
+  BotLeftWallTileMap: {fileID: 11400000, guid: 70eeaa7bda616114284aaad82beed253, type: 2}
+  BotRightWallTileMap: {fileID: 11400000, guid: ff01893e2a55972408fa7d0ba928cd88,
+    type: 2}
+  WallTileBase: {fileID: 11400000, guid: 70eeaa7bda616114284aaad82beed253, type: 2}
+  FloorTileBase: {fileID: 11400000, guid: 74f7937f43fc41a4aa7d2c96ce401224, type: 2}
+  Architecture:
+  - {fileID: 3339115645573001735, guid: 1e73c022d38350d4f9bc9fe582c92f2d, type: 3}
+  Enemy:
+  - {fileID: 1605018294734877934, guid: ce6c3a281c679d942b70493e827a028f, type: 3}
+  - {fileID: 3735393397812200835, guid: 4448210c7412a684a9a37f9868360a9d, type: 3}
+  - {fileID: 9025459906185747893, guid: e1ce726c98081d3469eb9814ca154471, type: 3}
+  - {fileID: 796077562939782113, guid: e33967516b9fd3f4eb4c57fdf4198ab5, type: 3}
+  - {fileID: 642773412029377148, guid: c6c44e15ad3f223408fba75a6ffed2f7, type: 3}
+  Boss:
+  - {fileID: 391817671322342841, guid: a64f6a1dbce45134ab5f3f386b5bb6d5, type: 3}

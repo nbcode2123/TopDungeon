@@ -6,7 +6,6 @@ using UnityEngine;
 public class RoomSpawner : MonoBehaviour
 {
     public int RoomIndex; // RoomIndex == Spawner Index thể hiện đây là spawner của phòng nào 
-    public int NumberEnemyEachWave;
     public int NumberEnemy = 5;
     public List<Vector2Int> SpawnPoint = new List<Vector2Int>();
     public List<GameObject> EnemyPrefab;
@@ -107,10 +106,10 @@ public class RoomSpawner : MonoBehaviour
         {
             ActiveSpawner();
         }
-
     }
     public void EnemyDie(GameObject enemy)
     {
+        // TrashCan.Instance.TrashObj.Add(enemy);
         if (EnemyInThisRoom.Contains(enemy))
         {
             EnemyInThisRoom.Remove(enemy);
@@ -119,7 +118,6 @@ public class RoomSpawner : MonoBehaviour
         {
             if (RoomIndex == EnvironmentManager.Instance.ListRoom.Count - 1)
             {
-
                 ObserverManager.Notify("Room Complete", RoomIndex);
                 SpawnTransferGate();
                 SpawnCompleteChestEndLevel();
@@ -131,8 +129,6 @@ public class RoomSpawner : MonoBehaviour
                 SpawnCompleteChest();
                 isComplete = true;
             }
-
-
         }
 
 
@@ -205,7 +201,6 @@ public class RoomSpawner : MonoBehaviour
     public void BossStageSetPrefab()
     {
         EnemyPrefab.Clear();
-
         EnemyPrefab = DungeonConcept.Instance.Boss;
     }
 

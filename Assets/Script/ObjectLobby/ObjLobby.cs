@@ -27,18 +27,26 @@ public class ObjLobby : MonoBehaviour
         }
         for (int i = 0; i < CharacterLobby.Count; i++)
         {
-            CharacterLobby[i].SetActive(false);
+            if (CharacterLobby[i].CompareTag("Player") == false)
+            {
+                CharacterLobby[i].SetActive(false);
+
+            }
 
         }
     }
     private void OnDisable()
     {
         ObserverManager.RemoveListener("Start Dungeon", DisableObj);
+        ObserverManager.RemoveListener("Continues", DisableObj);
+
 
     }
     private void OnDestroy()
     {
         ObserverManager.RemoveListener("Start Dungeon", DisableObj);
+        ObserverManager.RemoveListener("Continues", DisableObj);
+
 
     }
 

@@ -9,6 +9,8 @@ public class DamageCalculator : MonoBehaviour, IDamageable
     public event Action OnDeath;
     public virtual void TakeDamage(int damage)
     {
+        ObserverManager.Notify("ShowDamage", gameObject.transform.position);
+        ObserverManager.Notify("ShowDamage", damage);
         var _characterStats = gameObject.GetComponent<IHeath>();
         // Debug.Log(gameObject.name + "bi dmg ");
         if (_characterStats.GetCurrentHeath() >= damage)

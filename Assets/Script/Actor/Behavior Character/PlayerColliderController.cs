@@ -28,7 +28,7 @@ public class PlayerColliderController : MonoBehaviour
     {
         switch (other.tag)
         {
-            case "Wall": Debug.Log("Va chạm vào tường "); break;
+            case "Wall": break;
             case "Floor":
                 CheckEnterNewRoom(other.GetComponentInParent<RoomObject>().Index);
                 break;

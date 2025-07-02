@@ -250,8 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  attackSpeed: 0.5
-  attackDamage: 0
+  attackSpeed: 1
   maxHeath: 200
   currentHeath: 0
 --- !u!114 &3504271760407317768
@@ -283,6 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pivot: {fileID: 8361841832683481282}
   Actor: {fileID: 5447775477856937010}
+  Bullet1: {fileID: 2079370025626367612, guid: 2fb8616d20161294cb4dc7e9978ce012, type: 3}
+  Bullet2: {fileID: 597398482622950782, guid: cd3a1edc5d7790b48a8876208aefe5b6, type: 3}
 --- !u!114 &1490716575140740562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  attackSpeed: 0
+  attackSpeed: 1
   Bullet: {fileID: 2079370025626367612, guid: 2fb8616d20161294cb4dc7e9978ce012, type: 3}
 --- !u!50 &1816558574059766772
 Rigidbody2D:

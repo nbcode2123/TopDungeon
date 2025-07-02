@@ -10,6 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3048755625402075448, guid: 5cd281f6d7ff6d748b0beaa0a3aa147b,
         type: 3}
+      propertyPath: isHasPoolObj
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3048755625402075448, guid: 5cd281f6d7ff6d748b0beaa0a3aa147b,
+        type: 3}
       propertyPath: <Damage>k__BackingField
       value: 20
       objectReference: {fileID: 0}

@@ -14,7 +14,6 @@ public class CharacterDataDungeon : MonoBehaviour
     public string Weapon1;
     public string Weapon2;
     public int Weapon1Id;
-    public int Weapon2Id;
     public int MaxHeath;
     public int MaxAmmor;
     public int MaxEnergy;
@@ -50,19 +49,7 @@ public class CharacterDataDungeon : MonoBehaviour
             Weapon1 = WeaponController.Instance.Weapon1.name,
             Weapon1Id = WeaponController.Instance.Weapon1.GetComponent<IWeapon>().Id
         };
-        if (WeaponController.Instance.Weapon2 == null)
-        {
-            characterDataDungeon.Weapon2 = null;
-            characterDataDungeon.Weapon2Id = 404;
 
-
-        }
-        else
-        {
-            characterDataDungeon.Weapon2 = WeaponController.Instance.Weapon2.name;
-            characterDataDungeon.Weapon2Id = WeaponController.Instance.Weapon2.GetComponent<IWeapon>().Id;
-
-        }
 
 
         string filePath = Path.Combine(Application.persistentDataPath, "Character.json");

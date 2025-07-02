@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CurrentScene = "LobbyScene";
+        Time.timeScale = 1f;
         ObserverManager.AddListener("MenuScene", ReturnToMenu);
         ObserverManager.AddListener("Start Dungeon", PlayerSetToZero);
         ContinuesLevelCheck();

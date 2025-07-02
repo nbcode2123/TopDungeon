@@ -11,6 +11,7 @@ public class MenuScene : MonoBehaviour
     public GameObject NewGameCanvas;
     public GameObject ContinuesCanvas;
     public GameObject ExitCanvas;
+    public GameObject ContinuesBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,16 @@ public class MenuScene : MonoBehaviour
         ContinuesCanvas.SetActive(false);
         NewGameCanvas.SetActive(false);
         ExitCanvas.SetActive(false);
+        string filePathConcept = Path.Combine(Application.persistentDataPath, "ConceptId.json");
+        if (FileChecker.CheckFile(filePathConcept))
+        {
+            ContinuesBtn.SetActive(true);
+
+        }
+        else
+        {
+            ContinuesBtn.SetActive(false);
+        }
 
 
     }

@@ -20,6 +20,7 @@ public class DungeonConcept : MonoBehaviour
     public List<TileBase> FloorTileBase;
     public List<GameObject> Enemy;
     public List<GameObject> Boss;
+    public List<TileMapAssetConcept> _tempTileBasCollection;
 
     public static DungeonConcept Instance { get; private set; }
     void Awake()
@@ -40,6 +41,7 @@ public class DungeonConcept : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _tempTileBasCollection = new List<TileMapAssetConcept>(TilebaseCollection);
 
     }
 
@@ -57,23 +59,51 @@ public class DungeonConcept : MonoBehaviour
         if (CurrentTileMapAsset == null)
         {
             CurrentTileMapAsset = TilebaseCollection[Random.Range(0, TilebaseCollection.Count)];
+            _tempTileBasCollection.Remove(CurrentTileMapAsset);
+
+
 
             // CurrentTileMapAsset = TilebaseCollection[0];
 
         }
-        else if (CurrentTileMapAsset != null && DungeonController.Instance.Level != 1)
+        else if (CurrentTileMapAsset != null && DungeonController.Instance.Stage == 1)
         {
-            List<TileMapAssetConcept> _tempTileBasCollection = new List<TileMapAssetConcept>(TilebaseCollection);
-            _tempTileBasCollection.Remove(CurrentTileMapAsset);
+            // for (int i = 0; i < _tempTileBasCollection.Count; i++)
+            // {
+            //     if (CurrentTileMapAsset != TilebaseCollection[i])
+            //     {
+            //         CurrentTileMapAsset = TilebaseCollection[i];
+            //         break;
+            //     }
+            // }
             CurrentTileMapAsset = _tempTileBasCollection[Random.Range(0, _tempTileBasCollection.Count)];
-            CurrentTileMapAsset = TilebaseCollection[0];
+
+            _tempTileBasCollection.Remove(CurrentTileMapAsset);
+
+            // CurrentTileMapAsset = TilebaseCollection[0];
 
 
         }
-        else return;
+        // else if (CurrentTileMapAsset != null && DungeonController.Instance.Stage > 1)
+        // {
+        //     return;
+        // }
+
 
         ChoosingTileBaseConcept(CurrentTileMapAsset);
 
+    }
+    public void ChoosingRandomTileBaseConceptBegin()
+    {
+
+        CurrentTileMapAsset = TilebaseCollection[Random.Range(0, TilebaseCollection.Count)];
+
+        // CurrentTileMapAsset = TilebaseCollection[0];
+
+
+
+
+        ChoosingTileBaseConcept(CurrentTileMapAsset);
     }
     public void ChooseTilebaseConceptWithId(int id)
     {

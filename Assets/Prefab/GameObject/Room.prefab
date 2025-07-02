@@ -65,6 +65,8 @@ MonoBehaviour:
   WallObject: {fileID: 0}
   isComplete: 0
   ListFloorPosition: []
+  ListWallPosition: []
+  CenterPosition: {x: 0, y: 0}
 --- !u!114 &5267243959730478756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,13 +81,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomIndex: 0
   NumberEnemyEachWave: 0
-  NumberEnemy: 5
-  NumberEnemyPooling: 10
+  NumberEnemy: 3
   SpawnPoint: []
   EnemyPrefab: []
   isComplete: 0
   ListFloorPosition: []
   EnemyInThisRoom: []
+  CenterRoomPosition: {x: 0, y: 0}
+  isThisBossStage: 0
 --- !u!1 &3091911888414940095
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,14 +200,14 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 28878937
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!19719996 &648187000442517392
@@ -353,9 +356,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 28878937
+  m_SortingLayerID: -818729747
   m_SortingLayer: 1
-  m_SortingOrder: -1
+  m_SortingOrder: -99
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

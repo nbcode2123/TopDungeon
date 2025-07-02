@@ -109,7 +109,7 @@ public class LoadingProgressReporter : MonoBehaviour
         MapProcessor.Instance.CreateRoomAndCollider(); yield return null; CurrentProgress = 0.8f;
         MapProcessor.Instance.AddEnvironmentToRoom(); yield return null; CurrentProgress = 0.9f;
         MapProcessor.Instance.PaintTileMap(MapProcessor.Instance.FloorPosition);
-        ObserverManager.Notify("DungeonStart");
+        // ObserverManager.Notify("DungeonStart");
         yield return null;
 
         ObserverManager.Notify("Map Generator Complete");

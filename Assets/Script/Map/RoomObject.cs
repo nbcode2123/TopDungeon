@@ -49,9 +49,14 @@ public class RoomObject : MonoBehaviour
     {
         if (Index == indexRoom && isComplete == false)
         {
-            TurnOnWall();
-
+            StartCoroutine(DelayActiveRoom());
         }
+
+    }
+    public IEnumerator DelayActiveRoom()
+    {
+        yield return new WaitForSeconds(0.2f);
+        TurnOnWall();
 
     }
     public void RoomComplete(int indexRoom)

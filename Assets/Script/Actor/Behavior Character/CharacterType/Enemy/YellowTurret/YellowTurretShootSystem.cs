@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class YellowTurretShootSystem : MonoBehaviour
 {
-    private GameObject Bullet;
-    private float BulletSpeed = 8f;
-    private float TimeDelay = 1;
+    public GameObject Bullet;
+    public float BulletSpeed = 8f;
+    public float TimeDelay = 1;
     private Coroutine ShootCoroutine;
     public void SetBullet(GameObject gameObject)
     {
@@ -57,8 +57,8 @@ public class YellowTurretShootSystem : MonoBehaviour
         var _direction = (Target.transform.position - gameObject.transform.position).normalized;
 
         Debug.Log(_direction);
-        // GameObject bullet = ObjectPoolManager.Instance.GetObjectFromPool(Bullet.name);
-        GameObject bullet = Instantiate(Bullet);
+        GameObject bullet = ObjectPoolManager.Instance.GetObjectFromPool(Bullet.name);
+        // GameObject bullet = Instantiate(Bullet);
         bullet.transform.position = gameObject.transform.position;
         bullet.SetActive(true);
         bullet.GetComponent<Rigidbody2D>().velocity = _direction * BulletSpeed;

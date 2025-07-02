@@ -38,11 +38,15 @@ public class CharacterStats : MonoBehaviour, IHeath, IMovement
         if (value <= CurrentHeath)
         {
             CurrentHeath -= value;
+            UIManager.Instance.PlayerStatsHeathUpdate(CurrentHeath);
+
 
         }
         else if (value > CurrentHeath)
         {
             CurrentHeath = 0;
+            UIManager.Instance.PlayerStatsHeathUpdate(CurrentHeath);
+
         }
 
     }
@@ -88,16 +92,32 @@ public class CharacterStats : MonoBehaviour, IHeath, IMovement
 
     public void IncreaseCurrentHeath(int value)
     {
+        CurrentHeath += value;
+        if (CurrentHeath > MaxHeath)
+        {
+            CurrentHeath = MaxHeath;
+        }
+        UIManager.Instance.PlayerStatsHeathUpdate(CurrentHeath);
 
     }
 
     public void IncreaseMaxHeath(int value)
     {
+        MaxHeath += value;
+        UIManager.Instance.PlayerStatsMaxHeathUpdate(MaxHeath);
+        if (CurrentHeath < MaxHeath)
+        {
+            IncreaseCurrentHeath(value);
+            UIManager.Instance.PlayerStatsMaxHeathUpdate(MaxHeath);
+
+        }
 
     }
 
     public void IncreaseMovementSpeed(float value)
     {
+        MovementSpeed += value;
+
 
     }
     // Start is called before the first frame update

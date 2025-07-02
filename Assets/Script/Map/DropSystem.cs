@@ -8,7 +8,9 @@ public class DropSystem : MonoBehaviour
     public static DropSystem Instance { private set; get; }
     public float DropRate = 30;
     public List<GameObject> ItemDrop = new List<GameObject>();
-    public List<GameObject> WeaponDrop = new List<GameObject>();
+    // public List<GameObject> ChestDrop = new List<GameObject>();
+    public List<GameObject> VendingMachineStorage = new List<GameObject>();
+
     public WeaponStorage WeaponStorage;
 
 
@@ -30,17 +32,25 @@ public class DropSystem : MonoBehaviour
         if (_random <= DropRate)
         {
             GameObject _itemDrop = Instantiate(ItemDrop[Random.Range(0, ItemDrop.Count)], objectDropItem.transform.position, Quaternion.identity);
+            TrashCan.Instance.TrashObj.Add(_itemDrop);
         }
-        // GameObject _itemDrop = Instantiate(ItemDrop[Random.Range(0, ItemDrop.Count)], objectDropItem.transform.position, Quaternion.identity);
-        // GameObject _itemDrop = Instantiate(ItemDrop[0], objectDropItem.transform.position, Quaternion.identity);
+
 
 
 
     }
     public void DropItem(Vector3 dropPosition, GameObject dropObject)
     {
-        Instantiate(dropObject, dropPosition, Quaternion.identity);
+        GameObject _tempItem = Instantiate(dropObject, dropPosition, Quaternion.identity);
+        TrashCan.Instance.TrashObj.Add(_tempItem);
     }
+    public void VendingMachineDropItem(Vector3 dropPosition)
+    {
+        GameObject _tempItem = Instantiate(VendingMachineStorage[Random.Range(0, VendingMachineStorage.Count)], dropPosition, Quaternion.identity);
+        TrashCan.Instance.TrashObj.Add(_tempItem);
+
+    }
+
     public void DropWeapon(Vector3 dropPosition)
     {
         var _random = Random.Range(0, 101);

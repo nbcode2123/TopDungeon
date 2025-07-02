@@ -139,7 +139,7 @@ public class ObjectPoolManager : MonoBehaviour
         var _tempPool = ListPool.Find(p => p.Name == namePool);
 
         _tempObject = _tempPool.QueueGameObject.Dequeue(); // Lấy object đầu tiên ra
-        _tempPool.QueueGameObject.Enqueue(_tempObject);               // Đưa nó xuống cuối hàng
+        _tempPool.QueueGameObject.Enqueue(_tempObject);
 
 
         // for (int i = 0; i < _tempPool.ListGameObject.Count; i++)

@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1050659541
-  m_SortingLayer: 3
+  m_SortingLayerID: 1548604483
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -576177678, guid: 06a920f91cf08d64f8740f5421e3c943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,12 +98,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f673a70a864afd428860a10e7bd4b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponDamage: 2
-  weaponAttackSpeed: 0.5
+  id: 0
+  weaponDamage: 1100
+  weaponAttackSpeed: 0.1
   bullet: {fileID: 6947970372442421839, guid: 796fca2cba772c7429dba13e1beb1157, type: 3}
   speedBullet: 20
   CurrentCamera: {fileID: 0}
-  weaponEnergy: 2
+  <ActiveWeapon>k__BackingField: 0
+  weaponEnergy: 1
   PoolBulletNumber: 40
 --- !u!61 &3212601358651582605
 BoxCollider2D:

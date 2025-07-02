@@ -29,8 +29,8 @@ public class MapProcessor : MonoBehaviour
     // public GameObject TextMeshPro;
     public RoomGenerator roomGenerator;  // chua cac phuong thuc tao ra cac thanh phan cua 1 room bao gom floor, wall
     public TileMapProcessor TileMapProcessor;  // chua cac phuong thuc de paint tile map 
-    // public ColiderGenerator coliderGenerator;
-    public ColiderGenerator coliderGenerator; // chua cac phuong thuc ve hanh lang (colider)
+    // public ColliderDirection ColliderDirection;
+    public ColliderGenerator colliderGenerator; // chua cac phuong thuc ve hanh lang (colider)
     public WallProcesser wallProcesser;
     public EnvironmentGenerator environmentGenerator;
     [SerializeField] private int RoomSize = 35;
@@ -64,7 +64,7 @@ public class MapProcessor : MonoBehaviour
     public void Start()
     {
 
-        // coliderGenerator = gameObject.GetComponent<ColiderGenerator>();
+        // ColliderDirection = gameObject.GetComponent<ColliderDirection>();
         // TileMapProcessor = gameObject.GetComponent<TileMapProcessor>();
         // roomGenerator = gameObject.GetComponent<RoomGenerator>();
         // wallProcesser = gameObject.GetComponent<WallProcesser>();
@@ -201,9 +201,9 @@ public class MapProcessor : MonoBehaviour
         }
         else
         {
-            coliderGenerator.ColiderDirectionGenerator(RoomNumber); //! 
-            ColliderDirection = new List<Vector2Int>(coliderGenerator.ColiderDirection);
-            return coliderGenerator.ColiderDirection;
+            colliderGenerator.ColliderDirectionGenerator(RoomNumber); //! 
+            ColliderDirection = new List<Vector2Int>(colliderGenerator.ColliderDirection);
+            return colliderGenerator.ColliderDirection;
         }
 
 
@@ -293,13 +293,13 @@ public class MapProcessor : MonoBehaviour
     public Vector2Int CreateCollider(Vector2Int startPosition, Vector2Int direction)
     {
         Vector2Int _currentPosition = startPosition;
-        var _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
+        var _collider = colliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
 
         FloorPosition.AddRange(_collider.WalkPosition);
         _currentPosition = _collider.EndPosition;
         while (ListRoomCenterPosition.Contains(_collider.EndPosition))
         {
-            _collider = coliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
+            _collider = colliderGenerator.WalkColider(_currentPosition, SpacingBetweenEachRoom + RoomSize, direction);
             FloorPosition.AddRange(_collider.WalkPosition);
             _currentPosition = _collider.EndPosition;
         }

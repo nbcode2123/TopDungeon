@@ -16,7 +16,7 @@ public class EnemyStats : MonoBehaviour, IMovement, IAttackable, IHeath
         get => attackSpeed;
         set => attackSpeed = value;
     }
-    public int attackDamage;
+    private int attackDamage;
     public int AttackDamage
     {
         get => attackDamage;

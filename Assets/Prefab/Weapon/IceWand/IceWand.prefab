@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1548604483
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 896152169, guid: 06a920f91cf08d64f8740f5421e3c943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,14 +99,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 1
-  weaponDamage: 0
-  weaponAttackSpeed: 0
+  weaponDamage: 1
+  weaponAttackSpeed: 0.2
   bullet: {fileID: 5757257553526565148, guid: b89a09632b310f0418d53162d5d0ee8c, type: 3}
-  speedBullet: 0
+  speedBullet: 10
   CurrentCamera: {fileID: 0}
   <ActiveWeapon>k__BackingField: 0
-  weaponEnergy: 0
-  PoolBulletNumber: 20
+  weaponEnergy: 2
+  PoolBulletNumber: 50
 --- !u!61 &3805226838261395083
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class PlayerDeathState : DeathState
     public override void EnterState()
     {
         actor.GetComponent<MovePlayer>().DeathFlag = true;
-        actor.GetComponent<WeaponController>().CurrentWeapon.SetActive(false);
+        WeaponController.Instance.CurrentWeapon.SetActive(false);
         base.EnterState();
     }
 }

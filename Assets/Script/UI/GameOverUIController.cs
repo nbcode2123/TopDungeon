@@ -12,8 +12,7 @@ public class GameOverUIController : MonoBehaviour
     private TextMeshProUGUI LevelUIText;
     [SerializeField] private GameObject StageUI;
     private TextMeshProUGUI StageUIText;
-    [SerializeField] private GameObject CoinUI;
-    private TextMeshProUGUI CoinUIText;
+
     [SerializeField] public GameObject GoldUI;
     private TextMeshProUGUI GoldUIText;
     [SerializeField] private GameObject EnemyUI;
@@ -47,7 +46,6 @@ public class GameOverUIController : MonoBehaviour
     {
         LevelUIText = LevelUI.GetComponent<TextMeshProUGUI>();
         StageUIText = StageUI.GetComponent<TextMeshProUGUI>();
-        CoinUIText = CoinUI.GetComponent<TextMeshProUGUI>();
         GoldUIText = GoldUI.GetComponent<TextMeshProUGUI>();
         EnemyUIText = EnemyUI.GetComponent<TextMeshProUGUI>();
 
@@ -61,7 +59,7 @@ public class GameOverUIController : MonoBehaviour
         GameManager.Instance.ReturnToLobby();
         SceneManager.sceneLoaded += OnLobbySceneLoaded;
 
-        SceneManager.LoadScene("LobbyScene");
+        SceneManager.LoadScene("MenuScene");
 
 
     }
@@ -86,18 +84,12 @@ public class GameOverUIController : MonoBehaviour
 
     public IEnumerator GameOverPropertyUpdate()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         GameOverCanvas.SetActive(true);
         yield return StartCoroutine(LevelUICounterUpdate(DungeonController.Instance.Level));
-        yield return null;
         yield return StartCoroutine(StageUICounterUpdate(DungeonController.Instance.Stage));
-        yield return null;
         yield return StartCoroutine(GoldUICounterUpdate(DungeonController.Instance.GoldCounter));
-        yield return null;
-        yield return StartCoroutine(CoinUICounterUpdate(DungeonController.Instance.CoinCounter));
-        yield return null;
         yield return StartCoroutine(EnemyUICounterUpdate(DungeonController.Instance.EnemyCounter));
-        yield return null;
         ReStartBtn.SetActive(true);
         UIManager.Instance.PlayerStatsCanvas.SetActive(false);
 
@@ -132,19 +124,7 @@ public class GameOverUIController : MonoBehaviour
 
 
     }
-    public IEnumerator CoinUICounterUpdate(int endCoinCounter)
-    {
-        float _elapsed = 0f;
-        while (_elapsed < TimeDuration)
-        {
-            _elapsed += Time.deltaTime;
-            float t = _elapsed / TimeDuration;
-            int currentValue = Mathf.FloorToInt(Mathf.Lerp(0, endCoinCounter, t));
-            CoinUIText.text = currentValue.ToString();
-            yield return null;
-        }
-        CoinUIText.text = endCoinCounter.ToString();
-    }
+
     public IEnumerator GoldUICounterUpdate(int endGoldCounter)
     {
         float _elapsed = 0f;

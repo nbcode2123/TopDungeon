@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -20,7 +21,10 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerStatsAmmor;
     public GameObject PlayerStatsEnergy;
     public GameObject SaveBtn;
-
+    public GameObject MenuConfirmDialog;
+    public GameObject SaveConfirmDialog;
+    public GameObject GoldCounterCanvas;
+    private TextMeshProUGUI GoldCounterText;
 
 
 
@@ -47,6 +51,31 @@ public class UIManager : MonoBehaviour
         }
 
     }
+    public void TurnOnMenuConfirmDialog()
+    {
+        MenuConfirmDialog.SetActive(true);
+    }
+    public void TurnOffMenuConfirmDialog()
+    {
+        MenuConfirmDialog.SetActive(false);
+    }
+    public void TurnOnSaveConfirmDialog()
+    {
+        SaveConfirmDialog.SetActive(true);
+    }
+    public void TurnOffSaveConfirmDialog()
+    {
+        SaveConfirmDialog.SetActive(false);
+    }
+    public void TurnOffGoldCounterCanvas()
+    {
+        GoldCounterCanvas.SetActive(false);
+    }
+    public void TurnOnGoldCounterCanvas()
+    {
+        GoldCounterCanvas.SetActive(true);
+    }
+
     public void BackToMenu()
     {
         Destroy(gameObject);
@@ -67,6 +96,8 @@ public class UIManager : MonoBehaviour
         PauseCanvas.SetActive(false);
         PlayerStatsCanvas.SetActive(false);
         SaveBtn.SetActive(false);
+        GoldCounterCanvas.SetActive(false);
+        GoldCounterText = GoldCounterCanvas.GetComponent<TextMeshProUGUI>();
 
         // ObserverManager.AddListener("Select Player Complete", TurnOffBackToLobbyBtn);
 
@@ -142,6 +173,8 @@ public class UIManager : MonoBehaviour
         PauseBtn.SetActive(false);
         PauseCanvas.SetActive(false);
         PlayerStatsCanvas.SetActive(false);
+        GoldCounterCanvas.SetActive(false);
+
 
     }
 
@@ -191,12 +224,15 @@ public class UIManager : MonoBehaviour
     public void TurnOnPlayerStatsUI()
     {
         PlayerStatsCanvas.SetActive(true);
+        GoldCounterCanvas.SetActive(true);
+
         PlayerStatsHeath.GetComponent<Slider>().maxValue = GameManager.Instance.Player.GetComponent<PlayerStats>().GetMaxHeath();
         PlayerStatsAmmor.GetComponent<Slider>().maxValue = GameManager.Instance.Player.GetComponent<PlayerStats>().MaxAmmor;
         PlayerStatsEnergy.GetComponent<Slider>().maxValue = GameManager.Instance.Player.GetComponent<PlayerStats>().MaxEnergy;
         PlayerStatsHeath.GetComponent<Slider>().value = GameManager.Instance.Player.GetComponent<PlayerStats>().GetMaxHeath();
         PlayerStatsAmmor.GetComponent<Slider>().value = GameManager.Instance.Player.GetComponent<PlayerStats>().MaxAmmor;
         PlayerStatsEnergy.GetComponent<Slider>().value = GameManager.Instance.Player.GetComponent<PlayerStats>().MaxEnergy;
+
     }
     public void PlayerStatsHeathUpdate(int value)
     {
@@ -211,9 +247,29 @@ public class UIManager : MonoBehaviour
     {
         PlayerStatsEnergy.GetComponent<Slider>().value = value;
     }
+    public void PlayerStatsMaxHeathUpdate(int value)
+    {
+        PlayerStatsHeath.GetComponent<Slider>().maxValue = value;
+    }
+    public void PlayerStatsMaxAmmorUpdate(int value)
+    {
+        PlayerStatsAmmor.GetComponent<Slider>().maxValue = value;
+
+    }
+    public void PlayerStatsMaxEnergyUpdate(int value)
+    {
+        PlayerStatsEnergy.GetComponent<Slider>().maxValue = value;
+    }
+    public void GoldCounterUI(int value)
+    {
+        GoldCounterText.text = value.ToString();
+    }
     public void SaveGame()
     {
         ObserverManager.Notify("Save Game");
+        Destroy(gameObject);
+        ObserverManager.Notify("MenuScene");
+        SceneManager.LoadScene("MenuScene");
     }
 
 

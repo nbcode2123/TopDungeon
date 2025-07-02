@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class ColiderGenerator : MonoBehaviour
+public class ColliderGenerator : MonoBehaviour
 {
-    public List<Vector2Int> ColiderDirection;
+    public List<Vector2Int> ColliderDirection;
     public int ColiderExpandSize = 2;
-    public void ColiderDirectionGenerator(int NumberRoom)
+    public void ColliderDirectionGenerator(int NumberRoom)
     {
-        ColiderDirection.Clear();
+        ColliderDirection.Clear();
         Vector2Int _tempDirection;
         for (int i = 0; i < NumberRoom; i++)
         {
             if (i == 0)
             {
-                ColiderDirection.Add(Direction2d.ListDirection[Random.Range(0, 4)]);
+                ColliderDirection.Add(Direction2d.ListDirection[Random.Range(0, 4)]);
             }
             else
             {
-                _tempDirection = ColiderDirection[i - 1];
-                ColiderDirection.Add(Direction2d.RandomExceptionDirection(_tempDirection * -1));
+                _tempDirection = ColliderDirection[i - 1];
+                ColliderDirection.Add(Direction2d.RandomExceptionDirection(_tempDirection * -1));
             }
         }
 

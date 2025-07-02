@@ -52,14 +52,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 3476237549
+    locked: 0
   - name: Enviroment
     uniqueID: 28878937
     locked: 0
   - name: UI -UX
     uniqueID: 3357224317
-    locked: 0
-  - name: Entity
-    uniqueID: 1050659541
     locked: 0
   - name: Actor
     uniqueID: 1828882215

@@ -12,7 +12,7 @@ public class ObserverManager : MonoBehaviour
     void Awake()
     {
         Listeners.Clear();
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
     }
 
@@ -99,9 +99,25 @@ public class ObserverManager : MonoBehaviour
         {
             return;
         }
-        foreach (var Listener in Listeners[name])
+        // foreach (var Listener in Listeners[name])
+        // {
+        //     if (Listener is Action action)
+        //     {
+        //         try
+        //         {
+        //             action?.Invoke();
+
+        //         }
+        //         catch (Exception e)
+        //         {
+
+        //             Debug.LogError("Observer problem " + e + Listener);
+        //         }
+        //     }
+        // }
+        for (int i = 0; i < Listeners[name].Count; i++)
         {
-            if (Listener is Action action)
+            if (Listeners[name][i] is Action action)
             {
                 try
                 {
@@ -111,7 +127,7 @@ public class ObserverManager : MonoBehaviour
                 catch (Exception e)
                 {
 
-                    Debug.LogError("Observer problem " + e + Listener);
+                    Debug.LogError("Observer problem " + e + Listeners[name][i]);
                 }
             }
         }
