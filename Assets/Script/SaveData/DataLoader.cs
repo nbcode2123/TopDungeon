@@ -29,6 +29,13 @@ public static class DataLoader
         PlayerData data = JsonUtility.FromJson<PlayerData>(json);
         return data;
     }
+    public static ScoreData DataScore()
+    {
+        string filePathCharacter = Path.Combine(Application.persistentDataPath, "Score.json");
+        string json = File.ReadAllText(filePathCharacter);
+        ScoreData data = JsonUtility.FromJson<ScoreData>(json);
+        return data;
+    }
 }
 [System.Serializable]
 public class ConceptID
@@ -66,5 +73,13 @@ public class PlayerData
     public int MaxHeath;
     public int MaxAmmor;
     public int MaxEnergy;
+}
+[System.Serializable]
+public class ScoreData
+{
+    public float Time;
+    public int Enemy;
+    public int Stage;
+    public int Level;
 }
 

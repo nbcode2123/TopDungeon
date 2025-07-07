@@ -198,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e75bf8d6bf7140748b85ab56747be517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 5
+  attackSpeed: 0
   maxHeath: 20
   currentHeath: 0
 --- !u!50 &7972469471807178906

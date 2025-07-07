@@ -20,9 +20,15 @@ public class ObjLobby : MonoBehaviour
     }
     public void DisableObj()
     {
+
+
         for (int i = 0; i < ListLobbyObj.Count; i++)
         {
-            ListLobbyObj[i].SetActive(false);
+            if (ListLobbyObj[i] != null)
+            {
+                ListLobbyObj[i].SetActive(false);
+
+            }
 
         }
         for (int i = 0; i < CharacterLobby.Count; i++)
@@ -34,6 +40,8 @@ public class ObjLobby : MonoBehaviour
             }
 
         }
+
+
     }
     private void OnDisable()
     {

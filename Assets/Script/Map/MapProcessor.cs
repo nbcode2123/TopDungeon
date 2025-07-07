@@ -134,7 +134,6 @@ public class MapProcessor : MonoBehaviour
         // LoadingProgressReporter.Instance.WaitScene.SetActive(false);
         ObserverManager.Notify("DungeonStart");
         // TextChange("dungeon start");
-
         PropertyDungeon.Instance.LoadingSceneCanvas.SetActive(false);
         UIManager.Instance.PlayerStatsCanvas.SetActive(true);
 

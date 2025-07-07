@@ -84,12 +84,12 @@ public class GameOverUIController : MonoBehaviour
 
     public IEnumerator GameOverPropertyUpdate()
     {
-        yield return new WaitForSeconds(1);
         GameOverCanvas.SetActive(true);
         yield return StartCoroutine(LevelUICounterUpdate(DungeonController.Instance.Level));
         yield return StartCoroutine(StageUICounterUpdate(DungeonController.Instance.Stage));
         yield return StartCoroutine(GoldUICounterUpdate(DungeonController.Instance.GoldCounter));
         yield return StartCoroutine(EnemyUICounterUpdate(DungeonController.Instance.EnemyCounter));
+        yield return new WaitForSeconds(0.5f);
         ReStartBtn.SetActive(true);
         UIManager.Instance.PlayerStatsCanvas.SetActive(false);
 

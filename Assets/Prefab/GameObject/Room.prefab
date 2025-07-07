@@ -80,8 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomIndex: 0
-  NumberEnemyEachWave: 0
-  NumberEnemy: 3
+  NumberEnemy: 7
   SpawnPoint: []
   EnemyPrefab: []
   isComplete: 0

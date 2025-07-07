@@ -72,8 +72,8 @@ public class DungeonController : MonoBehaviour
     {
         ObserverManager.AddListener("EnemyDie", CountEnemyDie);
         ObserverManager.AddListener("Stage Complete", NewLevelUpdate);
-        MapProcessor.Instance.RoomNumber = 3;
-        MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy = 3;
+        // MapProcessor.Instance.RoomNumber = 3;
+        // MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy = 3;
 
     }
     public void CountEnemyDie()
@@ -127,7 +127,7 @@ public class DungeonController : MonoBehaviour
             CurrentRoom = 0;
             TrashCan.Instance.ClearTrashCan();
             // DungeonConcept.Instance.ChoosingRandomTileBaseConcept();
-            MapProcessor.Instance.RoomNumber += 1;
+            // MapProcessor.Instance.RoomNumber += 1;
             MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy += 1;
 
 
@@ -137,14 +137,15 @@ public class DungeonController : MonoBehaviour
         else if (Stage == EachStageInLevel && Level == MaxLevel)
         {
             ObserverManager.Notify("Game Complete");
-            MapProcessor.Instance.RoomNumber += 1;
-            MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy += 1;
+            // MapProcessor.Instance.RoomNumber += 1;
+            // MapProcessor.Instance.RoomObject.GetComponent<RoomSpawner>().NumberEnemy += 1;
             TrashCan.Instance.ClearTrashCan();
 
 
         }
         else if (Stage == EachStageInLevel && Level < MaxLevel)
         {
+            ObserverManager.Notify("Level Complete");
             Stage = 1;
             Level++;
             isBossStage = false;

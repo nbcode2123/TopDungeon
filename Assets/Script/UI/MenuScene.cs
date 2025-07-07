@@ -12,10 +12,25 @@ public class MenuScene : MonoBehaviour
     public GameObject ContinuesCanvas;
     public GameObject ExitCanvas;
     public GameObject ContinuesBtn;
+    public GameObject ScoreCanvas;
+    public GameObject TimeText;
+    public GameObject EnemyText;
+    public GameObject StageText;
+    public GameObject LevelText;
+    private TextMeshProUGUI TimeTxt;
+    private TextMeshProUGUI EnemyTxt;
+    private TextMeshProUGUI StageTxt;
+    private TextMeshProUGUI LevelTxt;
     // Start is called before the first frame update
     void Start()
     {
+        TimeTxt = TimeText.GetComponent<TextMeshProUGUI>();
+        EnemyTxt = EnemyText.GetComponent<TextMeshProUGUI>();
+        StageTxt = StageText.GetComponent<TextMeshProUGUI>();
+        LevelTxt = LevelText.GetComponent<TextMeshProUGUI>();
+
         Scene currentScene = SceneManager.GetActiveScene();
+        ScoreCanvas.SetActive(false);
 
         foreach (var obj in Resources.FindObjectsOfTypeAll<GameObject>())
         {
@@ -45,8 +60,34 @@ public class MenuScene : MonoBehaviour
         {
             ContinuesBtn.SetActive(false);
         }
+        string filePathScore = Path.Combine(Application.persistentDataPath, "Score.json");
+        if (FileChecker.CheckFile(filePathScore))
+        {
+            var _lastScore = DataLoader.DataScore();
+            TimeTxt.text = FormatTime(_lastScore.Time);
+            // TimeTxt.text = _lastScore.Time.ToString();
+            EnemyTxt.text = _lastScore.Enemy.ToString();
+            StageTxt.text = _lastScore.Stage.ToString();
+            LevelTxt.text = _lastScore.Level.ToString();
+        }
+        else
+        {
+            TimeTxt.text = "0";
+            // TimeTxt.text = _lastScore.Time.ToString();
+            EnemyTxt.text = "0";
+            StageTxt.text = "0";
+            LevelTxt.text = "0";
+        }
 
 
+
+    }
+    string FormatTime(float timeInSeconds)
+    {
+        int totalMinutes = Mathf.FloorToInt(timeInSeconds / 60f);
+        int hours = totalMinutes / 60;
+        int minutes = totalMinutes % 60;
+        return string.Format("{0:D2}:{1:D2}", hours, minutes); // "hh:mm"
     }
 
     // Update is called once per frame
@@ -102,6 +143,14 @@ public class MenuScene : MonoBehaviour
     public void TurnOffExitCanvas()
     {
         ExitCanvas.SetActive(false);
+    }
+    public void TurnOnScoreCanvas()
+    {
+        ScoreCanvas.SetActive(true);
+    }
+    public void TurnOffScoreCanvas()
+    {
+        ScoreCanvas.SetActive(false);
     }
 
 }

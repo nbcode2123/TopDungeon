@@ -34,6 +34,9 @@ MonoBehaviour:
   FloorTileBase: {fileID: 11400000, guid: 74f7937f43fc41a4aa7d2c96ce401224, type: 2}
   Architecture:
   - {fileID: 3339115645573001735, guid: 1e73c022d38350d4f9bc9fe582c92f2d, type: 3}
+  - {fileID: 705442846285780110, guid: 10689d13cb806b549a33edde7b7915a1, type: 3}
+  - {fileID: 1735882230255643879, guid: 53fb2c9a8bee87b408f7a75c1046fa4c, type: 3}
+  - {fileID: 8593833809961369380, guid: 8e3951e6d0bfd2243acf4e9759165486, type: 3}
   Enemy:
   - {fileID: 1605018294734877934, guid: ce6c3a281c679d942b70493e827a028f, type: 3}
   - {fileID: 3735393397812200835, guid: 4448210c7412a684a9a37f9868360a9d, type: 3}
